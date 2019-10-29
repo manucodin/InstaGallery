@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "InstaGallery"
-  spec.version      = "0.1.0"
+  spec.version      = "0.2.2"
   spec.summary      = "An easy way to access your Instagram account and get medias"
 
   # This description is used to generate tags and improve search results.
