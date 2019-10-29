@@ -15,7 +15,7 @@ InstaGallery is an easy way to access your Instagram account and get your galler
 [![License](https://img.shields.io/badge/license-MIT-lightgrey)](https://cocoapods.org/pods/InstaGallery)
 [![Platform](https://img.shields.io/badge/platform-ios-blue)](https://cocoapods.org/pods/InstaGallery)
 
-Verisons is available through [CocoaPods](http://cocoapods.org). To install
+InstaGallery is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
