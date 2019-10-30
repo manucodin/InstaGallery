@@ -7,14 +7,24 @@
 //
 
 import UIKit
+import InstaGallery
 
 class ViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        showGallery()
+    }
+    
+    private func showGallery(){
+        IGGalleryController.presentGalleryFrom(self, imageCompletion: {image in
+            print(image)
+        })
+    }
 
 }
 
