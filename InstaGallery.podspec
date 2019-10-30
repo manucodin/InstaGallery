@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "InstaGallery"
-  spec.version      = "0.2.2"
+  spec.version      = "0.2.3"
   spec.summary      = "An easy way to access your Instagram account and get medias"
 
   # This description is used to generate tags and improve search results.
@@ -66,6 +66,7 @@ Pod::Spec.new do |spec|
 
   # spec.platform     = :ios
   spec.platform     = :ios, "11.0"
+  spec.swift_versions = "5.0"
 
   #  When using multiple platforms
   # spec.ios.deployment_target = "5.0"
