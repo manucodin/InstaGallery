@@ -37,7 +37,7 @@ class IGRequest :IGBaseRequest{
     
     func getUserInfo(withCompletionBlock functionOK:@escaping(() -> Void), functionError :@escaping(() -> Void)){
         let parameters :[String : Any] = [
-            "fields" : "id, username",
+            "fields" : "id,username",
             "access_token" : IGManagerUtils.getUserToken() ?? ""
         ]
         
