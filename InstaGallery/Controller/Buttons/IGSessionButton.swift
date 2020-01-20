@@ -72,6 +72,8 @@ public class IGSessionButton: UIButton {
                 loginFunction()
             }
             
+            authController.dismiss(animated: true, completion: nil)
+            
             self.configureView()
             
         })
