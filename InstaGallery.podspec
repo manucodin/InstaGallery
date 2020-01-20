@@ -106,7 +106,7 @@ Pod::Spec.new do |spec|
   #
 
   # spec.resource  = "icon.png"
-  spec.resources = "InstaGallery/**/*.xib"
+  spec.resources = "InstaGallery/**/*.xib", "InstaGallery/Assets.xcassets"
 
   # spec.preserve_paths = "FilesToSave", "MoreFilesToSave"
 
