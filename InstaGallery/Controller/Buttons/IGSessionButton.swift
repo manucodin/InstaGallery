@@ -75,7 +75,8 @@ public class IGSessionButton: UIButton {
             self.configureView()
             
         })
-        controller.present(authController, animated: true, completion: nil)
+        let navController = UINavigationController(rootViewController: authController)
+        controller.present(navController, animated: true, completion: nil)
     }
     
     @objc private func logout(){
