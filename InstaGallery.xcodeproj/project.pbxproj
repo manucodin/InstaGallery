@@ -150,6 +150,7 @@
 		A93A26832368D4F100E2331B /* InstaGallery */ = {
 			isa = PBXGroup;
 			children = (
+				A9EB85CC23D59BB000FF4B94 /* Languages */,
 				A93A26A32368D50400E2331B /* Controller */,
 				A93A269B2368D50400E2331B /* DataModel */,
 				A93A26AF2368D50500E2331B /* Manager */,
@@ -158,7 +159,6 @@
 				A93A26AD2368D50500E2331B /* Utils */,
 				A93A26842368D4F100E2331B /* InstaGallery.h */,
 				A93A26852368D4F100E2331B /* Info.plist */,
-				A9EB85CA23D592E900FF4B94 /* Localizable.strings */,
 			);
 			path = InstaGallery;
 			sourceTree = "<group>";
@@ -278,6 +278,14 @@
 				A9EB85C223D590E300FF4B94 /* IGSessionButton.swift */,
 			);
 			path = Buttons;
+			sourceTree = "<group>";
+		};
+		A9EB85CC23D59BB000FF4B94 /* Languages */ = {
+			isa = PBXGroup;
+			children = (
+				A9EB85CA23D592E900FF4B94 /* Localizable.strings */,
+			);
+			path = Languages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
