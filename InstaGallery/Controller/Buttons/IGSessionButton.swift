@@ -13,12 +13,12 @@ public class IGSessionButton: UIButton {
     private var functionLogin   :(() -> Void)!
     private var functionLogout  :(() -> Void)!
     
-    var logoutText = "logout"{
+    public var logoutText = "logout"{
         didSet{
             configureView()
         }
     }
-    var loginText = "login"{
+    public var loginText = "login"{
         didSet{
             configureView()
         }
@@ -71,5 +71,13 @@ public class IGSessionButton: UIButton {
         if let logoutFunction = self.functionLogout{
             logoutFunction()
         }
+    }
+    
+    public func configureLoginCallback(functionCallback :@escaping (() -> Void)){
+        self.functionLogin = functionCallback
+    }
+    
+    public func configureLogoutCallback(functionCallback :@escaping (() -> Void)){
+        self.functionLogout = functionCallback
     }
 }
