@@ -48,7 +48,6 @@ public class IGSessionButton: UIButton {
     
     
     private func configureView(){
-        setImage(UIImage(named: "instagram"), for: .normal)
         setTitleColor(.black, for: .normal)
         backgroundColor = .white
     }
