@@ -8,12 +8,12 @@
 
 import UIKit
 
-class IGSessionButton: UIButton {
+public class IGSessionButton: UIButton {
 
     private var functionLogin   :(() -> Void)!
     private var functionLogout  :(() -> Void)!
     
-    override func awakeFromNib() {
+    override public func awakeFromNib() {
         super.awakeFromNib()
         configureView()
     }
@@ -26,6 +26,11 @@ class IGSessionButton: UIButton {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         configureView()
+    }
+    
+    override public func layoutSubviews() {
+        super.layoutSubviews()
+        layer.cornerRadius = frame.size.height/2
     }
     
     
