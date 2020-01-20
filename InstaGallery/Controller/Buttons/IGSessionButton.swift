@@ -13,6 +13,17 @@ public class IGSessionButton: UIButton {
     private var functionLogin   :(() -> Void)!
     private var functionLogout  :(() -> Void)!
     
+    private var logoutText = "logout"{
+        didSet{
+            configureView()
+        }
+    }
+    private var loginText = "login"{
+        didSet{
+            configureView()
+        }
+    }
+    
     override public func awakeFromNib() {
         super.awakeFromNib()
         configureView()
@@ -36,10 +47,10 @@ public class IGSessionButton: UIButton {
     
     private func configureView(){
         if let _  = IGManagerUtils.getUserIdentifier(){
-            setTitle(NSLocalizedString("IG_logout", comment: "").localized, for: .normal)
-            addTarget(self, action: #selector(logout), for: .touchUpInside)
+            setTitle(logoutText, for: .normal)
+            addTarget(self, action: #selector(login), for: .touchUpInside)
         }else{
-            setTitle(NSLocalizedString("IG_login", comment: "").localized, for: .normal)
+            setTitle(loginText, for: .normal)
             addTarget(self, action: #selector(login), for: .touchUpInside)
         }
         

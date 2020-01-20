@@ -108,10 +108,6 @@ Pod::Spec.new do |spec|
   # spec.resource  = "icon.png"
   spec.resources = "InstaGallery/**/*.xib"
 
-  spec.resource_bundles = {
-    "InstaGallery" => "InstaGallery/Languages/**/*.strings"
-  }
-
   # spec.preserve_paths = "FilesToSave", "MoreFilesToSave"
 
 
