@@ -36,11 +36,11 @@ public class IGSessionButton: UIButton {
     
     private func configureView(){
         if let _  = IGManagerUtils.getUserIdentifier(){
-            setTitle(NSLocalizedString("IG_login", comment: ""), for: .normal)
-            addTarget(self, action: #selector(login), for: .touchUpInside)
-        }else{
             setTitle(NSLocalizedString("IG_logout", comment: ""), for: .normal)
             addTarget(self, action: #selector(logout), for: .touchUpInside)
+        }else{
+            setTitle(NSLocalizedString("IG_login", comment: ""), for: .normal)
+            addTarget(self, action: #selector(login), for: .touchUpInside)
         }
         
         setTitleColor(.white, for: .normal)
