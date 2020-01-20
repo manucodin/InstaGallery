@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import WebKit
 
 class IGManagerUtils{
 
@@ -49,6 +50,17 @@ class IGManagerUtils{
         UserDefaults.standard.removeObject(forKey: IG_TOKEN_KEY)
         UserDefaults.standard.removeObject(forKey: IG_USERID_KEY)
         UserDefaults.standard.removeObject(forKey: IG_USER_NAME)
+        IGManagerUtils.cleanAllCookies()
+    }
+    
+    private class func cleanAllCookies(){
+        HTTPCookieStorage.shared.removeCookies(since: Date.distantPast)
+        WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
+            records.forEach { record in
+                WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {})
+                debugPrint("Cookie ::: \(record) deleted")
+            }
+        }
     }
 }
 
