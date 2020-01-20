@@ -1,0 +1,10 @@
+/* 
+  Localizable.strings
+  InstaGallery
+
+  Created by Manuel Rodríguez Sebastián on 20/01/2020.
+  Copyright © 2020 MRodriguez. All rights reserved.
+*/
+
+"IG_login" = "Iniciar sesión";
+"IG_logout" = "Cerrar sesión";

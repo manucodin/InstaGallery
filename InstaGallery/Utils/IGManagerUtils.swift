@@ -44,6 +44,12 @@ class IGManagerUtils{
     class func getUserName() -> String?{
         return UserDefaults.standard.object(forKey: IG_USER_NAME) as? String
     }
+    
+    class func logoutUser(){
+        UserDefaults.standard.removeObject(forKey: IG_TOKEN_KEY)
+        UserDefaults.standard.removeObject(forKey: IG_USERID_KEY)
+        UserDefaults.standard.removeObject(forKey: IG_USER_NAME)
+    }
 }
 
 extension URL {
