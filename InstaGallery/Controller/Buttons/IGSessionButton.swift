@@ -36,10 +36,10 @@ public class IGSessionButton: UIButton {
     
     private func configureView(){
         if let _  = IGManagerUtils.getUserIdentifier(){
-            setTitle(NSLocalizedString("IG_logout", comment: ""), for: .normal)
+            setTitle(NSLocalizedString("IG_logout", comment: "").localized, for: .normal)
             addTarget(self, action: #selector(logout), for: .touchUpInside)
         }else{
-            setTitle(NSLocalizedString("IG_login", comment: ""), for: .normal)
+            setTitle(NSLocalizedString("IG_login", comment: "").localized, for: .normal)
             addTarget(self, action: #selector(login), for: .touchUpInside)
         }
         
