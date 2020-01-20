@@ -30,7 +30,7 @@
 		A93A26D12368D65000E2331B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A93A26CF2368D65000E2331B /* LaunchScreen.storyboard */; };
 		A97EC93F23699E7F00D4825C /* InstaGallery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A93A26812368D4F100E2331B /* InstaGallery.framework */; };
 		A97EC94023699E7F00D4825C /* InstaGallery.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A93A26812368D4F100E2331B /* InstaGallery.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		A9EB85C323D590E300FF4B94 /* IGButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EB85C223D590E300FF4B94 /* IGButton.swift */; };
+		A9EB85C323D590E300FF4B94 /* IGSessionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EB85C223D590E300FF4B94 /* IGSessionButton.swift */; };
 		A9EB85C823D592E900FF4B94 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A9EB85CA23D592E900FF4B94 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
@@ -92,7 +92,7 @@
 		A93A26CD2368D65000E2331B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A93A26D02368D65000E2331B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A93A26D22368D65000E2331B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A9EB85C223D590E300FF4B94 /* IGButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGButton.swift; sourceTree = "<group>"; };
+		A9EB85C223D590E300FF4B94 /* IGSessionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGSessionButton.swift; sourceTree = "<group>"; };
 		A9EB85C623D592E000FF4B94 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		A9EB85C723D592E000FF4B94 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		A9EB85C923D592E900FF4B94 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -275,7 +275,7 @@
 		A9EB85C123D5909D00FF4B94 /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
-				A9EB85C223D590E300FF4B94 /* IGButton.swift */,
+				A9EB85C223D590E300FF4B94 /* IGSessionButton.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -428,7 +428,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A93A26B92368D50500E2331B /* IGGalleryController.swift in Sources */,
-				A9EB85C323D590E300FF4B94 /* IGButton.swift in Sources */,
+				A9EB85C323D590E300FF4B94 /* IGSessionButton.swift in Sources */,
 				A93A26B62368D50500E2331B /* IGGalleryCell.swift in Sources */,
 				A93A26B22368D50500E2331B /* IGAuthPresenter.swift in Sources */,
 				A93A26B52368D50500E2331B /* IGRequest.swift in Sources */,
