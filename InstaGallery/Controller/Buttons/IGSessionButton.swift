@@ -13,6 +13,8 @@ public class IGSessionButton: UIButton {
     private var functionLogin   :(() -> Void)!
     private var functionLogout  :(() -> Void)!
     
+    private var currentController :UIViewController?
+    
     public var logoutText = "logout"{
         didSet{
             configureView()
@@ -48,7 +50,7 @@ public class IGSessionButton: UIButton {
     private func configureView(){
         if let _  = IGManagerUtils.getUserIdentifier(){
             setTitle(logoutText, for: .normal)
-            addTarget(self, action: #selector(login), for: .touchUpInside)
+            addTarget(self, action: #selector(logout), for: .touchUpInside)
         }else{
             setTitle(loginText, for: .normal)
             addTarget(self, action: #selector(login), for: .touchUpInside)
@@ -59,9 +61,21 @@ public class IGSessionButton: UIButton {
     }
     
     @objc private func login(){
-        if let loginFunction = self.functionLogin{
-            loginFunction()
+        guard let controller = currentController else{
+            return
         }
+        
+        let authController = IGAuthorizeController()
+        authController.configureCallback(functionCallback: {
+           
+            if let loginFunction = self.functionLogin{
+                loginFunction()
+            }
+            
+            self.configureView()
+            
+        })
+        controller.present(authController, animated: true, completion: nil)
     }
     
     @objc private func logout(){
@@ -79,5 +93,9 @@ public class IGSessionButton: UIButton {
     
     public func configureLogoutCallback(functionCallback :@escaping (() -> Void)){
         self.functionLogout = functionCallback
+    }
+    
+    public func showInController(_ controller :UIViewController){
+        self.currentController = controller
     }
 }
