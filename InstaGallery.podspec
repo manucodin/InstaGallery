@@ -106,7 +106,6 @@ Pod::Spec.new do |spec|
   #
 
   # spec.resource  = "icon.png"
-  spec.
   spec.resources = "InstaGallery/**/*.xib"
 
   spec.resource_bundles = {
