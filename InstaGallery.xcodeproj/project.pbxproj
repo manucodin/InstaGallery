@@ -31,7 +31,6 @@
 		A97EC93F23699E7F00D4825C /* InstaGallery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A93A26812368D4F100E2331B /* InstaGallery.framework */; };
 		A97EC94023699E7F00D4825C /* InstaGallery.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A93A26812368D4F100E2331B /* InstaGallery.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A9EB85C323D590E300FF4B94 /* IGSessionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EB85C223D590E300FF4B94 /* IGSessionButton.swift */; };
-		A9EB85C823D592E900FF4B94 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = A9EB85CA23D592E900FF4B94 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,8 +94,6 @@
 		A9EB85C223D590E300FF4B94 /* IGSessionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGSessionButton.swift; sourceTree = "<group>"; };
 		A9EB85C623D592E000FF4B94 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		A9EB85C723D592E000FF4B94 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		A9EB85C923D592E900FF4B94 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		A9EB85CB23D592ED00FF4B94 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,7 +147,6 @@
 		A93A26832368D4F100E2331B /* InstaGallery */ = {
 			isa = PBXGroup;
 			children = (
-				A9EB85CC23D59BB000FF4B94 /* Languages */,
 				A93A26A32368D50400E2331B /* Controller */,
 				A93A269B2368D50400E2331B /* DataModel */,
 				A93A26AF2368D50500E2331B /* Manager */,
@@ -280,14 +276,6 @@
 			path = Buttons;
 			sourceTree = "<group>";
 		};
-		A9EB85CC23D59BB000FF4B94 /* Languages */ = {
-			isa = PBXGroup;
-			children = (
-				A9EB85CA23D592E900FF4B94 /* Localizable.strings */,
-			);
-			path = Languages;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -405,7 +393,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A93A26B82368D50500E2331B /* IGGalleryController.xib in Resources */,
-				A9EB85C823D592E900FF4B94 /* Localizable.strings in Resources */,
 				A93A26BB2368D50500E2331B /* IGAuthorizeController.xib in Resources */,
 				A93A26B72368D50500E2331B /* IGGalleryCell.xib in Resources */,
 			);
@@ -498,15 +485,6 @@
 				A9EB85C723D592E000FF4B94 /* es */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		A9EB85CA23D592E900FF4B94 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A9EB85C923D592E900FF4B94 /* en */,
-				A9EB85CB23D592ED00FF4B94 /* es */,
-			);
-			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

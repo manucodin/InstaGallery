@@ -13,12 +13,12 @@ public class IGSessionButton: UIButton {
     private var functionLogin   :(() -> Void)!
     private var functionLogout  :(() -> Void)!
     
-    private var logoutText = "logout"{
+    var logoutText = "logout"{
         didSet{
             configureView()
         }
     }
-    private var loginText = "login"{
+    var loginText = "login"{
         didSet{
             configureView()
         }
