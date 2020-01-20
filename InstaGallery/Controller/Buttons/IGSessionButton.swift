@@ -48,6 +48,12 @@ public class IGSessionButton: UIButton {
     
     
     private func configureView(){
+        setImage(UIImage(named: "instagram"), for: .normal)
+        setTitleColor(.black, for: .normal)
+        backgroundColor = .white
+    }
+    
+    private func configureStatus(){
         if let _  = IGManagerUtils.getUserIdentifier(){
             setTitle(logoutText, for: .normal)
             addTarget(self, action: #selector(logout), for: .touchUpInside)
@@ -55,9 +61,6 @@ public class IGSessionButton: UIButton {
             setTitle(loginText, for: .normal)
             addTarget(self, action: #selector(login), for: .touchUpInside)
         }
-        
-        setTitleColor(.white, for: .normal)
-        backgroundColor = .red
     }
     
     @objc private func login(){
@@ -74,7 +77,7 @@ public class IGSessionButton: UIButton {
             
             authController.dismiss(animated: true, completion: nil)
             
-            self.configureView()
+            self.configureStatus()
             
         })
         let navController = UINavigationController(rootViewController: authController)
@@ -83,7 +86,7 @@ public class IGSessionButton: UIButton {
     
     @objc private func logout(){
         IGManagerUtils.logoutUser()
-        configureView()
+        configureStatus()
         
         if let logoutFunction = self.functionLogout{
             logoutFunction()
