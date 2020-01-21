@@ -17,12 +17,12 @@ public class IGSessionButton: UIButton {
     
     public var logoutText = "logout"{
         didSet{
-            configureView()
+            configureStatus()
         }
     }
     public var loginText = "login"{
         didSet{
-            configureView()
+            configureStatus()
         }
     }
     
@@ -44,12 +44,20 @@ public class IGSessionButton: UIButton {
     override public func layoutSubviews() {
         super.layoutSubviews()
         layer.cornerRadius = frame.size.height/2
+        
+        if let image = imageView{
+            let padding = 20.0
+            let width = image.frame.size.width + 10
+            imageEdgeInsets = UIEdgeInsets(top: 5, left: CGFloat(padding), bottom: 5, right: bounds.size.width - 40)
+            titleEdgeInsets = UIEdgeInsets(top: 0, left: width, bottom: 0, right: width)
+        }
     }
     
     
     private func configureView(){
         setTitleColor(.black, for: .normal)
         backgroundColor = .white
+        configureStatus()
     }
     
     private func configureStatus(){
