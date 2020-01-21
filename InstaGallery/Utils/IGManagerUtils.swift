@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import WebKit
 
 class IGManagerUtils{
 
@@ -43,6 +44,23 @@ class IGManagerUtils{
     //MARK: - GET user name
     class func getUserName() -> String?{
         return UserDefaults.standard.object(forKey: IG_USER_NAME) as? String
+    }
+    
+    class func logoutUser(){
+        UserDefaults.standard.removeObject(forKey: IG_TOKEN_KEY)
+        UserDefaults.standard.removeObject(forKey: IG_USERID_KEY)
+        UserDefaults.standard.removeObject(forKey: IG_USER_NAME)
+        IGManagerUtils.cleanAllCookies()
+    }
+    
+    private class func cleanAllCookies(){
+        HTTPCookieStorage.shared.removeCookies(since: Date.distantPast)
+        WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
+            records.forEach { record in
+                WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {})
+                debugPrint("Cookie ::: \(record) deleted")
+            }
+        }
     }
 }
 
