@@ -63,9 +63,11 @@ public class IGSessionButton: UIButton {
     private func configureStatus(){
         if let _  = IGManagerUtils.getUserIdentifier(){
             setTitle(logoutText, for: .normal)
+            removeTarget(self, action: #selector(login), for: .touchUpInside)
             addTarget(self, action: #selector(logout), for: .touchUpInside)
         }else{
             setTitle(loginText, for: .normal)
+            removeTarget(self, action: #selector(logout), for: .touchUpInside)
             addTarget(self, action: #selector(login), for: .touchUpInside)
         }
     }

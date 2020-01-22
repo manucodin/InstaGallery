@@ -27,7 +27,7 @@ class IGManager{
         request.getUserGallery(nextPage: lastItem, withCompletionBlock: functionOK, functionError: functionError)
     }
     
-    func getImage(withIdentifier identifier :String, withCompletionBlock functionOK :@escaping((UIImage?) -> Void), functionError :@escaping((Error) -> Void)){
+    func getImage(withIdentifier identifier :String, withCompletionBlock functionOK :@escaping((IGImage) -> Void), functionError :@escaping((Error) -> Void)){
         request.getUserImage(withIdentifier: identifier, withCompletionBlock: functionOK, errorBlock: functionError)
     }
 }

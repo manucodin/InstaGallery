@@ -83,8 +83,8 @@ class IGPresenter{
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
         manager.getImage(withIdentifier: images[indexPath.row].identifier, withCompletionBlock: {image in
-            if let imageSelected = image, let functionOK = self.controller.completionBlock{
-                functionOK(imageSelected)
+            if let functionOK = self.controller.completionBlock{
+                functionOK(image)
             }
         }, functionError: {error in
             debugPrint(error.localizedDescription)
