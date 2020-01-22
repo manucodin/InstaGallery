@@ -29,8 +29,9 @@ import UIKit
 @objc public class IGImage :NSObject, Codable{
     var identifier          :String
     var urlString           :String
-    @objc public var dateString          :String
-    @objc public var image               :UIImage?
+    @objc public var dateString         :String
+    @objc public var date               :Date?
+    @objc public var image              :UIImage?
     
     private enum CodingKeys :String, CodingKey{
         case identifier     = "id"
@@ -43,6 +44,13 @@ import UIKit
         identifier = try container.decode(String.self, forKey: .identifier)
         urlString = try container.decode(String.self, forKey: .urlString)
         dateString = try container.decode(String.self, forKey: .dateString)
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:SSSZ"
+        
+        if let imageDate = dateFormatter.date(from: dateString){
+            date = imageDate
+        }
         
         if let url = URL(string: urlString){
             do{
