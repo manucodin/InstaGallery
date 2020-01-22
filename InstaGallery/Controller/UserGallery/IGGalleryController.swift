@@ -12,11 +12,11 @@ import UIKit
     
     var presenter :IGPresenter!
     
-    var completionBlock :((UIImage) -> Void)!
+    var completionBlock :((IGImage) -> Void)!
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    @objc public class func presentGalleryFrom(_ viewController:UIViewController, imageCompletion:@escaping((UIImage) -> Void)){
+    @objc public class func presentGalleryFrom(_ viewController:UIViewController, imageCompletion:@escaping((IGImage) -> Void)){
         let bundle = Bundle(for: IGGalleryController.self)
         let igGalleryController = IGGalleryController(nibName: "IGGalleryController", bundle: bundle)
         let navController = UINavigationController(rootViewController: igGalleryController)
@@ -56,7 +56,7 @@ import UIKit
         navigationItem.leftBarButtonItem = closeButton
     }
     
-    @objc func configureCallback(functionCallback :@escaping((UIImage) -> Void)){
+    @objc func configureCallback(functionCallback :@escaping((IGImage) -> Void)){
         self.completionBlock = functionCallback
     }
     

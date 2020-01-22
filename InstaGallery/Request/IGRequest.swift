@@ -37,7 +37,7 @@ class IGRequest :IGBaseRequest{
     
     func getUserInfo(withCompletionBlock functionOK:@escaping(() -> Void), functionError :@escaping(() -> Void)){
         let parameters :[String : Any] = [
-            "fields" : "id, username",
+            "fields" : "id,username",
             "access_token" : IGManagerUtils.getUserToken() ?? ""
         ]
         
@@ -103,7 +103,7 @@ class IGRequest :IGBaseRequest{
         })
     }
     
-    func getUserImage(withIdentifier identifier :String, withCompletionBlock functionOK:@escaping((UIImage?) -> Void), errorBlock functionError :@escaping((Error) -> Void)){
+    func getUserImage(withIdentifier identifier :String, withCompletionBlock functionOK:@escaping((IGImage) -> Void), errorBlock functionError :@escaping((Error) -> Void)){
         
         let parameters :[String : Any] = [
             "fields" : "id,media_url,timestamp",
@@ -115,17 +115,7 @@ class IGRequest :IGBaseRequest{
                 let responseDict = response as? [String : Any] ?? [:]
                 let jsonData = try JSONSerialization.data(withJSONObject: responseDict, options: .prettyPrinted)
                 let igImage = try JSONDecoder().decode(IGImage.self, from: jsonData)
-                
-                if let url = URL(string: igImage.urlString){
-                    let data = try Data(contentsOf: url)
-                    if let image = UIImage(data: data){
-                        functionOK(image)
-                    }else{
-                        functionOK(nil)
-                    }
-                }else{
-                    functionOK(nil)
-                }
+                functionOK(igImage)
             }catch let error{
                 functionError(error)
             }

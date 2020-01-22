@@ -6,7 +6,7 @@
 //  Copyright © 2019 MRodriguez. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 @objc class IGImageCover :NSObject, Codable{
     var identifier          :String
@@ -26,10 +26,11 @@ import Foundation
     func encode(to encoder: Encoder) throws {}
 }
 
-@objc class IGImage :NSObject, Codable{
+@objc public class IGImage :NSObject, Codable{
     var identifier          :String
     var urlString           :String
-    var dateString          :String
+    @objc public var dateString          :String
+    @objc public var image               :UIImage?
     
     private enum CodingKeys :String, CodingKey{
         case identifier     = "id"
@@ -37,12 +38,26 @@ import Foundation
         case dateString     = "timestamp"
     }
     
-    required init(from decoder: Decoder) throws {
+    required public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         identifier = try container.decode(String.self, forKey: .identifier)
         urlString = try container.decode(String.self, forKey: .urlString)
         dateString = try container.decode(String.self, forKey: .dateString)
+        
+        if let url = URL(string: urlString){
+            do{
+                let dataImage = try Data(contentsOf: url)
+                if let image = UIImage(data: dataImage){
+                    self.image = image
+                }else{
+                    self.image = nil
+                }
+            }catch let error{
+                image = nil
+                debugPrint(error.localizedDescription)
+            }
+        }
     }
     
-    func encode(to encoder: Encoder) throws {}
+    public func encode(to encoder: Encoder) throws {}
 }
