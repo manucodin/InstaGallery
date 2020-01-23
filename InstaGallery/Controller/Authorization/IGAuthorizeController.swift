@@ -50,12 +50,14 @@ class IGAuthorizeController: UIViewController {
     }
     
     private func configureWebView(){
-        if let url = URL(string: String(format: URL_FORMAT, appID, redirectURI)){
-            webView.load(URLRequest(url: url))
-        }
-        
         webView.navigationDelegate = self
         webView.allowsBackForwardNavigationGestures = false
+        webView.configuration.websiteDataStore = .nonPersistent()
+        
+        if let url = URL(string: String(format: URL_FORMAT, appID, redirectURI)){
+            let request = URLRequest(url: url)
+            webView.load(request)
+        }
     }
     
     func configureCallback(functionCallback :@escaping(() -> Void)){
@@ -70,7 +72,6 @@ class IGAuthorizeController: UIViewController {
         presenter.authUser(withCode: code, withCompletionBlock: {
             self.completionCallback()
         }, functionError: {error in
-            debugPrint(error.localizedDescription)
             self.dismissController()
         })
     }

@@ -14,13 +14,7 @@ class IGManager{
     let request = IGRequest()
     
     func getAuthToken(withAuthCode code :String, withCompletionBlock functionOK:@escaping(() -> Void), functionError :@escaping((Error) -> Void)){
-        request.getAuthToken(authCode: code, withCompletionBlock: {
-            self.getUserInfo(withCompletionBlock: functionOK, functionError: functionOK)
-        }, functionError: functionError)
-    }
-    
-    private func getUserInfo(withCompletionBlock functionOK :@escaping(() -> Void), functionError :@escaping(() -> Void)){
-        request.getUserInfo(withCompletionBlock: functionOK, functionError: functionOK)
+        request.getAuthToken(authCode: code, withCompletionBlock: functionOK, functionError: functionError)
     }
     
     func getUserGallery(withLastItem lastItem:String? = nil, withCompletionBlock functionOK:@escaping(([IGImageCover]?, String?) -> Void), errorBlock functionError:@escaping((Error) -> Void)){

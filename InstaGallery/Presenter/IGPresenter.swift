@@ -36,7 +36,7 @@ class IGPresenter{
     
     func getUserGallery(withLastItem lastItem:String? = nil){
         if(IGManagerUtils.getUserToken() == nil){
-            self.refreshToken()
+            self.loginUser()
             return
         }
         
@@ -47,27 +47,27 @@ class IGPresenter{
                 self.controller.collectionView.reloadData()
             }
         }, errorBlock: {error in
-            if(error.code == 190){
-                self.refreshToken()
-            }
+            self.loginUser()
         })
     }
     
-    private func refreshToken(){
+    private func loginUser(){
+        IGManagerUtils.logoutUser()
+        
         let bundle = Bundle(for: IGAuthorizeController.self)
         let authController = IGAuthorizeController(nibName: "IGAuthorizeController", bundle: bundle)
         
         authController.configureCallback {
-            authController.dismiss(animated: true, completion: nil)
-            self.controller.setNavigationTitle()
-            self.getUserGallery(withLastItem: self.nextPage)
+            authController.dismiss(animated: true, completion: {
+                self.getUserGallery()
+                self.controller.setNavigationTitle()
+            })
         }
         
         let navigationController = UINavigationController(rootViewController: authController)
         navigationController.modalPresentationStyle = .overCurrentContext
         navigationController.modalTransitionStyle = .crossDissolve
-        navigationController.view.alpha = 0
-        controller.present(navigationController, animated: true, completion: nil)
+        self.controller.present(navigationController, animated: true, completion: nil)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{

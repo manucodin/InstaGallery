@@ -11,9 +11,12 @@ import UIKit
 
 class IGRequest :IGBaseRequest{
     
-    private static let authPath    = "oauth/access_token"
-    private static let userMedia   = "me/media"
-    private static let userNode    = "me"
+    private static let authPath     = "oauth/access_token"
+    private static let tokenPath    = "access_token"
+    private static let refreshToken = "refresh_access_token"
+    
+    private static let userMedia    = "me/media"
+    private static let userNode     = "me"
     
     func getAuthToken(authCode code :String, withCompletionBlock functionOK:@escaping(() -> Void), functionError :@escaping((Error) -> Void)){
         let bundle = Bundle.main
@@ -29,13 +32,42 @@ class IGRequest :IGBaseRequest{
         makeRequest(to: IGRequest.authPath, withMethod: .post, withParams: parameters, withCompletionBlock: {response, _ in
             let responseDict = response as? [String : Any] ?? [:]
             IGRequest.mapUserInfo(userInfo: responseDict)
-            functionOK()
+            self.getLongLiveToken(functionOK: functionOK, functionError: functionError)
         }, withErroBlock: {error in
             functionError(error)
         })
     }
     
-    func getUserInfo(withCompletionBlock functionOK:@escaping(() -> Void), functionError :@escaping(() -> Void)){
+    private func getLongLiveToken(functionOK :@escaping(() -> Void), functionError :@escaping ((Error) -> Void)){
+        let bundle = Bundle.main
+        
+        let parameters :[String : Any] = [
+            "grant_type"    :"ig_exchange_token",
+            "client_secret" :bundle.object(forInfoDictionaryKey: "InstagramClientSecret") as? String ?? "",
+            "access_token"  :IGManagerUtils.getUserToken() as? String ?? ""
+        ]
+        
+        makeBasicRequest(to: IGRequest.tokenPath, withMethod: .get, withParams: parameters,withCompletionBlock: {response, _ in
+            let responseDict = response as? [String : Any] ?? [:]
+            IGRequest.mapUserInfo(userInfo: responseDict)
+            self.getUserInfo(withCompletionBlock: functionOK, functionError: functionOK)
+        }, withErroBlock: functionError)
+    }
+    
+    func refreshToken(functionOK :@escaping(() -> Void), functionError :@escaping((Error) -> Void)){
+        let params :[String : Any] = [
+            "grant_type" :"ig_refresh_token",
+            "access_token" :IGManagerUtils.getUserToken() as? String ?? ""
+        ]
+        
+        makeBasicRequest(to: IGRequest.refreshToken, withMethod: .get, withParams: params, withCompletionBlock: {response, _ in
+            let responseDict = response as? [String : Any] ?? [:]
+            IGRequest.mapUserInfo(userInfo: responseDict)
+            functionOK()
+        }, withErroBlock: functionError)
+    }
+    
+    private func getUserInfo(withCompletionBlock functionOK:@escaping(() -> Void), functionError :@escaping(() -> Void)){
         let parameters :[String : Any] = [
             "fields" : "id,username",
             "access_token" : IGManagerUtils.getUserToken() ?? ""
@@ -48,20 +80,6 @@ class IGRequest :IGBaseRequest{
         }, withErroBlock: {_ in
             functionOK()
         })
-    }
-    
-    private static func mapUserInfo(userInfo :[String : Any]){
-        if let userIdentifier = userInfo["user_id"] as? Int{
-            IGManagerUtils.saveUserIdentifier(identifier: userIdentifier)
-        }
-        
-        if let token = userInfo["access_token"] as? String{
-            IGManagerUtils.saveAccessToken(token: token)
-        }
-        
-        if let userName = userInfo["username"] as? String{
-            IGManagerUtils.saveUserName(name: userName)
-        }
     }
     
     func getUserGallery(nextPage :String? = nil, withCompletionBlock functionOK:@escaping(([IGImageCover]?, String?) -> Void), functionError :@escaping((Error) -> Void)){
@@ -122,5 +140,19 @@ class IGRequest :IGBaseRequest{
         }, withErroBlock: {error in
             functionError(error)
         })
+    }
+    
+    private static func mapUserInfo(userInfo :[String : Any]){
+        if let userIdentifier = userInfo["user_id"] as? Int{
+            IGManagerUtils.saveUserIdentifier(identifier: userIdentifier)
+        }
+        
+        if let token = userInfo["access_token"] as? String{
+            IGManagerUtils.saveAccessToken(token: token)
+        }
+        
+        if let userName = userInfo["username"] as? String{
+            IGManagerUtils.saveUserName(name: userName)
+        }
     }
 }
