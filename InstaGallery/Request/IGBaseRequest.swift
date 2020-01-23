@@ -19,6 +19,8 @@ enum RequestMethod :String{
 
 class IGBaseRequest :NSObject{
     
+    private var tryCounter = 0
+    
     private var session : URLSession!
     
     private var BASE_URL = ""
@@ -91,7 +93,19 @@ class IGBaseRequest :NSObject{
                                 ]
                                 
                                 let error = NSError(domain: "com.igRequest", code: errorCode, userInfo: errorInfo)
-                                functionError(error)
+                                if(error.code == 190 && path != "refresh_access_token"){
+                                    if(self.tryCounter < 3){
+                                        self.tryCounter += 1
+                                        IGRequest().refreshToken(functionOK: {
+                                            self.request(to: path, withMethod: method, withParams: params,withCompletionBlock: functionOK, withErroBlock: functionError)
+                                        }, functionError: functionError)
+                                    }else{
+                                        self.tryCounter = 0
+                                        functionError(error)
+                                    }
+                                }else{
+                                    functionError(error)
+                                }
                             }else{
                                 functionError(self.errorURL())
                             }
@@ -103,8 +117,7 @@ class IGBaseRequest :NSObject{
             })
             task.resume()
         }else{
-            let error = errorURL()
-            functionError(error)
+            functionError(errorURL())
         }
     }
     

@@ -53,14 +53,17 @@ class IGManagerUtils{
         IGManagerUtils.cleanAllCookies()
     }
     
-    private class func cleanAllCookies(){
-        HTTPCookieStorage.shared.removeCookies(since: Date.distantPast)
-        WKWebsiteDataStore.default().fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes()) { records in
-            records.forEach { record in
-                WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {})
-                debugPrint("Cookie ::: \(record) deleted")
+    public class func cleanAllCookies(){
+        let dataStore = WKWebsiteDataStore.default()
+        dataStore.fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes(), completionHandler: {records in
+            records.forEach{record in
+                if(record.displayName.contains("instagram")){
+                    dataStore.removeData(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes(), for: [record], completionHandler: {
+                        print("Deleted: " + record.displayName);
+                    })
+                }
             }
-        }
+        })
     }
 }
 
