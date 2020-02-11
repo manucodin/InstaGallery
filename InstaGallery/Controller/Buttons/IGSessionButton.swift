@@ -13,7 +13,7 @@ public class IGSessionButton: UIButton {
     private var functionLogin   :(() -> Void)!
     private var functionLogout  :(() -> Void)!
     
-    private var currentController :UIViewController?
+    private weak var currentController :UIViewController?
     
     public var logoutText = "logout"{
         didSet{
