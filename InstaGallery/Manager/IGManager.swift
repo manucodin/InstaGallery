@@ -13,7 +13,7 @@ class IGManager{
             
     let request = IGRequest()
     
-    func getAuthToken(withAuthCode code :String, withCompletionBlock functionOK:@escaping(() -> Void), functionError :@escaping((Error) -> Void)){
+    func getAuthToken(withAuthCode code :String, withCompletionBlock functionOK:@escaping((IGUser) -> Void), functionError :@escaping((Error) -> Void)){
         request.getAuthToken(authCode: code, withCompletionBlock: functionOK, functionError: functionError)
     }
     

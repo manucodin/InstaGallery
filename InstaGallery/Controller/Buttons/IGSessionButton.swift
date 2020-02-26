@@ -8,8 +8,15 @@
 
 import UIKit
 
+public protocol IGSessionDelegate :class{
+    func igSessionLogged(user :IGUser)
+    func igSessionDisconnected()
+}
+
 public class IGSessionButton: UIButton {
 
+    public weak var delegate :IGSessionDelegate?
+    
     private var functionLogin   :(() -> Void)!
     private var functionLogout  :(() -> Void)!
     
@@ -78,16 +85,17 @@ public class IGSessionButton: UIButton {
         }
         
         let authController = IGAuthorizeController()
-        authController.configureCallback(functionCallback: {
-           
-            if let loginFunction = self.functionLogin{
-                loginFunction()
+        authController.configureCallback(functionCallback: {[weak self] user in
+            if let strongSelf = self{
+                if let loginFunction = strongSelf.functionLogin{
+                    loginFunction()
+                }else{
+                    strongSelf.delegate?.igSessionLogged(user: user)
+                }
+                
+                authController.dismiss(animated: true, completion: nil)
+                strongSelf.configureStatus()
             }
-            
-            authController.dismiss(animated: true, completion: nil)
-            
-            self.configureStatus()
-            
         })
         let navController = UINavigationController(rootViewController: authController)
         controller.present(navController, animated: true, completion: nil)
@@ -99,6 +107,8 @@ public class IGSessionButton: UIButton {
         
         if let logoutFunction = self.functionLogout{
             logoutFunction()
+        }else{
+            self.delegate?.igSessionDisconnected()
         }
     }
     
