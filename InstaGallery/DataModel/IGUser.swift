@@ -8,8 +8,6 @@
 
 import Foundation
 
-private let urlAccountFormat = "https://www.instagram.com/%@"
-
 @objc public class IGUser :NSObject, Codable{
     public var identifier           :String
     public var account              :String
@@ -25,7 +23,7 @@ private let urlAccountFormat = "https://www.instagram.com/%@"
         identifier = try container.decode(String.self, forKey: .identifier)
         account = try container.decode(String.self, forKey: .account)
         
-        urlAccount = String(format: urlAccount, account)
+        urlAccount = String(format: "https://www.instagram.com/%@", account)
     }
     
     public func encode(to encoder: Encoder) throws {}
