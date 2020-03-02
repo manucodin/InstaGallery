@@ -18,7 +18,7 @@ class IGAuthorizeController: UIViewController {
     private var presenter :IGAuthPresenter!
         
     var completionCallback :((IGUser) -> Void)!
-    
+        
     private lazy var appID :String = {
         return bundle.object(forInfoDictionaryKey: "InstagramClientId") as? String ?? ""
     }()
