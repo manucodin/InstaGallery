@@ -47,6 +47,7 @@ import UIKit
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:SSSZ"
+        dateFormatter.locale = .autoupdatingCurrent
         
         if let imageDate = dateFormatter.date(from: dateString){
             date = imageDate

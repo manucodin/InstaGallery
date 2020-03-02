@@ -57,11 +57,13 @@ class IGPresenter{
         let bundle = Bundle(for: IGAuthorizeController.self)
         let authController = IGAuthorizeController(nibName: "IGAuthorizeController", bundle: bundle)
         
-        authController.configureCallback {
-            authController.dismiss(animated: true, completion: {
-                self.getUserGallery()
-                self.controller.setNavigationTitle()
-            })
+        authController.configureCallback {[weak self] user in
+            if let strongSelf = self{
+                authController.dismiss(animated: true, completion: {
+                    strongSelf.getUserGallery()
+                    strongSelf.controller.navigationItem.title = user.account
+                })
+            }
         }
         
         let navigationController = UINavigationController(rootViewController: authController)

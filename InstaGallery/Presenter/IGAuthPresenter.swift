@@ -27,7 +27,7 @@ class IGAuthPresenter{
         self.controller.view.alpha = 1
     }
     
-    func authUser(withCode code :String, withCompletionBlock functionOK:@escaping(() -> Void), functionError :@escaping((Error) -> Void)){
+    func authUser(withCode code :String, withCompletionBlock functionOK:@escaping((IGUser) -> Void), functionError :@escaping((Error) -> Void)){
         manager.getAuthToken(withAuthCode: code, withCompletionBlock: functionOK, functionError: functionError)
     }
 }

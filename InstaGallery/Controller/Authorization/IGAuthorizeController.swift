@@ -17,8 +17,8 @@ class IGAuthorizeController: UIViewController {
 
     private var presenter :IGAuthPresenter!
         
-    var completionCallback :(() -> Void)!
-    
+    var completionCallback :((IGUser) -> Void)!
+        
     private lazy var appID :String = {
         return bundle.object(forInfoDictionaryKey: "InstagramClientId") as? String ?? ""
     }()
@@ -60,7 +60,7 @@ class IGAuthorizeController: UIViewController {
         }
     }
     
-    func configureCallback(functionCallback :@escaping(() -> Void)){
+    func configureCallback(functionCallback :@escaping((IGUser) -> Void)){
         self.completionCallback = functionCallback
     }
     
@@ -69,10 +69,14 @@ class IGAuthorizeController: UIViewController {
     }
     
     func authUser(withCode code :String){
-        presenter.authUser(withCode: code, withCompletionBlock: {
-            self.completionCallback()
-        }, functionError: {error in
-            self.dismissController()
+        presenter.authUser(withCode: code, withCompletionBlock: {[weak self] user in
+            if let strongSelf = self{
+                strongSelf.completionCallback(user)
+            }
+        }, functionError: {[weak self] error in
+            if let strongSelf = self{
+                strongSelf.dismissController()
+            }
         })
     }
 }

@@ -30,6 +30,7 @@
 		A97EC93F23699E7F00D4825C /* InstaGallery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A93A26812368D4F100E2331B /* InstaGallery.framework */; };
 		A97EC94023699E7F00D4825C /* InstaGallery.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A93A26812368D4F100E2331B /* InstaGallery.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A9EB85C323D590E300FF4B94 /* IGSessionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EB85C223D590E300FF4B94 /* IGSessionButton.swift */; };
+		A9F0E5D22406AD7700FFADF5 /* IGUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F0E5D12406AD7700FFADF5 /* IGUser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		A9EB85C223D590E300FF4B94 /* IGSessionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGSessionButton.swift; sourceTree = "<group>"; };
 		A9EB85C623D592E000FF4B94 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		A9EB85C723D592E000FF4B94 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		A9F0E5D12406AD7700FFADF5 /* IGUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGUser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				A93A269C2368D50400E2331B /* IGImage.swift */,
+				A9F0E5D12406AD7700FFADF5 /* IGUser.swift */,
 			);
 			path = DataModel;
 			sourceTree = "<group>";
@@ -420,6 +423,7 @@
 			files = (
 				A93A26B92368D50500E2331B /* IGGalleryController.swift in Sources */,
 				A9EB85C323D590E300FF4B94 /* IGSessionButton.swift in Sources */,
+				A9F0E5D22406AD7700FFADF5 /* IGUser.swift in Sources */,
 				A93A26B62368D50500E2331B /* IGGalleryCell.swift in Sources */,
 				A93A26B22368D50500E2331B /* IGAuthPresenter.swift in Sources */,
 				A93A26B52368D50500E2331B /* IGRequest.swift in Sources */,

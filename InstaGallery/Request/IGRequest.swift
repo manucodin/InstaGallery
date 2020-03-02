@@ -18,7 +18,7 @@ class IGRequest :IGBaseRequest{
     private static let userMedia    = "me/media"
     private static let userNode     = "me"
     
-    func getAuthToken(authCode code :String, withCompletionBlock functionOK:@escaping(() -> Void), functionError :@escaping((Error) -> Void)){
+    func getAuthToken(authCode code :String, withCompletionBlock functionOK:@escaping((IGUser) -> Void), functionError :@escaping((Error) -> Void)){
         let bundle = Bundle.main
         
         let parameters :[String : Any] = [
@@ -38,26 +38,26 @@ class IGRequest :IGBaseRequest{
         })
     }
     
-    private func getLongLiveToken(functionOK :@escaping(() -> Void), functionError :@escaping ((Error) -> Void)){
+    private func getLongLiveToken(functionOK :@escaping((IGUser) -> Void), functionError :@escaping ((Error) -> Void)){
         let bundle = Bundle.main
         
         let parameters :[String : Any] = [
             "grant_type"    :"ig_exchange_token",
             "client_secret" :bundle.object(forInfoDictionaryKey: "InstagramClientSecret") as? String ?? "",
-            "access_token"  :IGManagerUtils.getUserToken() as? String ?? ""
+            "access_token"  :IGManagerUtils.getUserToken() ?? ""
         ]
         
         makeBasicRequest(to: IGRequest.tokenPath, withMethod: .get, withParams: parameters,withCompletionBlock: {response, _ in
             let responseDict = response as? [String : Any] ?? [:]
             IGRequest.mapUserInfo(userInfo: responseDict)
-            self.getUserInfo(withCompletionBlock: functionOK, functionError: functionOK)
+            self.getUserInfo(withCompletionBlock: functionOK, functionError: functionError)
         }, withErroBlock: functionError)
     }
     
     func refreshToken(functionOK :@escaping(() -> Void), functionError :@escaping((Error) -> Void)){
         let params :[String : Any] = [
             "grant_type" :"ig_refresh_token",
-            "access_token" :IGManagerUtils.getUserToken() as? String ?? ""
+            "access_token" :IGManagerUtils.getUserToken() ?? ""
         ]
         
         makeBasicRequest(to: IGRequest.refreshToken, withMethod: .get, withParams: params, withCompletionBlock: {response, _ in
@@ -67,7 +67,7 @@ class IGRequest :IGBaseRequest{
         }, withErroBlock: functionError)
     }
     
-    private func getUserInfo(withCompletionBlock functionOK:@escaping(() -> Void), functionError :@escaping(() -> Void)){
+    private func getUserInfo(withCompletionBlock functionOK:@escaping((IGUser) -> Void), functionError :@escaping((Error) -> Void)){
         let parameters :[String : Any] = [
             "fields" : "id,username",
             "access_token" : IGManagerUtils.getUserToken() ?? ""
@@ -76,9 +76,16 @@ class IGRequest :IGBaseRequest{
         makeBasicRequest(to: IGRequest.userNode, withMethod: .get, withParams: parameters, withCompletionBlock: {response, _ in
             let responseDict = response as? [String : Any] ?? [:]
             IGRequest.mapUserInfo(userInfo: responseDict)
-            functionOK()
-        }, withErroBlock: {_ in
-            functionOK()
+            do{
+                
+                let jsonData = try JSONSerialization.data(withJSONObject: responseDict, options: .prettyPrinted)
+                let igUser = try JSONDecoder().decode(IGUser.self, from: jsonData)
+                functionOK(igUser)
+            }catch let error{
+                functionError(error)
+            }
+        }, withErroBlock: {error in
+            functionError(error)
         })
     }
     
