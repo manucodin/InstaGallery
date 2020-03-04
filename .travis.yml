@@ -2,7 +2,6 @@ language: swift
 osx_image: xcode11.3
 xcode_project: InstaGallery.xcodeproj
 xcode_scheme: InstaGallery
-xcode_destination: platform=iOS
 
 after_success:
   bash <(curl -s https://codecov.io/bash)
