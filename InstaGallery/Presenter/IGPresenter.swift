@@ -9,17 +9,22 @@
 import Foundation
 import UIKit
 
+protocol IGPresenterDelegate :class{
+    func imageDidSelect(image :IGImage)
+    func userDidLogged(user :IGUser)
+}
+
 class IGPresenter{
     
     private let cellIdentifier = "IGGalleryCell"
 
-    
     let manager = IGManager()
     
     var images = [IGImageCover]()
     var nextPage :String?
     
-    weak var controller :IGGalleryController!
+    weak var delegate   :IGPresenterDelegate?
+    weak var controller :IGGalleryController?
     
     init(controller :IGGalleryController){
         self.controller = controller
@@ -30,8 +35,8 @@ class IGPresenter{
         let bundle = Bundle(for: IGGalleryCell.self)
         let nib = UINib(nibName: cellIdentifier, bundle: bundle)
         
-        controller.collectionView.register(IGGalleryCell.self, forCellWithReuseIdentifier: cellIdentifier)
-        controller.collectionView.register(nib, forCellWithReuseIdentifier: cellIdentifier)
+        controller?.collectionView.register(IGGalleryCell.self, forCellWithReuseIdentifier: cellIdentifier)
+        controller?.collectionView.register(nib, forCellWithReuseIdentifier: cellIdentifier)
     }
     
     func getUserGallery(withLastItem lastItem:String? = nil){
@@ -40,11 +45,11 @@ class IGPresenter{
             return
         }
         
-        manager.getUserGallery(withLastItem: lastItem, withCompletionBlock: {images, nextItem in
-            if let nextImages = images{
-                self.images.append(contentsOf: nextImages)
-                self.nextPage = nextItem
-                self.controller.collectionView.reloadData()
+        manager.getUserGallery(withLastItem: lastItem, withCompletionBlock: {[weak self] images, nextItem in
+            if let strongSelf = self, let nextImages = images{
+                strongSelf.images.append(contentsOf: nextImages)
+                strongSelf.nextPage = nextItem
+                strongSelf.controller?.collectionView.reloadData()
             }
         }, errorBlock: {error in
             self.loginUser()
@@ -61,7 +66,7 @@ class IGPresenter{
             if let strongSelf = self{
                 authController.dismiss(animated: true, completion: {
                     strongSelf.getUserGallery()
-                    strongSelf.controller.navigationItem.title = user.account
+                    strongSelf.delegate?.userDidLogged(user: user)
                 })
             }
         }
@@ -69,7 +74,7 @@ class IGPresenter{
         let navigationController = UINavigationController(rootViewController: authController)
         navigationController.modalPresentationStyle = .overCurrentContext
         navigationController.modalTransitionStyle = .crossDissolve
-        self.controller.present(navigationController, animated: true, completion: nil)
+        self.controller?.present(navigationController, animated: true, completion: nil)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
@@ -84,9 +89,9 @@ class IGPresenter{
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
-        manager.getImage(withIdentifier: images[indexPath.row].identifier, withCompletionBlock: {image in
-            if let functionOK = self.controller.completionBlock{
-                functionOK(image)
+        manager.getImage(withIdentifier: images[indexPath.row].identifier, withCompletionBlock: {[weak self] image in
+            if let strongSelf = self{
+                strongSelf.delegate?.imageDidSelect(image: image)
             }
         }, functionError: {error in
             debugPrint(error.localizedDescription)

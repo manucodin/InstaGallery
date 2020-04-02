@@ -21,10 +21,17 @@ class ViewController: UIViewController {
     }
     
     private func showGallery(){
-        IGGalleryController.presentGalleryFrom(self, imageCompletion: {image in
-            print(image)
-        })
+        let galleryController = IGGalleryController()
+        galleryController.delegate = self
+        
+        let navigationController = UINavigationController(rootViewController: galleryController)
+        self.present(navigationController, animated: true, completion: nil)
     }
+}
 
+extension ViewController :IGGalleryDelegate{
+    func didSelect(igImage: IGImage) {
+        print(igImage)
+    }
 }
 

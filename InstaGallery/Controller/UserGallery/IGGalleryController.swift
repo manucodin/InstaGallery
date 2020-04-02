@@ -8,26 +8,31 @@
 
 import UIKit
 
+@objc public protocol IGGalleryDelegate :class{
+    @objc func didSelect(igImage :IGImage)
+}
+
 @objc public class IGGalleryController: UIViewController {
     
     var presenter :IGPresenter!
-    
-    var completionBlock :((IGImage) -> Void)!
+        
+    @objc public weak var delegate :IGGalleryDelegate?
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    @objc public class func presentGalleryFrom(_ viewController:UIViewController, imageCompletion:@escaping((IGImage) -> Void)){
-        let bundle = Bundle(for: IGGalleryController.self)
-        let igGalleryController = IGGalleryController(nibName: "IGGalleryController", bundle: bundle)
-        let navController = UINavigationController(rootViewController: igGalleryController)
-        igGalleryController.configureCallback(functionCallback: imageCompletion)
-        viewController.present(navController, animated: true, completion: nil)
-    }
+    
+//    @objc public class func presentGalleryFrom(_ viewController:UIViewController){
+//        let bundle = Bundle(for: IGGalleryController.self)
+//        let igGalleryController = IGGalleryController(nibName: "IGGalleryController", bundle: bundle)
+//        let navController = UINavigationController(rootViewController: igGalleryController)
+//        viewController.present(navController, animated: true, completion: nil)
+//    }
     
     override public func viewDidLoad() {
         super.viewDidLoad()
         
         presenter = IGPresenter(controller: self)
+        presenter.delegate = self
         
         configureView()
     }
@@ -54,10 +59,6 @@ import UIKit
        
         let closeButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissController))
         navigationItem.leftBarButtonItem = closeButton
-    }
-    
-    @objc func configureCallback(functionCallback :@escaping((IGImage) -> Void)){
-        self.completionBlock = functionCallback
     }
     
     @objc private func dismissController(){
@@ -92,5 +93,17 @@ extension IGGalleryController :UICollectionViewDelegateFlowLayout{
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+}
+
+extension IGGalleryController :IGPresenterDelegate{
+    func userDidLogged(user: IGUser) {
+        navigationItem.title = user.account
+    }
+    
+    func imageDidSelect(image: IGImage) {
+        if let strongDelegate = self.delegate{
+            strongDelegate.didSelect(igImage: image)
+        }
     }
 }
