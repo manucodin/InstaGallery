@@ -41,6 +41,13 @@
 			remoteGlobalIDString = A93A26802368D4F100E2331B;
 			remoteInfo = InstaGallery;
 		};
+		A963FC34240FD9BE00DDDDCF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A93A26782368D4F100E2331B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A93A26C12368D65000E2331B;
+			remoteInfo = InstaGalleryDemo;
+		};
 		A97EC94123699E7F00D4825C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A93A26782368D4F100E2331B /* Project object */;
@@ -320,6 +327,7 @@
 			);
 			dependencies = (
 				A93A268D2368D4F100E2331B /* PBXTargetDependency */,
+				A963FC35240FD9BE00DDDDCF /* PBXTargetDependency */,
 			);
 			name = InstaGalleryTests;
 			productName = InstaGalleryTests;
@@ -461,6 +469,11 @@
 			target = A93A26802368D4F100E2331B /* InstaGallery */;
 			targetProxy = A93A268C2368D4F100E2331B /* PBXContainerItemProxy */;
 		};
+		A963FC35240FD9BE00DDDDCF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A93A26C12368D65000E2331B /* InstaGalleryDemo */;
+			targetProxy = A963FC34240FD9BE00DDDDCF /* PBXContainerItemProxy */;
+		};
 		A97EC94223699E7F00D4825C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A93A26802368D4F100E2331B /* InstaGallery */;
@@ -523,9 +536,11 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = SD98EDDB4C;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -587,9 +602,11 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = SD98EDDB4C;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -632,6 +649,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mrodriguez.InstaGallery;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -657,6 +675,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.mrodriguez.InstaGallery;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
