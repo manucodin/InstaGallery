@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-protocol IGPresenterDelegate :class{
+protocol IGPresenterDelegate: AnyObject{
     func imageDidSelect(image :IGImage)
     func userDidLogged(user :IGUser)
 }
@@ -18,7 +18,7 @@ class IGPresenter{
     
     private let cellIdentifier = "IGGalleryCell"
 
-    let manager = IGManager()
+    let manager = IGDataSource()
     
     var images = [IGImageCover]()
     var nextPage :String?
@@ -32,11 +32,11 @@ class IGPresenter{
     }
     
     private func registerCell(){
-        let bundle = Bundle(for: IGGalleryCell.self)
-        let nib = UINib(nibName: cellIdentifier, bundle: bundle)
-        
-        controller?.collectionView.register(IGGalleryCell.self, forCellWithReuseIdentifier: cellIdentifier)
-        controller?.collectionView.register(nib, forCellWithReuseIdentifier: cellIdentifier)
+//        let bundle = Bundle(for: IGGalleryCell.self)
+//        let nib = UINib(nibName: cellIdentifier, bundle: bundle)
+//        
+//        controller?.collectionView.register(IGGalleryCell.self, forCellWithReuseIdentifier: cellIdentifier)
+//        controller?.collectionView.register(nib, forCellWithReuseIdentifier: cellIdentifier)
     }
     
     func getUserGallery(withLastItem lastItem:String? = nil){
@@ -59,17 +59,12 @@ class IGPresenter{
     private func loginUser(){
         IGManagerUtils.logoutUser()
         
-        let bundle = Bundle(for: IGAuthorizeController.self)
-        let authController = IGAuthorizeController(nibName: "IGAuthorizeController", bundle: bundle)
-        
-        authController.configureCallback {[weak self] user in
-            if let strongSelf = self{
-                authController.dismiss(animated: true, completion: {
-                    strongSelf.getUserGallery()
-                    strongSelf.delegate?.userDidLogged(user: user)
-                })
-            }
-        }
+        let authController = IGAuthFactory.controller(completionCallback: { [weak self] user in
+            guard let welf = self else { return }
+            
+            welf.getUserGallery()
+            welf.delegate?.userDidLogged(user: user)
+        })
         
         let navigationController = UINavigationController(rootViewController: authController)
         navigationController.modalPresentationStyle = .overCurrentContext

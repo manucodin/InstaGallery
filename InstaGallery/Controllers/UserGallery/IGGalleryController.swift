@@ -8,7 +8,7 @@
 
 import UIKit
 
-@objc public protocol IGGalleryDelegate :class{
+@objc public protocol IGGalleryDelegate: AnyObject {
     @objc func didSelect(igImage :IGImage)
 }
 
@@ -40,8 +40,8 @@ import UIKit
     private func configureView(){
         configureNavigationBar()
         
-        collectionView.delegate = self
-        collectionView.dataSource = self
+//        collectionView.delegate = self
+//        collectionView.dataSource = self
         
         presenter.getUserGallery()
     }

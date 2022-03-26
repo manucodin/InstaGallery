@@ -9,15 +9,16 @@
 import Foundation
 import UIKit
 
-class IGManager{
-            
+class IGDataSource{
     let request = IGRequest()
-    
+}
+
+extension IGDataSource: IGDataSourceInterface {
     func getAuthToken(withAuthCode code :String, withCompletionBlock functionOK:@escaping((IGUser) -> Void), functionError :@escaping((Error) -> Void)){
         request.getAuthToken(authCode: code, withCompletionBlock: functionOK, functionError: functionError)
     }
     
-    func getUserGallery(withLastItem lastItem:String? = nil, withCompletionBlock functionOK:@escaping(([IGImageCover]?, String?) -> Void), errorBlock functionError:@escaping((Error) -> Void)){
+    func getUserGallery(withLastItem lastItem:String?, withCompletionBlock functionOK:@escaping(([IGImageCover]?, String?) -> Void), errorBlock functionError:@escaping((Error) -> Void)){
         request.getUserGallery(nextPage: lastItem, withCompletionBlock: functionOK, functionError: functionError)
     }
     

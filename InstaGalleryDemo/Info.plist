@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>InstagramRedirectURI</key>
-	<string></string>
+	<string>https://dashboard.heroku.com/apps/git-status</string>
 	<key>InstagramClientSecret</key>
-	<string></string>
+	<string>a35eef2e2c0a08a0b2a92f1e670cc933</string>
 	<key>InstagramClientId</key>
-	<string></string>
+	<string>388292879445179</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
