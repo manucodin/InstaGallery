@@ -90,7 +90,7 @@ Pod::Spec.new do |spec|
   #  Not including the public_header_files will make all headers public.
   #
 
-  spec.source_files  = "InstaGallery/Sources/**/*.swift"
+  spec.source_files  = "InstaGallery/**/*.swift"
 
   # spec.public_header_files = "Classes/**/*.h"
 
@@ -104,7 +104,7 @@ Pod::Spec.new do |spec|
   #
 
   # spec.resource  = "icon.png"
-  spec.resources = "InstaGallery/Sources/**/*.xib"
+  spec.resources = "InstaGallery/**/*.xib"
 
   # spec.preserve_paths = "FilesToSave", "MoreFilesToSave"
 
