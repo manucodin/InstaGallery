@@ -14,7 +14,7 @@ internal protocol IGBundleDataSourceBaseInterface {
 }
 
 extension IGBundleDataSourceBaseInterface {
-    var bundle: Bundle { return Bundle.module }
+    var bundle: Bundle { return Bundle.main }
     
     func getStringValueForKey(key: String) -> String {
         guard let value = bundle.object(forInfoDictionaryKey: key) as? String else { return "" }
