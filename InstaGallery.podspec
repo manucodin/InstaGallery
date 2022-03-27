@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "InstaGallery"
-  spec.version      = "0.3.0"
+  spec.version      = "0.3.1"
   spec.summary      = "An easy way to access your Instagram account and get medias"
 
   # This description is used to generate tags and improve search results.
@@ -24,9 +24,7 @@ Pod::Spec.new do |spec|
   #   * Try to keep it short, snappy and to the point.
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
-  spec.description  = <<-DESC
-                      An easy way to access your Instagram account and get medias
-                      DESC
+  spec.description  = "An easy way to access your Instagram account and get medias"
 
   spec.homepage     = "https://github.com/MRodSebastian/InstaGallery"
   # spec.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
@@ -65,7 +63,7 @@ Pod::Spec.new do |spec|
   #
 
   # spec.platform     = :ios
-  spec.platform     = :ios, "11.0"
+  spec.platform     = :ios, "12.0"
   spec.swift_versions = "5.0"
 
   #  When using multiple platforms
@@ -92,7 +90,7 @@ Pod::Spec.new do |spec|
   #  Not including the public_header_files will make all headers public.
   #
 
-  spec.source_files  = "InstaGallery/**/*.swift"
+  spec.source_files  = "Sources/InstaGallery/**/*.swift"
 
   # spec.public_header_files = "Classes/**/*.h"
 
@@ -106,7 +104,7 @@ Pod::Spec.new do |spec|
   #
 
   # spec.resource  = "icon.png"
-  spec.resources = "InstaGallery/**/*.xib"
+  spec.resources = "Sources/InstaGallery/**/*.xib"
 
   # spec.preserve_paths = "FilesToSave", "MoreFilesToSave"
 
