@@ -10,13 +10,12 @@ import Foundation
 
 internal class IGAuthFactory {
     
-    internal static func controller(completionCallback: @escaping ((IGUser) -> Void)) -> IGAuthController {
+    internal static func auth(completionCallback: @escaping (() -> Void)) -> IGAuthController {
         let viewController = IGAuthController()
         let presenter = IGAuthPresenter()
         let routing = IGAuthRouting()
         let interactor = IGAuthInteractor()
         
-        viewController.completionCallback = completionCallback
         viewController.presenter = presenter
         presenter.interactor = interactor
         presenter.routing = routing

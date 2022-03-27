@@ -14,6 +14,10 @@ internal class IGAuthInteractor {
         return bundleDataSource.appID
     }
     
+    var clientSecret: String {
+        return bundleDataSource.clientSecret
+    }
+    
     var redirectURI: String {
         return bundleDataSource.redirectURI
     }
@@ -21,7 +25,7 @@ internal class IGAuthInteractor {
     var scopes: String {
         return [
             IGUserScope.user_profile.rawValue,
-            IGUserScope.user_profile.rawValue
+            IGUserScope.user_media.rawValue
         ].joined(separator: ",")
     }
     
@@ -42,7 +46,7 @@ internal class IGAuthInteractor {
 
 extension IGAuthInteractor: IGAuthInteractorInput {
     func generateAuthRequest() {
-        guard var urlComponent = URLComponents(string: IGRequestConstants.authorizationURL.absoluteString) else { return }
+        guard var urlComponent = URLComponents(string: IGAPIURLProvider().authorizeURL().absoluteString) else { return }
 
         let queryItems: [URLQueryItem] = [
             IGConstants.ParamsKeys.clientIDKey: appID,
@@ -60,7 +64,16 @@ extension IGAuthInteractor: IGAuthInteractorInput {
     }
     
     func authenticate(userCode: String) {
-        instagramDataSource.getAuthToken(withAuthCode: userCode, withCompletionBlock: { [weak self] user in
+        let parameters :[String : String] = [
+            "app_id" : appID,
+            "app_secret" : clientSecret,
+            "grant_type" : "authorization_code",
+            "redirect_uri" : redirectURI,
+            "code" : userCode
+        ]
+        
+        instagramDataSource.getAuthToken(withParams: parameters, withCompletionBlock: { [weak self] userDTO in
+            let user = IGUserMapper.transform(dto: userDTO)
             self?.output?.didAuthenticateUser(user: user)
         }, functionError: { [weak self] error in
             self?.output?.didGetError(error: error)

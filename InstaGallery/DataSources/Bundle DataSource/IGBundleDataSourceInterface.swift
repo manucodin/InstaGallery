@@ -12,12 +12,17 @@ internal class IGBundleDataSourceInterfaceImp: IGBundleDataSourceInterface {}
 
 internal protocol IGBundleDataSourceInterface: IGBundleDataSourceBaseInterface {
     var appID: String { get }
-    var redirectURI: String { get}
+    var clientSecret: String { get }
+    var redirectURI: String { get }
 }
 
 extension IGBundleDataSourceInterface {
     var appID: String {
         return getStringValueForKey(key: IGConstants.BundleKeys.appIDKey)
+    }
+    
+    var clientSecret: String {
+        return getStringValueForKey(key: IGConstants.BundleKeys.clientSecretKey)
     }
     
     var redirectURI: String {

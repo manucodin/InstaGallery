@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     }
     
     private func showGallery(){
-        let galleryController = IGGalleryController()
+        let galleryController = IGGalleryFactory.gallery()
         galleryController.delegate = self
         
         let navigationController = UINavigationController(rootViewController: galleryController)

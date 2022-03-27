@@ -11,6 +11,7 @@ import Foundation
 internal struct IGConstants {
     internal struct BundleKeys {
         static let appIDKey = "InstagramClientId"
+        static let clientSecretKey = "InstagramClientSecret"
         static let redirectURIKey = "InstagramRedirectURI"
     }
     

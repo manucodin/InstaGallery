@@ -10,6 +10,7 @@ import Foundation
 
 internal protocol IGAuthControllerInterface: AnyObject {    
     func setupView()
+    func dismissView()
     func loadRequest(request: URLRequest)
     func didLoadUser(user: IGUser)
 }

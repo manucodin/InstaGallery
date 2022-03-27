@@ -16,6 +16,7 @@ class IGAuthController: UIViewController {
 
     @IBOutlet weak var webView: WKWebView! {
         didSet {
+            webView.navigationDelegate = presenter
             webView.allowsBackForwardNavigationGestures = false
             webView.configuration.websiteDataStore = .nonPersistent()
         }
@@ -43,18 +44,6 @@ class IGAuthController: UIViewController {
         
         navigationItem.leftBarButtonItem = closeButton
     }
-
-//    func authUser(withCode code :String){
-//        presenter.authUser(withCode: code, withCompletionBlock: {[weak self] user in
-//            if let strongSelf = self{
-//                strongSelf.completionCallback(user)
-//            }
-//        }, functionError: {[weak self] error in
-//            if let strongSelf = self{
-//                strongSelf.dismissController()
-//            }
-//        })
-//    }
 }
 
 
@@ -64,18 +53,21 @@ extension IGAuthController: IGAuthControllerInterface {
     }
     
     func loadRequest(request: URLRequest) {
-        webView.navigationDelegate = presenter
         webView.load(request)
     }
     
     func didLoadUser(user: IGUser) {
         completionCallback(user)
     }
+    
+    func dismissView() {
+        self.dismiss(animated: true, completion: nil)
+    }
 }
 
 extension IGAuthController {
     @objc internal func dismissController(_ sender: AnyObject){
-        self.dismiss(animated: true, completion: nil)
+        dismissView()
     }
 }
 

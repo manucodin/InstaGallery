@@ -18,5 +18,6 @@ extension IGAuthRouting: IGAuthRoutingInterface {
     func dismiss() {
         guard let view = view else { return }
         
+        view.dismissView()
     }
 }

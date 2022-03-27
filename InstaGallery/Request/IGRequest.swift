@@ -11,25 +11,12 @@ import UIKit
 
 class IGRequest :IGBaseRequest{
     
-    private static let authPath     = "oauth/access_token"
-    private static let tokenPath    = "access_token"
-    private static let refreshToken = "refresh_access_token"
+    private let apiURLProvider = IGAPIURLProvider()
+    private let apiGraphURLProvider = IGAPIGraphURLProvider()
     
-    private static let userMedia    = "me/media"
-    private static let userNode     = "me"
-    
-    func getAuthToken(authCode code :String, withCompletionBlock functionOK:@escaping((IGUser) -> Void), functionError :@escaping((Error) -> Void)){
-        let bundle = Bundle.main
-        
-        let parameters :[String : Any] = [
-            "app_id" : bundle.object(forInfoDictionaryKey: "InstagramClientId") as? String ?? "",
-            "app_secret" : bundle.object(forInfoDictionaryKey: "InstagramClientSecret") as? String ?? "",
-            "grant_type" : "authorization_code",
-            "redirect_uri" : bundle.object(forInfoDictionaryKey: "InstagramRedirectURI") as? String ?? "",
-            "code" : code
-        ]
-        
-        makeRequest(to: IGRequest.authPath, withMethod: .post, withParams: parameters, withCompletionBlock: {response, _ in
+    func getAuthToken(withParams params: [String : String], withCompletionBlock functionOK:@escaping((IGUserDTO) -> Void), functionError :@escaping((Error) -> Void)){
+        let url = apiURLProvider.authURL()
+        makeRequest(url: url, withMethod: .post, withParams: params, withCompletionBlock: {response, _ in
             let responseDict = response as? [String : Any] ?? [:]
             IGRequest.mapUserInfo(userInfo: responseDict)
             self.getLongLiveToken(functionOK: functionOK, functionError: functionError)
@@ -38,58 +25,24 @@ class IGRequest :IGBaseRequest{
         })
     }
     
-    private func getLongLiveToken(functionOK :@escaping((IGUser) -> Void), functionError :@escaping ((Error) -> Void)){
-        let bundle = Bundle.main
-        
-        let parameters :[String : Any] = [
-            "grant_type"    :"ig_exchange_token",
-            "client_secret" :bundle.object(forInfoDictionaryKey: "InstagramClientSecret") as? String ?? "",
-            "access_token"  :IGManagerUtils.getUserToken() ?? ""
-        ]
-        
-        makeBasicRequest(to: IGRequest.tokenPath, withMethod: .get, withParams: parameters,withCompletionBlock: {response, _ in
-            let responseDict = response as? [String : Any] ?? [:]
-            IGRequest.mapUserInfo(userInfo: responseDict)
-            self.getUserInfo(withCompletionBlock: functionOK, functionError: functionError)
-        }, withErroBlock: functionError)
-    }
-    
+    //TODO: - Quitar gestion de parametros
     func refreshToken(functionOK :@escaping(() -> Void), functionError :@escaping((Error) -> Void)){
+        let url = apiURLProvider.refreshToken()
         let params :[String : Any] = [
             "grant_type" :"ig_refresh_token",
             "access_token" :IGManagerUtils.getUserToken() ?? ""
         ]
         
-        makeBasicRequest(to: IGRequest.refreshToken, withMethod: .get, withParams: params, withCompletionBlock: {response, _ in
+        makeRequest(url: url, withMethod: .get, withParams: params, withCompletionBlock: {response, _ in
             let responseDict = response as? [String : Any] ?? [:]
             IGRequest.mapUserInfo(userInfo: responseDict)
             functionOK()
         }, withErroBlock: functionError)
     }
     
-    private func getUserInfo(withCompletionBlock functionOK:@escaping((IGUser) -> Void), functionError :@escaping((Error) -> Void)){
-        let parameters :[String : Any] = [
-            "fields" : "id,username",
-            "access_token" : IGManagerUtils.getUserToken() ?? ""
-        ]
-        
-        makeBasicRequest(to: IGRequest.userNode, withMethod: .get, withParams: parameters, withCompletionBlock: {response, _ in
-            let responseDict = response as? [String : Any] ?? [:]
-            IGRequest.mapUserInfo(userInfo: responseDict)
-            do{
-                
-                let jsonData = try JSONSerialization.data(withJSONObject: responseDict, options: .prettyPrinted)
-                let igUser = try JSONDecoder().decode(IGUser.self, from: jsonData)
-                functionOK(igUser)
-            }catch let error{
-                functionError(error)
-            }
-        }, withErroBlock: {error in
-            functionError(error)
-        })
-    }
-    
-    func getUserGallery(nextPage :String? = nil, withCompletionBlock functionOK:@escaping(([IGImageCover]?, String?) -> Void), functionError :@escaping((Error) -> Void)){
+    //TODO: - Quitar gestion de parametros
+    func getUserGallery(nextPage :String? = nil, withCompletionBlock functionOK:@escaping(([IGImageCover], String?) -> Void), functionError :@escaping((Error) -> Void)){
+        let url = apiGraphURLProvider.mediaURL()
         var parameters :[String : Any] = [
             "fields" : "id,media_url,media_type",
             "access_token" : IGManagerUtils.getUserToken() ?? ""
@@ -99,7 +52,7 @@ class IGRequest :IGBaseRequest{
             parameters["after"] = nextItem
         }
         
-        makeBasicRequest(to: IGRequest.userMedia, withMethod: .get, withParams: parameters, withCompletionBlock: {response, _ in
+        makeRequest(url: url, withMethod: .get, withParams: parameters, withCompletionBlock: {response, _ in
             do{
                 let responseDict = response as? [String : Any] ?? [:]
                 var dataDict = responseDict["data"] as? [[String : Any]] ?? [[:]]
@@ -128,19 +81,61 @@ class IGRequest :IGBaseRequest{
         })
     }
     
+    //TODO: - Quitar gestion de parametros
     func getUserImage(withIdentifier identifier :String, withCompletionBlock functionOK:@escaping((IGImage) -> Void), errorBlock functionError :@escaping((Error) -> Void)){
-        
+        let url = apiGraphURLProvider.mediaURL(withIdentifier: identifier)
         let parameters :[String : Any] = [
             "fields" : "id,media_url,timestamp",
             "access_token" : IGManagerUtils.getUserToken() ?? ""
         ]
         
-        makeBasicRequest(to: identifier, withMethod: .get, withParams: parameters, withCompletionBlock: {response, _ in
+        makeRequest(url: url, withMethod: .get, withParams: parameters, withCompletionBlock: {response, _ in
             do{
                 let responseDict = response as? [String : Any] ?? [:]
                 let jsonData = try JSONSerialization.data(withJSONObject: responseDict, options: .prettyPrinted)
                 let igImage = try JSONDecoder().decode(IGImage.self, from: jsonData)
                 functionOK(igImage)
+            }catch let error{
+                functionError(error)
+            }
+        }, withErroBlock: {error in
+            functionError(error)
+        })
+    }
+    
+    //TODO: - Quitar gestion de parametros
+    private func getLongLiveToken(functionOK :@escaping((IGUserDTO) -> Void), functionError :@escaping ((Error) -> Void)){
+        let bundle = Bundle.main
+        let url = apiURLProvider.tokenURL()
+        let parameters :[String : Any] = [
+            "grant_type"    :"ig_exchange_token",
+            "client_secret" :bundle.object(forInfoDictionaryKey: "InstagramClientSecret") as? String ?? "",
+            "access_token"  :IGManagerUtils.getUserToken() ?? ""
+        ]
+        
+        makeRequest(url: url, withMethod: .get, withParams: parameters,withCompletionBlock: {response, _ in
+            let responseDict = response as? [String : Any] ?? [:]
+            IGRequest.mapUserInfo(userInfo: responseDict)
+            self.getUserInfo(withCompletionBlock: functionOK, functionError: functionError)
+        }, withErroBlock: functionError)
+    }
+    
+    //TODO: - Quitar gestion de parametros
+    private func getUserInfo(withCompletionBlock functionOK:@escaping((IGUserDTO) -> Void), functionError :@escaping((Error) -> Void)){
+        let url = apiGraphURLProvider.userURL()
+        let parameters :[String : Any] = [
+            "fields" : "id,username",
+            "access_token" : IGManagerUtils.getUserToken() ?? ""
+        ]
+        
+        makeRequest(url: url, withMethod: .get, withParams: parameters, withCompletionBlock: {response, _ in
+            let responseDict = response as? [String : Any] ?? [:]
+            IGRequest.mapUserInfo(userInfo: responseDict)
+            do{
+                
+                let jsonData = try JSONSerialization.data(withJSONObject: responseDict, options: .prettyPrinted)
+                let igUser = try JSONDecoder().decode(IGUserDTO.self, from: jsonData)
+                functionOK(igUser)
             }catch let error{
                 functionError(error)
             }

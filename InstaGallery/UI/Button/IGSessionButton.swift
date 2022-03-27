@@ -75,21 +75,21 @@ public class IGSessionButton: UIButton {
     }
     
     @objc private func login(){
-        guard let controller = currentController else{
-            return
-        }
-        
-        let authController = IGAuthFactory.controller{ [weak self] user in
-            guard let welf = self else { return }
-            if let loginFunction = welf.functionLogin{
-                loginFunction()
-            }else{
-                welf.delegate?.igSessionLogged(user: user)
-            }
-            welf.configureStatus()
-        }
-        let navController = UINavigationController(rootViewController: authController)
-        controller.present(navController, animated: true, completion: nil)
+//        guard let controller = currentController else{
+//            return
+//        }
+//        
+//        let authController = IGAuthFactory.controller{ [weak self] user in
+//            guard let welf = self else { return }
+//            if let loginFunction = welf.functionLogin{
+//                loginFunction()
+//            }else{
+//                welf.delegate?.igSessionLogged(user: user)
+//            }
+//            welf.configureStatus()
+//        }
+//        let navController = UINavigationController(rootViewController: authController)
+//        controller.present(navController, animated: true, completion: nil)
     }
     
     @objc private func logout(){
