@@ -9,11 +9,6 @@
 import Foundation
 import UIKit
 
-protocol IGPresenterDelegate: AnyObject{
-    func imageDidSelect(image :IGImage)
-    func userDidLogged(user :IGUser)
-}
-
 class IGGalleryPresenter: NSObject {
     
     weak var view :IGGalleryControllerInterface?
@@ -24,15 +19,15 @@ class IGGalleryPresenter: NSObject {
     override init() {}
     
     var isUserLogged: Bool {
-        return IGManagerUtils.getUserToken() != nil
+        return interactor?.isLoggedUser ?? false
     }
     
     var hasNextPage: Bool {
         return interactor?.hasNextPage ?? false
     }
     
-    var numberOfImages: Int {
-        return interactor?.numberOfImages ?? 0
+    var numberOfMedias: Int {
+        return interactor?.numberOfMedias ?? 0
     }
     
     private func loadUserGallery(){
@@ -46,16 +41,9 @@ class IGGalleryPresenter: NSObject {
     
     private func loginUser(){
         interactor?.logoutUser()
-    }
-    
-    private func didSelectItem(atIndexPath indexPath: IndexPath) {
-//        manager.getImage(withIdentifier: images[indexPath.row].identifier, withCompletionBlock: {[weak self] image in
-//            if let strongSelf = self{
-//                strongSelf.delegate?.imageDidSelect(image: image)
-//            }
-//        }, functionError: {error in
-//            debugPrint(error.localizedDescription)
-//        })
+        routing?.presentLoginUser { [weak self] in
+            self?.loadUserGallery()
+        }
     }
 }
 
@@ -63,6 +51,12 @@ extension IGGalleryPresenter: IGGalleryPresenterInterface {
     func viewLoaded() {
         view?.setupView()
         loadUserGallery()
+    }
+    
+    func selectImage(atIndexPath indexPath: IndexPath) {
+        guard let imageCover = interactor?.imageCover(atIndexPath: indexPath) else { return }
+        
+        interactor?.getImage(withImageCover: imageCover)
     }
 }
 
@@ -78,42 +72,25 @@ extension IGGalleryPresenter: IGGalleryInteractorOutput {
     func didLoadUserGallery() {
         view?.reloadData()
     }
-}
-
-extension IGGalleryPresenter: UICollectionViewDelegate {
-    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        didSelectItem(atIndexPath: indexPath)
-    }
-}
-
-extension IGGalleryController :UICollectionViewDelegateFlowLayout{
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
-        let width = collectionView.frame.size.width/3
-        return CGSize(width: width, height: width)
-    }
     
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
-    
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+    func didSelect(media: IGMedia) {
+        view?.didSelect(media: media)
     }
 }
 
 extension IGGalleryPresenter: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return numberOfImages
+        return numberOfMedias
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cellIdentifier = String(describing: IGGalleryCell.self)
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as! IGGalleryCell
-        if let image = interactor?.image(atIndexPath: indexPath) {
-            cell.setImage(image: image)
+        if let image = interactor?.imageCover(atIndexPath: indexPath) {
+            cell.setImage(media: image)
         }
     
-        if hasNextPage && indexPath.row == numberOfImages - 1 {
+        if hasNextPage && indexPath.row == numberOfMedias - 1 {
             loadUserGallery()
         }
         

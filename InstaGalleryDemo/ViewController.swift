@@ -21,17 +21,13 @@ class ViewController: UIViewController {
     }
     
     private func showGallery(){
-        let galleryController = IGGalleryFactory.gallery()
-        galleryController.delegate = self
-        
-        let navigationController = UINavigationController(rootViewController: galleryController)
-        self.present(navigationController, animated: true, completion: nil)
+        InstaGallery.openGallery(inViewController: self, withDelegate: self)
     }
 }
 
 extension ViewController :IGGalleryDelegate{
-    func didSelect(igImage: IGImage) {
-        print(igImage)
+    func didSelect(media: IGMedia) {
+        print(media)
     }
 }
 

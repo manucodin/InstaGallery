@@ -11,4 +11,5 @@ import UIKit
 
 internal protocol IGGalleryPresenterInterface: UICollectionViewDataSource {
     func viewLoaded()
+    func selectImage(atIndexPath indexPath: IndexPath)
 }

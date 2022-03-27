@@ -12,9 +12,9 @@ import UIKit
 internal protocol IGGalleryDataSource {
     var hasNextPage: Bool { get }
     var nextPage: String? { get }
-    var numberOfImages: Int { get }
+    var numberOfMedias: Int { get }
     
     func updateNextPage(newNextPage: String?)
-    func addImages(newImages: [IGImageCover])
-    func image(atIndexPath indexPath: IndexPath) -> IGImageCover
+    func addMedias(newMedias: [IGMedia])
+    func media(atIndexPath indexPath: IndexPath) -> IGMedia
 }

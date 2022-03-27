@@ -9,30 +9,6 @@
 import Foundation
 
 internal class IGAuthInteractor {
-    
-    var appID: String {
-        return bundleDataSource.appID
-    }
-    
-    var clientSecret: String {
-        return bundleDataSource.clientSecret
-    }
-    
-    var redirectURI: String {
-        return bundleDataSource.redirectURI
-    }
-    
-    var scopes: String {
-        return [
-            IGUserScope.user_profile.rawValue,
-            IGUserScope.user_media.rawValue
-        ].joined(separator: ",")
-    }
-    
-    var resposeType: String {
-        return IGResponseType.code.rawValue
-    }
-    
     weak var output: IGAuthInteractorOutput?
     
     private let bundleDataSource: IGBundleDataSourceInterface
@@ -49,10 +25,10 @@ extension IGAuthInteractor: IGAuthInteractorInput {
         guard var urlComponent = URLComponents(string: IGAPIURLProvider().authorizeURL().absoluteString) else { return }
 
         let queryItems: [URLQueryItem] = [
-            IGConstants.ParamsKeys.clientIDKey: appID,
-            IGConstants.ParamsKeys.redirectURIKey: redirectURI,
-            IGConstants.ParamsKeys.scopeKey: scopes,
-            IGConstants.ParamsKeys.responseTypeKey: resposeType
+            IGConstants.ParamsKeys.clientIDKey: bundleDataSource.appID,
+            IGConstants.ParamsKeys.redirectURIKey: bundleDataSource.redirectURI,
+            IGConstants.ParamsKeys.scopeKey: [IGUserScope.user_media, IGUserScope.user_profile].map({ $0.rawValue }).joined(separator: ","),
+            IGConstants.ParamsKeys.responseTypeKey: IGResponseType.code.rawValue
         ].map{ URLQueryItem(name: $0.key, value: $0.value) }
         
         urlComponent.queryItems = queryItems
@@ -64,19 +40,9 @@ extension IGAuthInteractor: IGAuthInteractorInput {
     }
     
     func authenticate(userCode: String) {
-        let parameters :[String : String] = [
-            "app_id" : appID,
-            "app_secret" : clientSecret,
-            "grant_type" : "authorization_code",
-            "redirect_uri" : redirectURI,
-            "code" : userCode
-        ]
-        
-        instagramDataSource.getAuthToken(withParams: parameters, withCompletionBlock: { [weak self] userDTO in
+        instagramDataSource.authenticate(withUserCode: userCode, withCompletionBlock: { [weak self] userDTO in
             let user = IGUserMapper.transform(dto: userDTO)
             self?.output?.didAuthenticateUser(user: user)
-        }, functionError: { [weak self] error in
-            self?.output?.didGetError(error: error)
-        })
+        }, functionError: { _ in })
     }
 }

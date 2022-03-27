@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		54A61D7A27EFB41E001EED17 /* IGDataSourceInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A61D7927EFB41E001EED17 /* IGDataSourceInterface.swift */; };
 		54B79C9F27EF8BE40024B522 /* IGSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B79C9E27EF8BE40024B522 /* IGSessionDelegate.swift */; };
-		54B79CA427EF8D0C0024B522 /* IGScopes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B79CA327EF8D0C0024B522 /* IGScopes.swift */; };
 		54B79CA727EF8E3F0024B522 /* IGAuthFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B79CA627EF8E3F0024B522 /* IGAuthFactory.swift */; };
 		54B79CAD27EF8EF90024B522 /* IGAuthPresenterInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B79CAC27EF8EF90024B522 /* IGAuthPresenterInterface.swift */; };
 		54B79CAF27EF8F230024B522 /* IGAuthControllerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B79CAE27EF8F230024B522 /* IGAuthControllerInterface.swift */; };
@@ -36,6 +35,20 @@
 		54C9798027F07EEC00194578 /* IGGalleryRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C9797F27F07EEC00194578 /* IGGalleryRouting.swift */; };
 		54C9798227F07EF700194578 /* IGGalleryRoutingInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C9798127F07EF700194578 /* IGGalleryRoutingInterface.swift */; };
 		54C979BD27F08F3100194578 /* IGGalleryFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C979BC27F08F3100194578 /* IGGalleryFactory.swift */; };
+		54C979C027F0930B00194578 /* InstaGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C979BF27F0930B00194578 /* InstaGallery.swift */; };
+		54C979C427F0A16400194578 /* IGMediaTypeDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C979C327F0A16400194578 /* IGMediaTypeDTO.swift */; };
+		54C979C627F0A1E500194578 /* IGMediaDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C979C527F0A1E500194578 /* IGMediaDTO.swift */; };
+		54C979C827F0A1F200194578 /* IGMediaMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C979C727F0A1F200194578 /* IGMediaMapper.swift */; };
+		54C979CA27F0A36700194578 /* IGMediaType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C979C927F0A36700194578 /* IGMediaType.swift */; };
+		54C979CC27F0A54900194578 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C979CB27F0A54900194578 /* String+Extensions.swift */; };
+		54C979CE27F0AB1300194578 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C979CD27F0AB1300194578 /* UIImageView+Extension.swift */; };
+		54C979D027F0AB5900194578 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C979CF27F0AB5900194578 /* URL+Extension.swift */; };
+		54C979D227F0AB9800194578 /* Dictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C979D127F0AB9800194578 /* Dictionary+Extension.swift */; };
+		54C979D427F0ABAF00194578 /* Error+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C979D327F0ABAF00194578 /* Error+Extension.swift */; };
+		54C979D727F0AC2200194578 /* IGUserDefaultsDataSourceInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C979D627F0AC2200194578 /* IGUserDefaultsDataSourceInterface.swift */; };
+		54C979D927F0AC2C00194578 /* IGUserDefaultsDataSourceImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C979D827F0AC2C00194578 /* IGUserDefaultsDataSourceImp.swift */; };
+		54C979DE27F0C99C00194578 /* IGUserDefaultsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C979DD27F0C99C00194578 /* IGUserDefaultsInterface.swift */; };
+		54C979E027F0C9A500194578 /* IGUserDefaultsImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C979DF27F0C9A500194578 /* IGUserDefaultsImp.swift */; };
 		A93A268B2368D4F100E2331B /* InstaGallery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A93A26812368D4F100E2331B /* InstaGallery.framework */; };
 		A93A26902368D4F100E2331B /* InstaGalleryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93A268F2368D4F100E2331B /* InstaGalleryTests.swift */; };
 		A93A26922368D4F100E2331B /* InstaGallery.h in Headers */ = {isa = PBXBuildFile; fileRef = A93A26842368D4F100E2331B /* InstaGallery.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -103,7 +116,6 @@
 /* Begin PBXFileReference section */
 		54A61D7927EFB41E001EED17 /* IGDataSourceInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGDataSourceInterface.swift; sourceTree = "<group>"; };
 		54B79C9E27EF8BE40024B522 /* IGSessionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGSessionDelegate.swift; sourceTree = "<group>"; };
-		54B79CA327EF8D0C0024B522 /* IGScopes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGScopes.swift; sourceTree = "<group>"; };
 		54B79CA627EF8E3F0024B522 /* IGAuthFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGAuthFactory.swift; sourceTree = "<group>"; };
 		54B79CAC27EF8EF90024B522 /* IGAuthPresenterInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGAuthPresenterInterface.swift; sourceTree = "<group>"; };
 		54B79CAE27EF8F230024B522 /* IGAuthControllerInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGAuthControllerInterface.swift; sourceTree = "<group>"; };
@@ -130,6 +142,20 @@
 		54C9797F27F07EEC00194578 /* IGGalleryRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGGalleryRouting.swift; sourceTree = "<group>"; };
 		54C9798127F07EF700194578 /* IGGalleryRoutingInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGGalleryRoutingInterface.swift; sourceTree = "<group>"; };
 		54C979BC27F08F3100194578 /* IGGalleryFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGGalleryFactory.swift; sourceTree = "<group>"; };
+		54C979BF27F0930B00194578 /* InstaGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstaGallery.swift; sourceTree = "<group>"; };
+		54C979C327F0A16400194578 /* IGMediaTypeDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGMediaTypeDTO.swift; sourceTree = "<group>"; };
+		54C979C527F0A1E500194578 /* IGMediaDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGMediaDTO.swift; sourceTree = "<group>"; };
+		54C979C727F0A1F200194578 /* IGMediaMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGMediaMapper.swift; sourceTree = "<group>"; };
+		54C979C927F0A36700194578 /* IGMediaType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGMediaType.swift; sourceTree = "<group>"; };
+		54C979CB27F0A54900194578 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		54C979CD27F0AB1300194578 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		54C979CF27F0AB5900194578 /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
+		54C979D127F0AB9800194578 /* Dictionary+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extension.swift"; sourceTree = "<group>"; };
+		54C979D327F0ABAF00194578 /* Error+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+Extension.swift"; sourceTree = "<group>"; };
+		54C979D627F0AC2200194578 /* IGUserDefaultsDataSourceInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGUserDefaultsDataSourceInterface.swift; sourceTree = "<group>"; };
+		54C979D827F0AC2C00194578 /* IGUserDefaultsDataSourceImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGUserDefaultsDataSourceImp.swift; sourceTree = "<group>"; };
+		54C979DD27F0C99C00194578 /* IGUserDefaultsInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGUserDefaultsInterface.swift; sourceTree = "<group>"; };
+		54C979DF27F0C9A500194578 /* IGUserDefaultsImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGUserDefaultsImp.swift; sourceTree = "<group>"; };
 		A93A26812368D4F100E2331B /* InstaGallery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InstaGallery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A93A26842368D4F100E2331B /* InstaGallery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InstaGallery.h; sourceTree = "<group>"; };
 		A93A26852368D4F100E2331B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -191,6 +217,7 @@
 		54A61D7827EFB3C6001EED17 /* DataSources */ = {
 			isa = PBXGroup;
 			children = (
+				54C979D527F0ABCD00194578 /* UserDefaults DataSource */,
 				54B79D2627EF949A0024B522 /* Bundle DataSource */,
 				A93A26AF2368D50500E2331B /* Instagram DataSource */,
 			);
@@ -273,6 +300,8 @@
 			isa = PBXGroup;
 			children = (
 				54C978EF27F06E2000194578 /* IGUserDTO.swift */,
+				54C979C527F0A1E500194578 /* IGMediaDTO.swift */,
+				54C979C327F0A16400194578 /* IGMediaTypeDTO.swift */,
 			);
 			path = DTOs;
 			sourceTree = "<group>";
@@ -281,6 +310,7 @@
 			isa = PBXGroup;
 			children = (
 				54C978F127F06E8200194578 /* IGUserMapper.swift */,
+				54C979C727F0A1F200194578 /* IGMediaMapper.swift */,
 			);
 			path = Mappers;
 			sourceTree = "<group>";
@@ -359,6 +389,32 @@
 			path = Factory;
 			sourceTree = "<group>";
 		};
+		54C979BE27F0930000194578 /* Facade */ = {
+			isa = PBXGroup;
+			children = (
+				54C979BF27F0930B00194578 /* InstaGallery.swift */,
+			);
+			path = Facade;
+			sourceTree = "<group>";
+		};
+		54C979D527F0ABCD00194578 /* UserDefaults DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				54C979D827F0AC2C00194578 /* IGUserDefaultsDataSourceImp.swift */,
+				54C979D627F0AC2200194578 /* IGUserDefaultsDataSourceInterface.swift */,
+			);
+			path = "UserDefaults DataSource";
+			sourceTree = "<group>";
+		};
+		54C979DC27F0C98900194578 /* User Defaults */ = {
+			isa = PBXGroup;
+			children = (
+				54C979DF27F0C9A500194578 /* IGUserDefaultsImp.swift */,
+				54C979DD27F0C99C00194578 /* IGUserDefaultsInterface.swift */,
+			);
+			path = "User Defaults";
+			sourceTree = "<group>";
+		};
 		A93A26772368D4F100E2331B = {
 			isa = PBXGroup;
 			children = (
@@ -383,13 +439,14 @@
 		A93A26832368D4F100E2331B /* InstaGallery */ = {
 			isa = PBXGroup;
 			children = (
+				54C979BE27F0930000194578 /* Facade */,
 				54C9793327F0789B00194578 /* UI */,
 				54A61D7827EFB3C6001EED17 /* DataSources */,
+				54C979DC27F0C98900194578 /* User Defaults */,
 				54B79D2B27EF96290024B522 /* Constants */,
 				A93A269B2368D50400E2331B /* DataModel */,
-				A93A269D2368D50400E2331B /* Presenter */,
 				A93A26A02368D50400E2331B /* Request */,
-				A93A26AD2368D50500E2331B /* Utils */,
+				A93A26AD2368D50500E2331B /* Extensions */,
 				A93A26842368D4F100E2331B /* InstaGallery.h */,
 				A93A26852368D4F100E2331B /* Info.plist */,
 			);
@@ -410,15 +467,9 @@
 			children = (
 				A93A269C2368D50400E2331B /* IGImage.swift */,
 				A9F0E5D12406AD7700FFADF5 /* IGUser.swift */,
+				54C979C927F0A36700194578 /* IGMediaType.swift */,
 			);
 			path = DataModel;
-			sourceTree = "<group>";
-		};
-		A93A269D2368D50400E2331B /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Presenter;
 			sourceTree = "<group>";
 		};
 		A93A26A02368D50400E2331B /* Request */ = {
@@ -427,7 +478,6 @@
 				54C9793027F0734A00194578 /* URL Provider */,
 				A93A26A12368D50400E2331B /* IGBaseRequest.swift */,
 				A93A26A22368D50400E2331B /* IGRequest.swift */,
-				54B79CA327EF8D0C0024B522 /* IGScopes.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -475,12 +525,17 @@
 			path = Authorization;
 			sourceTree = "<group>";
 		};
-		A93A26AD2368D50500E2331B /* Utils */ = {
+		A93A26AD2368D50500E2331B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				A93A26AE2368D50500E2331B /* IGManagerUtils.swift */,
+				54C979CB27F0A54900194578 /* String+Extensions.swift */,
+				54C979CD27F0AB1300194578 /* UIImageView+Extension.swift */,
+				54C979CF27F0AB5900194578 /* URL+Extension.swift */,
+				54C979D127F0AB9800194578 /* Dictionary+Extension.swift */,
+				54C979D327F0ABAF00194578 /* Error+Extension.swift */,
 			);
-			path = Utils;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		A93A26AF2368D50500E2331B /* Instagram DataSource */ = {
@@ -599,7 +654,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1100;
+				LastUpgradeCheck = 1310;
 				ORGANIZATIONNAME = MRodriguez;
 				TargetAttributes = {
 					A93A26802368D4F100E2331B = {
@@ -671,11 +726,14 @@
 				54C9794127F079BF00194578 /* IGGalleryDataSourceImp.swift in Sources */,
 				54B79CEE27EF93C30024B522 /* IGAuthInteractorInterface.swift in Sources */,
 				54B79CA727EF8E3F0024B522 /* IGAuthFactory.swift in Sources */,
-				54B79CA427EF8D0C0024B522 /* IGScopes.swift in Sources */,
+				54C979C827F0A1F200194578 /* IGMediaMapper.swift in Sources */,
+				54C979D727F0AC2200194578 /* IGUserDefaultsDataSourceInterface.swift in Sources */,
 				54B79CB327EF914E0024B522 /* IGAuthRoutingInterface.swift in Sources */,
 				54C9798027F07EEC00194578 /* IGGalleryRouting.swift in Sources */,
 				54B79D2D27EF96360024B522 /* IGConstants.swift in Sources */,
 				54B79C9F27EF8BE40024B522 /* IGSessionDelegate.swift in Sources */,
+				54C979E027F0C9A500194578 /* IGUserDefaultsImp.swift in Sources */,
+				54C979C427F0A16400194578 /* IGMediaTypeDTO.swift in Sources */,
 				54C9792F27F0731900194578 /* IGURLBaseProvider.swift in Sources */,
 				A93A26B92368D50500E2331B /* IGGalleryController.swift in Sources */,
 				54C9797C27F07E2A00194578 /* IGGalleryInteractor.swift in Sources */,
@@ -685,18 +743,27 @@
 				54B79CEC27EF93B40024B522 /* IGAuthInteractor.swift in Sources */,
 				54B79CAD27EF8EF90024B522 /* IGAuthPresenterInterface.swift in Sources */,
 				54C9793F27F079B600194578 /* IGGalleryDataSource.swift in Sources */,
+				54C979C627F0A1E500194578 /* IGMediaDTO.swift in Sources */,
+				54C979D927F0AC2C00194578 /* IGUserDefaultsDataSourceImp.swift in Sources */,
 				A9F0E5D22406AD7700FFADF5 /* IGUser.swift in Sources */,
+				54C979C027F0930B00194578 /* InstaGallery.swift in Sources */,
 				54B79CAF27EF8F230024B522 /* IGAuthControllerInterface.swift in Sources */,
 				54C978F627F0720B00194578 /* IGAPIURLProvider.swift in Sources */,
 				54B79D3527EF98370024B522 /* IGBundleDataSourceBaseInterface.swift in Sources */,
 				A93A26B62368D50500E2331B /* IGGalleryCell.swift in Sources */,
+				54C979D027F0AB5900194578 /* URL+Extension.swift in Sources */,
 				A93A26B22368D50500E2331B /* IGAuthPresenter.swift in Sources */,
 				54C9797E27F07E3500194578 /* IGGalleryInteractorInterface.swift in Sources */,
+				54C979D227F0AB9800194578 /* Dictionary+Extension.swift in Sources */,
+				54C979CA27F0A36700194578 /* IGMediaType.swift in Sources */,
 				A93A26B52368D50500E2331B /* IGRequest.swift in Sources */,
+				54C979DE27F0C99C00194578 /* IGUserDefaultsInterface.swift in Sources */,
 				54B79D3127EF96E70024B522 /* IGUserScope.swift in Sources */,
 				54A61D7A27EFB41E001EED17 /* IGDataSourceInterface.swift in Sources */,
+				54C979CC27F0A54900194578 /* String+Extensions.swift in Sources */,
 				54B79D2827EF94AB0024B522 /* IGBundleDataSourceInterface.swift in Sources */,
 				54C978F027F06E2000194578 /* IGUserDTO.swift in Sources */,
+				54C979D427F0ABAF00194578 /* Error+Extension.swift in Sources */,
 				54B79CB127EF913F0024B522 /* IGAuthRouting.swift in Sources */,
 				A93A26BC2368D50500E2331B /* IGManagerUtils.swift in Sources */,
 				A93A26B32368D50500E2331B /* IGGalleryPresenter.swift in Sources */,
@@ -704,6 +771,7 @@
 				A93A26BA2368D50500E2331B /* IGAuthController.swift in Sources */,
 				A93A26BD2368D50500E2331B /* IGDataSource.swift in Sources */,
 				54C978F227F06E8200194578 /* IGUserMapper.swift in Sources */,
+				54C979CE27F0AB1300194578 /* UIImageView+Extension.swift in Sources */,
 				54C9793227F0747100194578 /* IGAPIGraphURLProvider.swift in Sources */,
 				54C979BD27F08F3100194578 /* IGGalleryFactory.swift in Sources */,
 				A93A26B42368D50500E2331B /* IGBaseRequest.swift in Sources */,
@@ -798,6 +866,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -825,7 +894,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -864,6 +933,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -885,7 +955,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -908,7 +978,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = InstaGallery/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -934,7 +1004,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = InstaGallery/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -994,7 +1064,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SD98EDDB4C;
 				INFOPLIST_FILE = InstaGalleryDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1013,7 +1083,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SD98EDDB4C;
 				INFOPLIST_FILE = InstaGalleryDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

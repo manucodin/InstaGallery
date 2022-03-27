@@ -16,6 +16,7 @@ internal class IGAuthFactory {
         let routing = IGAuthRouting()
         let interactor = IGAuthInteractor()
         
+        viewController.completionCallback = completionCallback
         viewController.presenter = presenter
         presenter.interactor = interactor
         presenter.routing = routing

@@ -9,6 +9,14 @@
 import Foundation
 
 internal struct IGAPIGraphURLProvider: IGURLBaseProvider {
+    func tokenURL() -> URL {
+        return API_GRAPH_INSTRAGRAM.appendingPathComponent("access_token")
+    }
+    
+    func refreshToken() -> URL {
+        return API_GRAPH_INSTRAGRAM.appendingPathComponent("refresh_access_token")
+    }
+    
     func userURL() -> URL {
         return API_GRAPH_INSTRAGRAM.appendingPathComponent("me")
     }

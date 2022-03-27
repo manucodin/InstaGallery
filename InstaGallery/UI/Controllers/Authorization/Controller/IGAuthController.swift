@@ -12,7 +12,7 @@ import WebKit
 class IGAuthController: UIViewController {
     
     internal var presenter: IGAuthPresenterInterface?
-    internal var completionCallback :((IGUser) -> Void)!
+    internal var completionCallback :(() -> Void)?
 
     @IBOutlet weak var webView: WKWebView! {
         didSet {
@@ -46,7 +46,6 @@ class IGAuthController: UIViewController {
     }
 }
 
-
 extension IGAuthController: IGAuthControllerInterface {
     func setupView() {
         configureNavigationBar()
@@ -57,7 +56,7 @@ extension IGAuthController: IGAuthControllerInterface {
     }
     
     func didLoadUser(user: IGUser) {
-        completionCallback(user)
+        completionCallback?()
     }
     
     func dismissView() {

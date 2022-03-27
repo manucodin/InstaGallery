@@ -16,12 +16,4 @@ internal struct IGAPIURLProvider: IGURLBaseProvider {
     func authURL() -> URL {
         return API_INSTAGRAM.appendingPathComponent("oauth/access_token")
     }
-    
-    func tokenURL() -> URL {
-        return API_INSTAGRAM.appendingPathComponent("access_token")
-    }
-    
-    func refreshToken() -> URL {
-        return API_INSTAGRAM.appendingPathComponent("refresh_access_token")
-    }
 }

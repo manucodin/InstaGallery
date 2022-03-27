@@ -8,15 +8,11 @@
 
 import UIKit
 
-@objc public protocol IGGalleryDelegate: AnyObject {
-    @objc func didSelect(igImage :IGImage)
-}
-
 @objc public class IGGalleryController: UIViewController {
     
-    var presenter :IGGalleryPresenterInterface?
-        
     @objc public weak var delegate :IGGalleryDelegate?
+    
+    internal var presenter :IGGalleryPresenterInterface?
     
     @IBOutlet weak var collectionView: UICollectionView! {
         didSet {
@@ -33,26 +29,17 @@ import UIKit
     
     public required init?(coder: NSCoder) { return nil }
     
-//    @objc public class func presentGalleryFrom(_ viewController:UIViewController){
-//        let bundle = Bundle(for: IGGalleryController.self)
-//        let igGalleryController = IGGalleryController(nibName: "IGGalleryController", bundle: bundle)
-//        let navController = UINavigationController(rootViewController: igGalleryController)
-//        viewController.present(navController, animated: true, completion: nil)
-//    }
-    
     override public func viewDidLoad() {
         super.viewDidLoad()
         
         presenter?.viewLoaded()
     }
     
-    
     private func configureNavigationBar(){
         let closeButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissController))
         navigationItem.leftBarButtonItem = closeButton
         navigationItem.title = "Instagram"
     }
-    
     
     private func configureNavigationTitle(){
         guard let userNick = IGManagerUtils.getUserName() else { return }
@@ -74,15 +61,24 @@ import UIKit
     }
 }
 
-extension IGGalleryController :IGPresenterDelegate{
-    func userDidLogged(user: IGUser) {
-        navigationItem.title = user.account
+extension IGGalleryController: UICollectionViewDelegate {
+    public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        presenter?.selectImage(atIndexPath: indexPath)
+    }
+}
+
+extension IGGalleryController :UICollectionViewDelegateFlowLayout{
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize{
+        let width = collectionView.frame.size.width/3
+        return CGSize(width: width, height: width)
     }
     
-    func imageDidSelect(image: IGImage) {
-        if let strongDelegate = self.delegate{
-            strongDelegate.didSelect(igImage: image)
-        }
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
     }
 }
 
@@ -95,5 +91,9 @@ extension IGGalleryController: IGGalleryControllerInterface {
     
     func reloadData() {
         collectionView.reloadData()
+    }
+    
+    func didSelect(media: IGMedia) {
+        delegate?.didSelect(media: media)
     }
 }

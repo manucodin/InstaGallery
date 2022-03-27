@@ -16,9 +16,9 @@ class IGGalleryCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    func setImage(image :IGImageCover){
-        if let urlImage = URL(string: image.urlString){
-            userImage.imageFromURL(url: urlImage)
-        }
+    func setImage(media :IGMedia){
+        guard let urlImage = media.url else { return }
+        
+        userImage.imageFromURL(url: urlImage)
     }
 }

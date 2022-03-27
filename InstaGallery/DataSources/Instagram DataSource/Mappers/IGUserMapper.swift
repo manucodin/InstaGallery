@@ -11,11 +11,20 @@ import Foundation
 internal class IGUserMapper {
     
     internal static func transform(dto: IGUserDTO) -> IGUser {
-        return IGUser(identifier: dto.id, account: dto.username, urlAccount: dto.urlAccount)
+        return IGUser(
+            identifier: dto.id ?? "",
+            account: dto.username ?? "",
+            urlAccount: dto.urlAccount ?? "",
+            token: dto.token ?? ""
+        )
     }
     
-    internal static func tranform(model: IGUser) -> IGUserDTO {
-        return IGUserDTO(id: model.identifier, username: model.account, urlAccount: model.urlAccount)
+    internal static func transform(model: IGUser) -> IGUserDTO {
+        return IGUserDTO(
+            id: model.identifier,
+            username: model.account,
+            urlAccount: model.urlAccount,
+            token: model.token
+        )
     }
-    
 }

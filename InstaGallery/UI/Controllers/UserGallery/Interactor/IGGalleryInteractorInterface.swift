@@ -10,15 +10,18 @@ import Foundation
 import UIKit
 
 protocol IGGalleryInteractorInput {
-    var numberOfImages: Int { get }
+    var isLoggedUser: Bool { get }
+    var numberOfMedias: Int { get }
     var hasNextPage: Bool { get }
     
     func logoutUser()
     func loadUserGallery()
-    func image(atIndexPath indexPath: IndexPath) -> IGImageCover
+    func imageCover(atIndexPath indexPath: IndexPath) -> IGMedia
+    func getImage(withImageCover imageCover: IGMedia)
 }
 
 protocol IGGalleryInteractorOutput: AnyObject {
     func didLogoutUser()
     func didLoadUserGallery()
+    func didSelect(media: IGMedia)
 }

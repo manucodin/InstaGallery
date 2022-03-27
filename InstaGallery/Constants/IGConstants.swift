@@ -9,6 +9,10 @@
 import Foundation
 
 internal struct IGConstants {
+    internal struct UserDefaultsKeys {
+        static let userKey = "InstagramUser"
+    }
+    
     internal struct BundleKeys {
         static let appIDKey = "InstagramClientId"
         static let clientSecretKey = "InstagramClientSecret"
@@ -16,6 +20,7 @@ internal struct IGConstants {
     }
     
     internal struct ParamsKeys {
+        static let accessTokenKey = "access_token"
         static let clientIDKey = "client_id"
         static let redirectURIKey = "redirect_uri"
         static let scopeKey = "scope"

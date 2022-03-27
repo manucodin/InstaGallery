@@ -11,7 +11,7 @@ import UIKit
 
 internal class IGGalleryDataSourceImp {
     internal var nextPage: String?
-    private var images = [IGImageCover]()
+    private var medias = [IGMedia]()
 }
 
 extension IGGalleryDataSourceImp: IGGalleryDataSource {
@@ -19,19 +19,19 @@ extension IGGalleryDataSourceImp: IGGalleryDataSource {
         return nextPage == nil
     }
     
-    var numberOfImages: Int {
-        return images.count
+    var numberOfMedias: Int {
+        return medias.count
     }
     
     func updateNextPage(newNextPage: String?) {
         self.nextPage = newNextPage
     }
     
-    func addImages(newImages: [IGImageCover]) {
-        images.append(contentsOf: newImages)
+    func addMedias(newMedias: [IGMedia]) {
+        medias.append(contentsOf: newMedias)
     }
     
-    func image(atIndexPath indexPath: IndexPath) -> IGImageCover {
-        return images[indexPath.row]
+    func media(atIndexPath indexPath: IndexPath) -> IGMedia {
+        return medias[indexPath.row]
     }
 }

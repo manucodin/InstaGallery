@@ -8,65 +8,24 @@
 
 import UIKit
 
-@objc class IGImageCover :NSObject, Codable{
-    var identifier          :String
-    var urlString           :String
+@objc public class IGMedia :NSObject {
+    @objc public let caption: String?
+    @objc public let identifier :String
+    @objc public let mediaType: IGMediaType
+    @objc public let url :URL?
+    @objc public let permalink: URL?
+    @objc public let thumbanailURL: URL?
+    @objc public let date :Date?
+    @objc public let username: String
     
-    private enum CodingKeys :String, CodingKey{
-        case identifier     = "id"
-        case urlString      = "media_url"
+    init(caption: String? = nil, identifier: String, mediaType: IGMediaType, url: URL?, permalink: URL? = nil, thumbnailURL: URL? = nil, date: Date? = nil, username: String) {
+        self.caption = caption
+        self.identifier = identifier
+        self.mediaType = mediaType
+        self.url = url
+        self.permalink = permalink
+        self.thumbanailURL = thumbnailURL
+        self.date = date
+        self.username = username
     }
-    
-    required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        identifier = try container.decode(String.self, forKey: .identifier)
-        urlString = try container.decode(String.self, forKey: .urlString)
-    }
-    
-    func encode(to encoder: Encoder) throws {}
-}
-
-@objc public class IGImage :NSObject, Codable{
-    var identifier          :String
-    var urlString           :String
-    @objc public var dateString         :String
-    @objc public var date               :Date?
-    @objc public var image              :UIImage?
-    
-    private enum CodingKeys :String, CodingKey{
-        case identifier     = "id"
-        case urlString      = "media_url"
-        case dateString     = "timestamp"
-    }
-    
-    required public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        identifier = try container.decode(String.self, forKey: .identifier)
-        urlString = try container.decode(String.self, forKey: .urlString)
-        dateString = try container.decode(String.self, forKey: .dateString)
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:SSSZ"
-        dateFormatter.locale = .autoupdatingCurrent
-        
-        if let imageDate = dateFormatter.date(from: dateString){
-            date = imageDate
-        }
-        
-        if let url = URL(string: urlString){
-            do{
-                let dataImage = try Data(contentsOf: url)
-                if let image = UIImage(data: dataImage){
-                    self.image = image
-                }else{
-                    self.image = nil
-                }
-            }catch let error{
-                image = nil
-                debugPrint(error.localizedDescription)
-            }
-        }
-    }
-    
-    public func encode(to encoder: Encoder) throws {}
 }

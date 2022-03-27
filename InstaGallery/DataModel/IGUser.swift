@@ -12,4 +12,9 @@ public struct IGUser {
     public var identifier :String
     public var account :String
     public var urlAccount :String
+    public var token: String?
+    
+    public func updating(token: String) -> IGUser {
+        return IGUser(identifier: identifier, account: account, urlAccount: urlAccount, token: token)
+    }
 }
