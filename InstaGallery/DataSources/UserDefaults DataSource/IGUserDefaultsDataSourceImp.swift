@@ -9,11 +9,35 @@
 import Foundation
 
 internal class IGUserDefaultsDataSourceImp: IGUserDefaultsImp, IGUserDefaultsDataSourceInterface {
+    var userName: String? {
+        if let userData = getUser() {
+            return userData.username
+        }
+        
+        if let userName = getValue(withKey: IGConstants.UserDefaultsKeys.IG_USER_NAME) as? String {
+            return userName
+        }
+        
+        return nil
+    }
+    
+    var userToken: String? {
+        if let userData = getUser() {
+            return userData.token
+        }
+        
+        if let userName = getValue(withKey: IGConstants.UserDefaultsKeys.IG_TOKEN_KEY) as? String {
+            return userName
+        }
+        
+        return nil
+    }
+    
     var isUserLogged: Bool {
         return getUser()?.token != nil
     }
     
-    internal func saveUser(user: IGUserDTO) {
+    func saveUser(user: IGUserDTO) {
         do {
             let userData = try JSONEncoder().encode(user)
             save(value: userData, withKey: IGConstants.UserDefaultsKeys.userKey)
@@ -22,7 +46,7 @@ internal class IGUserDefaultsDataSourceImp: IGUserDefaultsImp, IGUserDefaultsDat
         }
     }
     
-    internal func getUser() -> IGUserDTO? {
+    func getUser() -> IGUserDTO? {
         guard let userData = getData(withKey: IGConstants.UserDefaultsKeys.userKey) else { return nil }
         do {
             let user = try JSONDecoder().decode(IGUserDTO.self, from: userData)
@@ -33,4 +57,10 @@ internal class IGUserDefaultsDataSourceImp: IGUserDefaultsImp, IGUserDefaultsDat
         return nil
     }
     
+    func clearAll() {
+        removeValue(withKey: IGConstants.UserDefaultsKeys.IG_TOKEN_KEY)
+        removeValue(withKey: IGConstants.UserDefaultsKeys.IG_USERID_KEY)
+        removeValue(withKey: IGConstants.UserDefaultsKeys.IG_USER_NAME)
+        removeValue(withKey: IGConstants.UserDefaultsKeys.userKey)
+    }
 }

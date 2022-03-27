@@ -12,21 +12,28 @@ public class IGSessionButton: UIButton {
 
     public weak var delegate :IGSessionDelegate?
     
-    private var functionLogin   :(() -> Void)!
-    private var functionLogout  :(() -> Void)!
+    public var logoutText = "Logout"
+    public var loginText = "Login"
     
-    private weak var currentController :UIViewController?
+    private var functionLogin   :(() -> Void)?
+    private var functionLogout  :(() -> Void)?
     
-    public var logoutText = "logout" {
-        didSet{
-            configureStatus()
+    private weak var currentController :UIViewController? {
+        guard let viewController = getOwningViewController() else { return nil }
+        
+        return viewController
+    }
+    
+    private var mode: IGSessionButtonStatus = .disconnected {
+        didSet {
+            switch mode {
+            case .logged: configureLogged()
+            case .disconnected: configureDisconnected()
+            }
         }
     }
-    public var loginText = "login" {
-        didSet{
-            configureStatus()
-        }
-    }
+    
+    private let userDataSource = IGUserDefaultsDataSourceImp()
     
     override public func awakeFromNib() {
         super.awakeFromNib()
@@ -43,64 +50,25 @@ public class IGSessionButton: UIButton {
         configureView()
     }
     
-    override public func layoutSubviews() {
-        super.layoutSubviews()
-        layer.cornerRadius = frame.size.height/2
-        
-        if let image = imageView{
-            let padding = 20.0
-            let width = image.frame.size.width + 10
-            imageEdgeInsets = UIEdgeInsets(top: 5, left: CGFloat(padding), bottom: 5, right: bounds.size.width - 40)
-            titleEdgeInsets = UIEdgeInsets(top: 0, left: width, bottom: 0, right: width)
-        }
+    private func configureMode() {
+        mode = userDataSource.isUserLogged ? .logged : .disconnected
     }
-    
     
     private func configureView(){
-        setTitleColor(.black, for: .normal)
         backgroundColor = .white
-        configureStatus()
+        configureMode()
     }
     
-    private func configureStatus(){
-        if let _  = IGManagerUtils.getUserIdentifier(){
-            setTitle(logoutText, for: .normal)
-            removeTarget(self, action: #selector(login), for: .touchUpInside)
-            addTarget(self, action: #selector(logout), for: .touchUpInside)
-        }else{
-            setTitle(loginText, for: .normal)
-            removeTarget(self, action: #selector(logout), for: .touchUpInside)
-            addTarget(self, action: #selector(login), for: .touchUpInside)
-        }
+    private func configureLogged() {
+        setTitle(logoutText, for: .normal)
+        removeTarget(self, action: .didTapLogin, for: .touchUpInside)
+        addTarget(self, action: .didTapLogout, for: .touchUpInside)
     }
     
-    @objc private func login(){
-//        guard let controller = currentController else{
-//            return
-//        }
-//        
-//        let authController = IGAuthFactory.controller{ [weak self] user in
-//            guard let welf = self else { return }
-//            if let loginFunction = welf.functionLogin{
-//                loginFunction()
-//            }else{
-//                welf.delegate?.igSessionLogged(user: user)
-//            }
-//            welf.configureStatus()
-//        }
-//        let navController = UINavigationController(rootViewController: authController)
-//        controller.present(navController, animated: true, completion: nil)
-    }
-    
-    @objc private func logout(){
-        IGManagerUtils.logoutUser()
-        configureStatus()
-        
-        if let logoutFunction = self.functionLogout{
-            logoutFunction()
-        }else{
-            self.delegate?.igSessionDisconnected()
-        }
+    private func configureDisconnected() {
+        setTitle(loginText, for: .normal)
+        removeTarget(self, action: .didTapLogout, for: .touchUpInside)
+        addTarget(self, action: .didTapLogin, for: .touchUpInside)
     }
     
     public func configureLoginCallback(functionCallback :@escaping (() -> Void)){
@@ -110,8 +78,44 @@ public class IGSessionButton: UIButton {
     public func configureLogoutCallback(functionCallback :@escaping (() -> Void)){
         self.functionLogout = functionCallback
     }
+}
+
+extension IGSessionButton {
+    @objc internal func login(_ sender: AnyObject){
+        guard let controller = currentController else{ return }
+        
+        let authController = IGAuthFactory.auth { [weak self] in
+            guard let welf = self else { return }
+            
+            if let loginFunction = welf.functionLogin {
+                loginFunction()
+            } else {
+                welf.delegate?.userLogged()
+            }
+            
+            welf.configureMode()
+        }
+      
+        let navController = UINavigationController(rootViewController: authController)
+        controller.present(navController, animated: true, completion: nil)
+    }
     
-    public func showInController(_ controller :UIViewController){
-        self.currentController = controller
+    @objc internal func logout(_ sender: AnyObject){
+        IGManagerUtils.logoutUser()
+        userDataSource.clearAll()
+        
+        configureMode()
+        
+        if let logoutFunction = self.functionLogout{
+            logoutFunction()
+        }else{
+            self.delegate?.userDisconnected()
+        }
     }
 }
+
+internal extension Selector {
+    static let didTapLogin = #selector(IGSessionButton.login(_:))
+    static let didTapLogout = #selector(IGSessionButton.logout(_:))
+}
+

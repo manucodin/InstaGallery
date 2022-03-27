@@ -49,6 +49,10 @@
 		54C979D927F0AC2C00194578 /* IGUserDefaultsDataSourceImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C979D827F0AC2C00194578 /* IGUserDefaultsDataSourceImp.swift */; };
 		54C979DE27F0C99C00194578 /* IGUserDefaultsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C979DD27F0C99C00194578 /* IGUserDefaultsInterface.swift */; };
 		54C979E027F0C9A500194578 /* IGUserDefaultsImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C979DF27F0C9A500194578 /* IGUserDefaultsImp.swift */; };
+		54C979E227F0D80500194578 /* IGSessionButtonStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C979E127F0D80500194578 /* IGSessionButtonStatus.swift */; };
+		54C97A5327F0DCFD00194578 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A5127F0DCFD00194578 /* TestViewController.swift */; };
+		54C97A5427F0DCFD00194578 /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54C97A5227F0DCFD00194578 /* TestViewController.xib */; };
+		54C97A5627F0DEA800194578 /* UIResponder+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A5527F0DEA800194578 /* UIResponder+Extension.swift */; };
 		A93A268B2368D4F100E2331B /* InstaGallery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A93A26812368D4F100E2331B /* InstaGallery.framework */; };
 		A93A26902368D4F100E2331B /* InstaGalleryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93A268F2368D4F100E2331B /* InstaGalleryTests.swift */; };
 		A93A26922368D4F100E2331B /* InstaGallery.h in Headers */ = {isa = PBXBuildFile; fileRef = A93A26842368D4F100E2331B /* InstaGallery.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -66,8 +70,6 @@
 		A93A26BC2368D50500E2331B /* IGManagerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93A26AE2368D50500E2331B /* IGManagerUtils.swift */; };
 		A93A26BD2368D50500E2331B /* IGDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93A26B02368D50500E2331B /* IGDataSource.swift */; };
 		A93A26C52368D65000E2331B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93A26C42368D65000E2331B /* AppDelegate.swift */; };
-		A93A26C92368D65000E2331B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93A26C82368D65000E2331B /* ViewController.swift */; };
-		A93A26CC2368D65000E2331B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A93A26CA2368D65000E2331B /* Main.storyboard */; };
 		A93A26D12368D65000E2331B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A93A26CF2368D65000E2331B /* LaunchScreen.storyboard */; };
 		A97EC93F23699E7F00D4825C /* InstaGallery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A93A26812368D4F100E2331B /* InstaGallery.framework */; };
 		A97EC94023699E7F00D4825C /* InstaGallery.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A93A26812368D4F100E2331B /* InstaGallery.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -156,6 +158,10 @@
 		54C979D827F0AC2C00194578 /* IGUserDefaultsDataSourceImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGUserDefaultsDataSourceImp.swift; sourceTree = "<group>"; };
 		54C979DD27F0C99C00194578 /* IGUserDefaultsInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGUserDefaultsInterface.swift; sourceTree = "<group>"; };
 		54C979DF27F0C9A500194578 /* IGUserDefaultsImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGUserDefaultsImp.swift; sourceTree = "<group>"; };
+		54C979E127F0D80500194578 /* IGSessionButtonStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGSessionButtonStatus.swift; sourceTree = "<group>"; };
+		54C97A5127F0DCFD00194578 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		54C97A5227F0DCFD00194578 /* TestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
+		54C97A5527F0DEA800194578 /* UIResponder+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder+Extension.swift"; sourceTree = "<group>"; };
 		A93A26812368D4F100E2331B /* InstaGallery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InstaGallery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A93A26842368D4F100E2331B /* InstaGallery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InstaGallery.h; sourceTree = "<group>"; };
 		A93A26852368D4F100E2331B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -177,12 +183,9 @@
 		A93A26B02368D50500E2331B /* IGDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGDataSource.swift; sourceTree = "<group>"; };
 		A93A26C22368D65000E2331B /* InstaGalleryDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaGalleryDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A93A26C42368D65000E2331B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A93A26C82368D65000E2331B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		A93A26CB2368D65000E2331B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A93A26D02368D65000E2331B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A93A26D22368D65000E2331B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A9EB85C223D590E300FF4B94 /* IGSessionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGSessionButton.swift; sourceTree = "<group>"; };
-		A9EB85C623D592E000FF4B94 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		A9EB85C723D592E000FF4B94 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		A9F0E5D12406AD7700FFADF5 /* IGUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGUser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -534,6 +537,7 @@
 				54C979CF27F0AB5900194578 /* URL+Extension.swift */,
 				54C979D127F0AB9800194578 /* Dictionary+Extension.swift */,
 				54C979D327F0ABAF00194578 /* Error+Extension.swift */,
+				54C97A5527F0DEA800194578 /* UIResponder+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -553,8 +557,8 @@
 			isa = PBXGroup;
 			children = (
 				A93A26C42368D65000E2331B /* AppDelegate.swift */,
-				A93A26C82368D65000E2331B /* ViewController.swift */,
-				A93A26CA2368D65000E2331B /* Main.storyboard */,
+				54C97A5127F0DCFD00194578 /* TestViewController.swift */,
+				54C97A5227F0DCFD00194578 /* TestViewController.xib */,
 				A93A26CF2368D65000E2331B /* LaunchScreen.storyboard */,
 				A93A26D22368D65000E2331B /* Info.plist */,
 			);
@@ -573,6 +577,7 @@
 			children = (
 				A9EB85C223D590E300FF4B94 /* IGSessionButton.swift */,
 				54B79C9E27EF8BE40024B522 /* IGSessionDelegate.swift */,
+				54C979E127F0D80500194578 /* IGSessionButtonStatus.swift */,
 			);
 			path = Button;
 			sourceTree = "<group>";
@@ -711,8 +716,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54C97A5427F0DCFD00194578 /* TestViewController.xib in Resources */,
 				A93A26D12368D65000E2331B /* LaunchScreen.storyboard in Resources */,
-				A93A26CC2368D65000E2331B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -745,6 +750,7 @@
 				54C9793F27F079B600194578 /* IGGalleryDataSource.swift in Sources */,
 				54C979C627F0A1E500194578 /* IGMediaDTO.swift in Sources */,
 				54C979D927F0AC2C00194578 /* IGUserDefaultsDataSourceImp.swift in Sources */,
+				54C97A5627F0DEA800194578 /* UIResponder+Extension.swift in Sources */,
 				A9F0E5D22406AD7700FFADF5 /* IGUser.swift in Sources */,
 				54C979C027F0930B00194578 /* InstaGallery.swift in Sources */,
 				54B79CAF27EF8F230024B522 /* IGAuthControllerInterface.swift in Sources */,
@@ -765,6 +771,7 @@
 				54C978F027F06E2000194578 /* IGUserDTO.swift in Sources */,
 				54C979D427F0ABAF00194578 /* Error+Extension.swift in Sources */,
 				54B79CB127EF913F0024B522 /* IGAuthRouting.swift in Sources */,
+				54C979E227F0D80500194578 /* IGSessionButtonStatus.swift in Sources */,
 				A93A26BC2368D50500E2331B /* IGManagerUtils.swift in Sources */,
 				A93A26B32368D50500E2331B /* IGGalleryPresenter.swift in Sources */,
 				54B79D3327EF971E0024B522 /* IGResponseType.swift in Sources */,
@@ -792,7 +799,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A93A26C92368D65000E2331B /* ViewController.swift in Sources */,
+				54C97A5327F0DCFD00194578 /* TestViewController.swift in Sources */,
 				A93A26C52368D65000E2331B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -818,15 +825,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		A93A26CA2368D65000E2331B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A93A26CB2368D65000E2331B /* Base */,
-				A9EB85C623D592E000FF4B94 /* es */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		A93A26CF2368D65000E2331B /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

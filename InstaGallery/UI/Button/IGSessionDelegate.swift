@@ -9,6 +9,6 @@
 import Foundation
 
 public protocol IGSessionDelegate: AnyObject {
-    func igSessionLogged(user :IGUser)
-    func igSessionDisconnected()
+    func userLogged()
+    func userDisconnected()
 }

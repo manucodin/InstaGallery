@@ -18,6 +18,10 @@ class IGGalleryPresenter: NSObject {
     
     override init() {}
     
+    var userName: String? {
+        return interactor?.userName
+    }
+    
     var isUserLogged: Bool {
         return interactor?.isLoggedUser ?? false
     }

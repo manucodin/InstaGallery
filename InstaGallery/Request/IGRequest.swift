@@ -61,7 +61,6 @@ class IGRequest :IGBaseRequest{
         })
     }
     
-    //MARK: - Authenticate and get token
     func getAuthToken(withParams params: [String : String], withCompletionBlock functionOK:@escaping((String) -> Void), functionError :@escaping((Error) -> Void)){
         makeRequest(url: apiURLProvider.authURL(), withMethod: .post, withParams: params, withCompletionBlock: { response, _ in
             guard let dataDict = response as? [String : Any] else { return }
@@ -82,15 +81,9 @@ class IGRequest :IGBaseRequest{
         }, withErroBlock: functionError)
     }
     
-    func refreshToken(functionOK :@escaping(() -> Void), functionError :@escaping((Error) -> Void)){
-        let params :[String : Any] = [
-            "grant_type" :"ig_refresh_token",
-            "access_token" :IGManagerUtils.getUserToken() ?? ""
-        ]
-        
+    func refreshToken(withParams params: [String : String], functionOK :@escaping(() -> Void), functionError :@escaping((Error) -> Void)){
         makeRequest(url: apiGraphURLProvider.refreshToken(), withMethod: .get, withParams: params, withCompletionBlock: {response, _ in
             let responseDict = response as? [String : Any] ?? [:]
-            IGRequest.mapUserInfo(userInfo: responseDict)
             functionOK()
         }, withErroBlock: functionError)
     }
@@ -98,7 +91,6 @@ class IGRequest :IGBaseRequest{
     func getUserInfo(withParams params: [String : String], withCompletionBlock functionOK:@escaping((IGUserDTO) -> Void), functionError :@escaping((Error) -> Void)){
         makeRequest(url: apiGraphURLProvider.userURL(), withMethod: .get, withParams: params, withCompletionBlock: {response, _ in
             let responseDict = response as? [String : Any] ?? [:]
-            IGRequest.mapUserInfo(userInfo: responseDict)
             do{
                 let jsonData = try JSONSerialization.data(withJSONObject: responseDict, options: .prettyPrinted)
                 let igUser = try JSONDecoder().decode(IGUserDTO.self, from: jsonData)
@@ -109,19 +101,5 @@ class IGRequest :IGBaseRequest{
         }, withErroBlock: {error in
             functionError(error)
         })
-    }
-    
-    private static func mapUserInfo(userInfo :[String : Any]){
-        if let userIdentifier = userInfo["user_id"] as? Int{
-            IGManagerUtils.saveUserIdentifier(identifier: userIdentifier)
-        }
-        
-        if let token = userInfo["access_token"] as? String{
-            IGManagerUtils.saveAccessToken(token: token)
-        }
-        
-        if let userName = userInfo["username"] as? String{
-            IGManagerUtils.saveUserName(name: userName)
-        }
     }
 }

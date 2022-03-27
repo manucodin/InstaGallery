@@ -20,4 +20,8 @@ internal class IGUserDefaultsImp: IGUserDefaultsInterface {
     func getValue(withKey key: String) -> Any? {
         return UserDefaults.standard.object(forKey: key)
     }
+    
+    func removeValue(withKey key: String) {
+        UserDefaults.standard.removeObject(forKey: key)
+    }
 }

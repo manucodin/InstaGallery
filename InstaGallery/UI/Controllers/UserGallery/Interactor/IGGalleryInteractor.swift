@@ -17,7 +17,10 @@ internal class IGGalleryInteractor {
     private let instagramDataSource: IGDataSourceInterface
     private let userDefaultsDataSource: IGUserDefaultsDataSourceInterface
     
-    init(galleryDataSource: IGGalleryDataSource = IGGalleryDataSourceImp(), instagramDataSource: IGDataSourceInterface = IGDataSource(), userDefaultsDataSource: IGUserDefaultsDataSourceInterface = IGUserDefaultsDataSourceImp()) {
+    init(galleryDataSource: IGGalleryDataSource = IGGalleryDataSourceImp(),
+         instagramDataSource: IGDataSourceInterface = IGDataSource(),
+         userDefaultsDataSource: IGUserDefaultsDataSourceInterface = IGUserDefaultsDataSourceImp())
+    {
         self.galleryDataSource = galleryDataSource
         self.instagramDataSource = instagramDataSource
         self.userDefaultsDataSource = userDefaultsDataSource
@@ -25,6 +28,10 @@ internal class IGGalleryInteractor {
 }
 
 extension IGGalleryInteractor: IGGalleryInteractorInput {
+    var userName: String? {
+        return userDefaultsDataSource.userName
+    }
+    
     var isLoggedUser: Bool {
         return userDefaultsDataSource.isUserLogged
     }

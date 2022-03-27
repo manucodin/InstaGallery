@@ -38,6 +38,7 @@ extension IGAuthPresenter: IGAuthInteractorOutput {
     
     func didAuthenticateUser(user: IGUser) {
         view?.didLoadUser(user: user)
+        routing?.dismiss()
     }
     
     func didGetError(error: Error) {

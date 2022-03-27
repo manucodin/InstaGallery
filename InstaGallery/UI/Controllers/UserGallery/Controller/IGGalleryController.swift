@@ -42,9 +42,9 @@ import UIKit
     }
     
     private func configureNavigationTitle(){
-        guard let userNick = IGManagerUtils.getUserName() else { return }
+        guard let userName = presenter?.userName else { return }
         
-        navigationItem.title = userNick
+        navigationItem.title = userName
     }
     
     private func configureCollectionView(){

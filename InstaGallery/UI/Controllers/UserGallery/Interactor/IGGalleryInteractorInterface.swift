@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 protocol IGGalleryInteractorInput {
+    var userName: String? { get }
     var isLoggedUser: Bool { get }
     var numberOfMedias: Int { get }
     var hasNextPage: Bool { get }

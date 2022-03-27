@@ -13,5 +13,6 @@ internal protocol IGUserDefaultsInterface {
     func save(value: Any?, withKey key: String)
     func getData(withKey key: String) -> Data?
     func getValue(withKey key: String) -> Any?
+    func removeValue(withKey key: String)
 }
 

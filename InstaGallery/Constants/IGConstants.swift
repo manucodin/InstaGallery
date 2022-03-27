@@ -10,6 +10,9 @@ import Foundation
 
 internal struct IGConstants {
     internal struct UserDefaultsKeys {
+        static let IG_USERID_KEY = "IG_USER"
+        static let IG_TOKEN_KEY = "IG_TOKEN"
+        static let IG_USER_NAME = "IG_USER_NICK"
         static let userKey = "InstagramUser"
     }
     

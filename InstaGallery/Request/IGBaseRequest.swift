@@ -80,9 +80,9 @@ class IGBaseRequest :NSObject{
                             if(error.code == 190){
                                 if(self.tryCounter < 3){
                                     self.tryCounter += 1
-                                    IGRequest().refreshToken(functionOK: {
-                                        self.request(url: url, withMethod: method, withParams: params,withCompletionBlock: functionOK, withErroBlock: functionError)
-                                    }, functionError: functionError)
+                                    self.refreshToken(withCompletion: {
+                                        self.request(url: url, withMethod: method, withParams: params, withCompletionBlock: functionOK, withErroBlock: functionError)
+                                    }, errorBlock: functionError)
                                 }else{
                                     self.tryCounter = 0
                                     functionError(error)
@@ -100,6 +100,19 @@ class IGBaseRequest :NSObject{
             }
         })
         task.resume()
+    }
+    
+    private func refreshToken(withCompletion completion: @escaping (() -> Void), errorBlock: @escaping ((Error) -> Void)) {
+        guard let token = IGUserDefaultsDataSourceImp().userName else {
+            return
+        }
+        let params :[String : String] = [
+            "grant_type": "ig_refresh_token",
+            "access_token": token
+        ]
+        IGRequest().refreshToken(withParams: params, functionOK: {
+            completion()
+        }, functionError: errorBlock)
     }
     
     private func errorURL() -> Error{
