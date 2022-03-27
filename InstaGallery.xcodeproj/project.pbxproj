@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5431A0AA27F0F7A3007F3D9C /* InstaGallery.h in Headers */ = {isa = PBXBuildFile; fileRef = 54C97A9B27F0E44A00194578 /* InstaGallery.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		54C97A5327F0DCFD00194578 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A5127F0DCFD00194578 /* TestViewController.swift */; };
 		54C97A5427F0DCFD00194578 /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54C97A5227F0DCFD00194578 /* TestViewController.xib */; };
 		54C97AB527F0E44A00194578 /* IGUserDefaultsDataSourceInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A5B27F0E44A00194578 /* IGUserDefaultsDataSourceInterface.swift */; };
@@ -50,7 +51,6 @@
 		54C97ADB27F0E44B00194578 /* IGResponseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A9827F0E44A00194578 /* IGResponseType.swift */; };
 		54C97ADC27F0E44B00194578 /* IGUserScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A9927F0E44A00194578 /* IGUserScope.swift */; };
 		54C97ADD27F0E44B00194578 /* IGConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A9A27F0E44A00194578 /* IGConstants.swift */; };
-		54C97ADE27F0E44B00194578 /* InstaGallery.h in Headers */ = {isa = PBXBuildFile; fileRef = 54C97A9B27F0E44A00194578 /* InstaGallery.h */; };
 		54C97ADF27F0E44B00194578 /* InstaGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A9D27F0E44A00194578 /* InstaGallery.swift */; };
 		54C97AE027F0E44B00194578 /* IGUserDefaultsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A9F27F0E44A00194578 /* IGUserDefaultsInterface.swift */; };
 		54C97AE127F0E44B00194578 /* IGUserDefaultsImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97AA027F0E44A00194578 /* IGUserDefaultsImp.swift */; };
@@ -69,7 +69,6 @@
 		54C97AEE27F0E44B00194578 /* IGMediaType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97AB127F0E44A00194578 /* IGMediaType.swift */; };
 		54C97AEF27F0E44B00194578 /* IGImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97AB227F0E44A00194578 /* IGImage.swift */; };
 		54C97AF027F0E44B00194578 /* IGUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97AB327F0E44A00194578 /* IGUser.swift */; };
-		54C97AF127F0E44B00194578 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54C97AB427F0E44A00194578 /* Info.plist */; };
 		A93A268B2368D4F100E2331B /* InstaGallery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A93A26812368D4F100E2331B /* InstaGallery.framework */; };
 		A93A26902368D4F100E2331B /* InstaGalleryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93A268F2368D4F100E2331B /* InstaGalleryTests.swift */; };
 		A93A26C52368D65000E2331B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93A26C42368D65000E2331B /* AppDelegate.swift */; };
@@ -238,7 +237,6 @@
 				54C97AA127F0E44A00194578 /* Extensions */,
 				54C97AA927F0E44A00194578 /* Request */,
 				54C97AB027F0E44A00194578 /* DataModel */,
-				54C97AB427F0E44A00194578 /* Info.plist */,
 			);
 			path = InstaGallery;
 			sourceTree = "<group>";
@@ -545,6 +543,7 @@
 		A93A26772368D4F100E2331B = {
 			isa = PBXGroup;
 			children = (
+				54C97AB427F0E44A00194578 /* Info.plist */,
 				54C97A5727F0E44A00194578 /* Sources */,
 				A93A268E2368D4F100E2331B /* InstaGalleryTests */,
 				A93A26C32368D65000E2331B /* InstaGalleryDemo */,
@@ -598,7 +597,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				54C97ADE27F0E44B00194578 /* InstaGallery.h in Headers */,
+				5431A0AA27F0F7A3007F3D9C /* InstaGallery.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -708,7 +707,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				54C97AF127F0E44B00194578 /* Info.plist in Resources */,
 				54C97ACA27F0E44B00194578 /* IGGalleryController.xib in Resources */,
 				54C97AC927F0E44B00194578 /* IGGalleryCell.xib in Resources */,
 				54C97AD527F0E44B00194578 /* IGAuthController.xib in Resources */,
@@ -978,13 +976,13 @@
 		A93A26962368D4F100E2331B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = SD98EDDB4C;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = InstaGallery/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -994,6 +992,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mrodriguez.InstaGallery;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
@@ -1004,13 +1003,13 @@
 		A93A26972368D4F100E2331B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = SD98EDDB4C;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = InstaGallery/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1020,6 +1019,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mrodriguez.InstaGallery;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
