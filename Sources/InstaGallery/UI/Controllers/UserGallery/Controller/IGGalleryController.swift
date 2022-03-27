@@ -22,7 +22,11 @@ import UIKit
     }
     
     init(presenter: IGGalleryPresenterInterface = IGGalleryPresenter()) {
+        #if SWIFT_PACKAGE
         super.init(nibName: String(describing: IGGalleryController.self), bundle: Bundle.module)
+        #else
+        super.init(nibName: String(describing: IGGalleryController.self), bundle: Bundle(for: IGGalleryController.self))
+        #endif
         
         self.presenter = presenter
     }
@@ -49,7 +53,15 @@ import UIKit
     
     private func configureCollectionView(){
         let cellIdentifier = String(describing: IGGalleryCell.self)
-        let nib = UINib(nibName: cellIdentifier, bundle: Bundle.module)
+        var bundle: Bundle
+        #if SWIFT_PACKAGE
+        bundle = Bundle.module
+        #else
+        bundle = Bundle(for: IGGalleryCell.self)
+        #endif
+        
+        
+        let nib = UINib(nibName: cellIdentifier, bundle: bundle)
         
         collectionView.register(IGGalleryCell.self, forCellWithReuseIdentifier: cellIdentifier)
         collectionView.register(nib, forCellWithReuseIdentifier: cellIdentifier)
