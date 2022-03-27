@@ -15,8 +15,6 @@ class IGRequest :IGBaseRequest{
     private let apiGraphURLProvider = IGAPIGraphURLProvider()
             
     func getUserGallery(withParams params: [String : String], withCompletionBlock functionOK:@escaping(([IGMediaDTO], String?) -> Void), functionError :@escaping((Error) -> Void)){
-        
-        
         makeRequest(url: apiGraphURLProvider.mediaURL(), withMethod: .get, withParams: params, withCompletionBlock: {response, _ in
             do{
                 let responseDict = response as? [String : Any] ?? [:]
@@ -72,8 +70,6 @@ class IGRequest :IGBaseRequest{
     }
     
     func getLongLiveToken(withParams params: [String : String], functionOK :@escaping((String) -> Void), functionError :@escaping ((Error) -> Void)){
-        
-        
         makeRequest(url: apiGraphURLProvider.tokenURL(), withMethod: .get, withParams: params, withCompletionBlock: {response, _ in
             guard let responseDict = response as? [String : Any] else { return }
             guard let token = responseDict[IGConstants.ParamsKeys.accessTokenKey] as? String else { return }
