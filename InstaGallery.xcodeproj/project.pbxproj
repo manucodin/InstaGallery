@@ -7,74 +7,75 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		54A61D7A27EFB41E001EED17 /* IGDataSourceInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54A61D7927EFB41E001EED17 /* IGDataSourceInterface.swift */; };
-		54B79C9F27EF8BE40024B522 /* IGSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B79C9E27EF8BE40024B522 /* IGSessionDelegate.swift */; };
-		54B79CA727EF8E3F0024B522 /* IGAuthFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B79CA627EF8E3F0024B522 /* IGAuthFactory.swift */; };
-		54B79CAD27EF8EF90024B522 /* IGAuthPresenterInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B79CAC27EF8EF90024B522 /* IGAuthPresenterInterface.swift */; };
-		54B79CAF27EF8F230024B522 /* IGAuthControllerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B79CAE27EF8F230024B522 /* IGAuthControllerInterface.swift */; };
-		54B79CB127EF913F0024B522 /* IGAuthRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B79CB027EF913F0024B522 /* IGAuthRouting.swift */; };
-		54B79CB327EF914E0024B522 /* IGAuthRoutingInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B79CB227EF914E0024B522 /* IGAuthRoutingInterface.swift */; };
-		54B79CEC27EF93B40024B522 /* IGAuthInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B79CEB27EF93B40024B522 /* IGAuthInteractor.swift */; };
-		54B79CEE27EF93C30024B522 /* IGAuthInteractorInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B79CED27EF93C30024B522 /* IGAuthInteractorInterface.swift */; };
-		54B79D2827EF94AB0024B522 /* IGBundleDataSourceInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B79D2727EF94AB0024B522 /* IGBundleDataSourceInterface.swift */; };
-		54B79D2D27EF96360024B522 /* IGConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B79D2C27EF96360024B522 /* IGConstants.swift */; };
-		54B79D3127EF96E70024B522 /* IGUserScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B79D3027EF96E70024B522 /* IGUserScope.swift */; };
-		54B79D3327EF971E0024B522 /* IGResponseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B79D3227EF971E0024B522 /* IGResponseType.swift */; };
-		54B79D3527EF98370024B522 /* IGBundleDataSourceBaseInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54B79D3427EF98370024B522 /* IGBundleDataSourceBaseInterface.swift */; };
-		54C978F027F06E2000194578 /* IGUserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C978EF27F06E2000194578 /* IGUserDTO.swift */; };
-		54C978F227F06E8200194578 /* IGUserMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C978F127F06E8200194578 /* IGUserMapper.swift */; };
-		54C978F627F0720B00194578 /* IGAPIURLProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C978F527F0720B00194578 /* IGAPIURLProvider.swift */; };
-		54C9792F27F0731900194578 /* IGURLBaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C9792E27F0731900194578 /* IGURLBaseProvider.swift */; };
-		54C9793227F0747100194578 /* IGAPIGraphURLProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C9793127F0747100194578 /* IGAPIGraphURLProvider.swift */; };
-		54C9793C27F0796D00194578 /* IGGalleryPresenterInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C9793B27F0796D00194578 /* IGGalleryPresenterInterface.swift */; };
-		54C9793F27F079B600194578 /* IGGalleryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C9793E27F079B600194578 /* IGGalleryDataSource.swift */; };
-		54C9794127F079BF00194578 /* IGGalleryDataSourceImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C9794027F079BF00194578 /* IGGalleryDataSourceImp.swift */; };
-		54C9794327F07A5300194578 /* IGGalleryControllerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C9794227F07A5300194578 /* IGGalleryControllerInterface.swift */; };
-		54C9797C27F07E2A00194578 /* IGGalleryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C9797B27F07E2A00194578 /* IGGalleryInteractor.swift */; };
-		54C9797E27F07E3500194578 /* IGGalleryInteractorInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C9797D27F07E3500194578 /* IGGalleryInteractorInterface.swift */; };
-		54C9798027F07EEC00194578 /* IGGalleryRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C9797F27F07EEC00194578 /* IGGalleryRouting.swift */; };
-		54C9798227F07EF700194578 /* IGGalleryRoutingInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C9798127F07EF700194578 /* IGGalleryRoutingInterface.swift */; };
-		54C979BD27F08F3100194578 /* IGGalleryFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C979BC27F08F3100194578 /* IGGalleryFactory.swift */; };
-		54C979C027F0930B00194578 /* InstaGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C979BF27F0930B00194578 /* InstaGallery.swift */; };
-		54C979C427F0A16400194578 /* IGMediaTypeDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C979C327F0A16400194578 /* IGMediaTypeDTO.swift */; };
-		54C979C627F0A1E500194578 /* IGMediaDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C979C527F0A1E500194578 /* IGMediaDTO.swift */; };
-		54C979C827F0A1F200194578 /* IGMediaMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C979C727F0A1F200194578 /* IGMediaMapper.swift */; };
-		54C979CA27F0A36700194578 /* IGMediaType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C979C927F0A36700194578 /* IGMediaType.swift */; };
-		54C979CC27F0A54900194578 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C979CB27F0A54900194578 /* String+Extensions.swift */; };
-		54C979CE27F0AB1300194578 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C979CD27F0AB1300194578 /* UIImageView+Extension.swift */; };
-		54C979D027F0AB5900194578 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C979CF27F0AB5900194578 /* URL+Extension.swift */; };
-		54C979D227F0AB9800194578 /* Dictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C979D127F0AB9800194578 /* Dictionary+Extension.swift */; };
-		54C979D427F0ABAF00194578 /* Error+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C979D327F0ABAF00194578 /* Error+Extension.swift */; };
-		54C979D727F0AC2200194578 /* IGUserDefaultsDataSourceInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C979D627F0AC2200194578 /* IGUserDefaultsDataSourceInterface.swift */; };
-		54C979D927F0AC2C00194578 /* IGUserDefaultsDataSourceImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C979D827F0AC2C00194578 /* IGUserDefaultsDataSourceImp.swift */; };
-		54C979DE27F0C99C00194578 /* IGUserDefaultsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C979DD27F0C99C00194578 /* IGUserDefaultsInterface.swift */; };
-		54C979E027F0C9A500194578 /* IGUserDefaultsImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C979DF27F0C9A500194578 /* IGUserDefaultsImp.swift */; };
-		54C979E227F0D80500194578 /* IGSessionButtonStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C979E127F0D80500194578 /* IGSessionButtonStatus.swift */; };
 		54C97A5327F0DCFD00194578 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A5127F0DCFD00194578 /* TestViewController.swift */; };
 		54C97A5427F0DCFD00194578 /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54C97A5227F0DCFD00194578 /* TestViewController.xib */; };
-		54C97A5627F0DEA800194578 /* UIResponder+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A5527F0DEA800194578 /* UIResponder+Extension.swift */; };
+		54C97AB527F0E44A00194578 /* IGUserDefaultsDataSourceInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A5B27F0E44A00194578 /* IGUserDefaultsDataSourceInterface.swift */; };
+		54C97AB627F0E44A00194578 /* IGUserDefaultsDataSourceImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A5C27F0E44A00194578 /* IGUserDefaultsDataSourceImp.swift */; };
+		54C97AB727F0E44A00194578 /* IGDataSourceInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A5E27F0E44A00194578 /* IGDataSourceInterface.swift */; };
+		54C97AB827F0E44A00194578 /* IGDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A5F27F0E44A00194578 /* IGDataSource.swift */; };
+		54C97AB927F0E44A00194578 /* IGMediaDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A6127F0E44A00194578 /* IGMediaDTO.swift */; };
+		54C97ABA27F0E44A00194578 /* IGMediaTypeDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A6227F0E44A00194578 /* IGMediaTypeDTO.swift */; };
+		54C97ABB27F0E44B00194578 /* IGUserDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A6327F0E44A00194578 /* IGUserDTO.swift */; };
+		54C97ABC27F0E44B00194578 /* IGUserMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A6527F0E44A00194578 /* IGUserMapper.swift */; };
+		54C97ABD27F0E44B00194578 /* IGMediaMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A6627F0E44A00194578 /* IGMediaMapper.swift */; };
+		54C97ABE27F0E44B00194578 /* IGBundleDataSourceInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A6827F0E44A00194578 /* IGBundleDataSourceInterface.swift */; };
+		54C97ABF27F0E44B00194578 /* IGBundleDataSourceBaseInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A6927F0E44A00194578 /* IGBundleDataSourceBaseInterface.swift */; };
+		54C97AC027F0E44B00194578 /* IGSessionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A6C27F0E44A00194578 /* IGSessionButton.swift */; };
+		54C97AC127F0E44B00194578 /* IGSessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A6D27F0E44A00194578 /* IGSessionDelegate.swift */; };
+		54C97AC227F0E44B00194578 /* IGSessionButtonStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A6E27F0E44A00194578 /* IGSessionButtonStatus.swift */; };
+		54C97AC327F0E44B00194578 /* IGGalleryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A7227F0E44A00194578 /* IGGalleryDataSource.swift */; };
+		54C97AC427F0E44B00194578 /* IGGalleryDataSourceImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A7327F0E44A00194578 /* IGGalleryDataSourceImp.swift */; };
+		54C97AC527F0E44B00194578 /* IGGalleryPresenterInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A7527F0E44A00194578 /* IGGalleryPresenterInterface.swift */; };
+		54C97AC627F0E44B00194578 /* IGGalleryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A7627F0E44A00194578 /* IGGalleryPresenter.swift */; };
+		54C97AC727F0E44B00194578 /* IGGalleryControllerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A7827F0E44A00194578 /* IGGalleryControllerInterface.swift */; };
+		54C97AC827F0E44B00194578 /* IGGalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A7A27F0E44A00194578 /* IGGalleryCell.swift */; };
+		54C97AC927F0E44B00194578 /* IGGalleryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54C97A7B27F0E44A00194578 /* IGGalleryCell.xib */; };
+		54C97ACA27F0E44B00194578 /* IGGalleryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54C97A7C27F0E44A00194578 /* IGGalleryController.xib */; };
+		54C97ACB27F0E44B00194578 /* IGGalleryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A7D27F0E44A00194578 /* IGGalleryController.swift */; };
+		54C97ACC27F0E44B00194578 /* IGGalleryRoutingInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A7F27F0E44A00194578 /* IGGalleryRoutingInterface.swift */; };
+		54C97ACD27F0E44B00194578 /* IGGalleryRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A8027F0E44A00194578 /* IGGalleryRouting.swift */; };
+		54C97ACE27F0E44B00194578 /* IGGalleryInteractorInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A8227F0E44A00194578 /* IGGalleryInteractorInterface.swift */; };
+		54C97ACF27F0E44B00194578 /* IGGalleryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A8327F0E44A00194578 /* IGGalleryInteractor.swift */; };
+		54C97AD027F0E44B00194578 /* IGGalleryFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A8527F0E44A00194578 /* IGGalleryFactory.swift */; };
+		54C97AD127F0E44B00194578 /* IGAuthPresenterInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A8827F0E44A00194578 /* IGAuthPresenterInterface.swift */; };
+		54C97AD227F0E44B00194578 /* IGAuthPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A8927F0E44A00194578 /* IGAuthPresenter.swift */; };
+		54C97AD327F0E44B00194578 /* IGAuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A8B27F0E44A00194578 /* IGAuthController.swift */; };
+		54C97AD427F0E44B00194578 /* IGAuthControllerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A8C27F0E44A00194578 /* IGAuthControllerInterface.swift */; };
+		54C97AD527F0E44B00194578 /* IGAuthController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 54C97A8D27F0E44A00194578 /* IGAuthController.xib */; };
+		54C97AD627F0E44B00194578 /* IGAuthRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A8F27F0E44A00194578 /* IGAuthRouting.swift */; };
+		54C97AD727F0E44B00194578 /* IGAuthRoutingInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A9027F0E44A00194578 /* IGAuthRoutingInterface.swift */; };
+		54C97AD827F0E44B00194578 /* IGAuthInteractorInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A9227F0E44A00194578 /* IGAuthInteractorInterface.swift */; };
+		54C97AD927F0E44B00194578 /* IGAuthInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A9327F0E44A00194578 /* IGAuthInteractor.swift */; };
+		54C97ADA27F0E44B00194578 /* IGAuthFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A9527F0E44A00194578 /* IGAuthFactory.swift */; };
+		54C97ADB27F0E44B00194578 /* IGResponseType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A9827F0E44A00194578 /* IGResponseType.swift */; };
+		54C97ADC27F0E44B00194578 /* IGUserScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A9927F0E44A00194578 /* IGUserScope.swift */; };
+		54C97ADD27F0E44B00194578 /* IGConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A9A27F0E44A00194578 /* IGConstants.swift */; };
+		54C97ADE27F0E44B00194578 /* InstaGallery.h in Headers */ = {isa = PBXBuildFile; fileRef = 54C97A9B27F0E44A00194578 /* InstaGallery.h */; };
+		54C97ADF27F0E44B00194578 /* InstaGallery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A9D27F0E44A00194578 /* InstaGallery.swift */; };
+		54C97AE027F0E44B00194578 /* IGUserDefaultsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97A9F27F0E44A00194578 /* IGUserDefaultsInterface.swift */; };
+		54C97AE127F0E44B00194578 /* IGUserDefaultsImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97AA027F0E44A00194578 /* IGUserDefaultsImp.swift */; };
+		54C97AE227F0E44B00194578 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97AA227F0E44A00194578 /* UIImageView+Extension.swift */; };
+		54C97AE327F0E44B00194578 /* UIResponder+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97AA327F0E44A00194578 /* UIResponder+Extension.swift */; };
+		54C97AE427F0E44B00194578 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97AA427F0E44A00194578 /* String+Extensions.swift */; };
+		54C97AE527F0E44B00194578 /* Error+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97AA527F0E44A00194578 /* Error+Extension.swift */; };
+		54C97AE627F0E44B00194578 /* IGManagerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97AA627F0E44A00194578 /* IGManagerUtils.swift */; };
+		54C97AE727F0E44B00194578 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97AA727F0E44A00194578 /* URL+Extension.swift */; };
+		54C97AE827F0E44B00194578 /* Dictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97AA827F0E44A00194578 /* Dictionary+Extension.swift */; };
+		54C97AE927F0E44B00194578 /* IGBaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97AAA27F0E44A00194578 /* IGBaseRequest.swift */; };
+		54C97AEA27F0E44B00194578 /* IGAPIGraphURLProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97AAC27F0E44A00194578 /* IGAPIGraphURLProvider.swift */; };
+		54C97AEB27F0E44B00194578 /* IGAPIURLProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97AAD27F0E44A00194578 /* IGAPIURLProvider.swift */; };
+		54C97AEC27F0E44B00194578 /* IGURLBaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97AAE27F0E44A00194578 /* IGURLBaseProvider.swift */; };
+		54C97AED27F0E44B00194578 /* IGRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97AAF27F0E44A00194578 /* IGRequest.swift */; };
+		54C97AEE27F0E44B00194578 /* IGMediaType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97AB127F0E44A00194578 /* IGMediaType.swift */; };
+		54C97AEF27F0E44B00194578 /* IGImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97AB227F0E44A00194578 /* IGImage.swift */; };
+		54C97AF027F0E44B00194578 /* IGUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C97AB327F0E44A00194578 /* IGUser.swift */; };
+		54C97AF127F0E44B00194578 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 54C97AB427F0E44A00194578 /* Info.plist */; };
 		A93A268B2368D4F100E2331B /* InstaGallery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A93A26812368D4F100E2331B /* InstaGallery.framework */; };
 		A93A26902368D4F100E2331B /* InstaGalleryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93A268F2368D4F100E2331B /* InstaGalleryTests.swift */; };
-		A93A26922368D4F100E2331B /* InstaGallery.h in Headers */ = {isa = PBXBuildFile; fileRef = A93A26842368D4F100E2331B /* InstaGallery.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A93A26B12368D50500E2331B /* IGImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93A269C2368D50400E2331B /* IGImage.swift */; };
-		A93A26B22368D50500E2331B /* IGAuthPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93A269E2368D50400E2331B /* IGAuthPresenter.swift */; };
-		A93A26B32368D50500E2331B /* IGGalleryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93A269F2368D50400E2331B /* IGGalleryPresenter.swift */; };
-		A93A26B42368D50500E2331B /* IGBaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93A26A12368D50400E2331B /* IGBaseRequest.swift */; };
-		A93A26B52368D50500E2331B /* IGRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93A26A22368D50400E2331B /* IGRequest.swift */; };
-		A93A26B62368D50500E2331B /* IGGalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93A26A62368D50400E2331B /* IGGalleryCell.swift */; };
-		A93A26B72368D50500E2331B /* IGGalleryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A93A26A72368D50400E2331B /* IGGalleryCell.xib */; };
-		A93A26B82368D50500E2331B /* IGGalleryController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A93A26A82368D50400E2331B /* IGGalleryController.xib */; };
-		A93A26B92368D50500E2331B /* IGGalleryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93A26A92368D50400E2331B /* IGGalleryController.swift */; };
-		A93A26BA2368D50500E2331B /* IGAuthController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93A26AB2368D50400E2331B /* IGAuthController.swift */; };
-		A93A26BB2368D50500E2331B /* IGAuthController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A93A26AC2368D50400E2331B /* IGAuthController.xib */; };
-		A93A26BC2368D50500E2331B /* IGManagerUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93A26AE2368D50500E2331B /* IGManagerUtils.swift */; };
-		A93A26BD2368D50500E2331B /* IGDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93A26B02368D50500E2331B /* IGDataSource.swift */; };
 		A93A26C52368D65000E2331B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93A26C42368D65000E2331B /* AppDelegate.swift */; };
 		A93A26D12368D65000E2331B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A93A26CF2368D65000E2331B /* LaunchScreen.storyboard */; };
 		A97EC93F23699E7F00D4825C /* InstaGallery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A93A26812368D4F100E2331B /* InstaGallery.framework */; };
 		A97EC94023699E7F00D4825C /* InstaGallery.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A93A26812368D4F100E2331B /* InstaGallery.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		A9EB85C323D590E300FF4B94 /* IGSessionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EB85C223D590E300FF4B94 /* IGSessionButton.swift */; };
-		A9F0E5D22406AD7700FFADF5 /* IGUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9F0E5D12406AD7700FFADF5 /* IGUser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,78 +117,78 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		54A61D7927EFB41E001EED17 /* IGDataSourceInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGDataSourceInterface.swift; sourceTree = "<group>"; };
-		54B79C9E27EF8BE40024B522 /* IGSessionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGSessionDelegate.swift; sourceTree = "<group>"; };
-		54B79CA627EF8E3F0024B522 /* IGAuthFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGAuthFactory.swift; sourceTree = "<group>"; };
-		54B79CAC27EF8EF90024B522 /* IGAuthPresenterInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGAuthPresenterInterface.swift; sourceTree = "<group>"; };
-		54B79CAE27EF8F230024B522 /* IGAuthControllerInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGAuthControllerInterface.swift; sourceTree = "<group>"; };
-		54B79CB027EF913F0024B522 /* IGAuthRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGAuthRouting.swift; sourceTree = "<group>"; };
-		54B79CB227EF914E0024B522 /* IGAuthRoutingInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGAuthRoutingInterface.swift; sourceTree = "<group>"; };
-		54B79CEB27EF93B40024B522 /* IGAuthInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGAuthInteractor.swift; sourceTree = "<group>"; };
-		54B79CED27EF93C30024B522 /* IGAuthInteractorInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGAuthInteractorInterface.swift; sourceTree = "<group>"; };
-		54B79D2727EF94AB0024B522 /* IGBundleDataSourceInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGBundleDataSourceInterface.swift; sourceTree = "<group>"; };
-		54B79D2C27EF96360024B522 /* IGConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGConstants.swift; sourceTree = "<group>"; };
-		54B79D3027EF96E70024B522 /* IGUserScope.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGUserScope.swift; sourceTree = "<group>"; };
-		54B79D3227EF971E0024B522 /* IGResponseType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGResponseType.swift; sourceTree = "<group>"; };
-		54B79D3427EF98370024B522 /* IGBundleDataSourceBaseInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGBundleDataSourceBaseInterface.swift; sourceTree = "<group>"; };
-		54C978EF27F06E2000194578 /* IGUserDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGUserDTO.swift; sourceTree = "<group>"; };
-		54C978F127F06E8200194578 /* IGUserMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGUserMapper.swift; sourceTree = "<group>"; };
-		54C978F527F0720B00194578 /* IGAPIURLProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGAPIURLProvider.swift; sourceTree = "<group>"; };
-		54C9792E27F0731900194578 /* IGURLBaseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGURLBaseProvider.swift; sourceTree = "<group>"; };
-		54C9793127F0747100194578 /* IGAPIGraphURLProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGAPIGraphURLProvider.swift; sourceTree = "<group>"; };
-		54C9793B27F0796D00194578 /* IGGalleryPresenterInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGGalleryPresenterInterface.swift; sourceTree = "<group>"; };
-		54C9793E27F079B600194578 /* IGGalleryDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGGalleryDataSource.swift; sourceTree = "<group>"; };
-		54C9794027F079BF00194578 /* IGGalleryDataSourceImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGGalleryDataSourceImp.swift; sourceTree = "<group>"; };
-		54C9794227F07A5300194578 /* IGGalleryControllerInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGGalleryControllerInterface.swift; sourceTree = "<group>"; };
-		54C9797B27F07E2A00194578 /* IGGalleryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGGalleryInteractor.swift; sourceTree = "<group>"; };
-		54C9797D27F07E3500194578 /* IGGalleryInteractorInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGGalleryInteractorInterface.swift; sourceTree = "<group>"; };
-		54C9797F27F07EEC00194578 /* IGGalleryRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGGalleryRouting.swift; sourceTree = "<group>"; };
-		54C9798127F07EF700194578 /* IGGalleryRoutingInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGGalleryRoutingInterface.swift; sourceTree = "<group>"; };
-		54C979BC27F08F3100194578 /* IGGalleryFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGGalleryFactory.swift; sourceTree = "<group>"; };
-		54C979BF27F0930B00194578 /* InstaGallery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstaGallery.swift; sourceTree = "<group>"; };
-		54C979C327F0A16400194578 /* IGMediaTypeDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGMediaTypeDTO.swift; sourceTree = "<group>"; };
-		54C979C527F0A1E500194578 /* IGMediaDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGMediaDTO.swift; sourceTree = "<group>"; };
-		54C979C727F0A1F200194578 /* IGMediaMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGMediaMapper.swift; sourceTree = "<group>"; };
-		54C979C927F0A36700194578 /* IGMediaType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGMediaType.swift; sourceTree = "<group>"; };
-		54C979CB27F0A54900194578 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
-		54C979CD27F0AB1300194578 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
-		54C979CF27F0AB5900194578 /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
-		54C979D127F0AB9800194578 /* Dictionary+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extension.swift"; sourceTree = "<group>"; };
-		54C979D327F0ABAF00194578 /* Error+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Error+Extension.swift"; sourceTree = "<group>"; };
-		54C979D627F0AC2200194578 /* IGUserDefaultsDataSourceInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGUserDefaultsDataSourceInterface.swift; sourceTree = "<group>"; };
-		54C979D827F0AC2C00194578 /* IGUserDefaultsDataSourceImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGUserDefaultsDataSourceImp.swift; sourceTree = "<group>"; };
-		54C979DD27F0C99C00194578 /* IGUserDefaultsInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGUserDefaultsInterface.swift; sourceTree = "<group>"; };
-		54C979DF27F0C9A500194578 /* IGUserDefaultsImp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGUserDefaultsImp.swift; sourceTree = "<group>"; };
-		54C979E127F0D80500194578 /* IGSessionButtonStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGSessionButtonStatus.swift; sourceTree = "<group>"; };
 		54C97A5127F0DCFD00194578 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		54C97A5227F0DCFD00194578 /* TestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
-		54C97A5527F0DEA800194578 /* UIResponder+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIResponder+Extension.swift"; sourceTree = "<group>"; };
+		54C97A5B27F0E44A00194578 /* IGUserDefaultsDataSourceInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGUserDefaultsDataSourceInterface.swift; sourceTree = "<group>"; };
+		54C97A5C27F0E44A00194578 /* IGUserDefaultsDataSourceImp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGUserDefaultsDataSourceImp.swift; sourceTree = "<group>"; };
+		54C97A5E27F0E44A00194578 /* IGDataSourceInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGDataSourceInterface.swift; sourceTree = "<group>"; };
+		54C97A5F27F0E44A00194578 /* IGDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGDataSource.swift; sourceTree = "<group>"; };
+		54C97A6127F0E44A00194578 /* IGMediaDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGMediaDTO.swift; sourceTree = "<group>"; };
+		54C97A6227F0E44A00194578 /* IGMediaTypeDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGMediaTypeDTO.swift; sourceTree = "<group>"; };
+		54C97A6327F0E44A00194578 /* IGUserDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGUserDTO.swift; sourceTree = "<group>"; };
+		54C97A6527F0E44A00194578 /* IGUserMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGUserMapper.swift; sourceTree = "<group>"; };
+		54C97A6627F0E44A00194578 /* IGMediaMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGMediaMapper.swift; sourceTree = "<group>"; };
+		54C97A6827F0E44A00194578 /* IGBundleDataSourceInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGBundleDataSourceInterface.swift; sourceTree = "<group>"; };
+		54C97A6927F0E44A00194578 /* IGBundleDataSourceBaseInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGBundleDataSourceBaseInterface.swift; sourceTree = "<group>"; };
+		54C97A6C27F0E44A00194578 /* IGSessionButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGSessionButton.swift; sourceTree = "<group>"; };
+		54C97A6D27F0E44A00194578 /* IGSessionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGSessionDelegate.swift; sourceTree = "<group>"; };
+		54C97A6E27F0E44A00194578 /* IGSessionButtonStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGSessionButtonStatus.swift; sourceTree = "<group>"; };
+		54C97A7227F0E44A00194578 /* IGGalleryDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGGalleryDataSource.swift; sourceTree = "<group>"; };
+		54C97A7327F0E44A00194578 /* IGGalleryDataSourceImp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGGalleryDataSourceImp.swift; sourceTree = "<group>"; };
+		54C97A7527F0E44A00194578 /* IGGalleryPresenterInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGGalleryPresenterInterface.swift; sourceTree = "<group>"; };
+		54C97A7627F0E44A00194578 /* IGGalleryPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGGalleryPresenter.swift; sourceTree = "<group>"; };
+		54C97A7827F0E44A00194578 /* IGGalleryControllerInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGGalleryControllerInterface.swift; sourceTree = "<group>"; };
+		54C97A7A27F0E44A00194578 /* IGGalleryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGGalleryCell.swift; sourceTree = "<group>"; };
+		54C97A7B27F0E44A00194578 /* IGGalleryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IGGalleryCell.xib; sourceTree = "<group>"; };
+		54C97A7C27F0E44A00194578 /* IGGalleryController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IGGalleryController.xib; sourceTree = "<group>"; };
+		54C97A7D27F0E44A00194578 /* IGGalleryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGGalleryController.swift; sourceTree = "<group>"; };
+		54C97A7F27F0E44A00194578 /* IGGalleryRoutingInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGGalleryRoutingInterface.swift; sourceTree = "<group>"; };
+		54C97A8027F0E44A00194578 /* IGGalleryRouting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGGalleryRouting.swift; sourceTree = "<group>"; };
+		54C97A8227F0E44A00194578 /* IGGalleryInteractorInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGGalleryInteractorInterface.swift; sourceTree = "<group>"; };
+		54C97A8327F0E44A00194578 /* IGGalleryInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGGalleryInteractor.swift; sourceTree = "<group>"; };
+		54C97A8527F0E44A00194578 /* IGGalleryFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGGalleryFactory.swift; sourceTree = "<group>"; };
+		54C97A8827F0E44A00194578 /* IGAuthPresenterInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGAuthPresenterInterface.swift; sourceTree = "<group>"; };
+		54C97A8927F0E44A00194578 /* IGAuthPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGAuthPresenter.swift; sourceTree = "<group>"; };
+		54C97A8B27F0E44A00194578 /* IGAuthController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGAuthController.swift; sourceTree = "<group>"; };
+		54C97A8C27F0E44A00194578 /* IGAuthControllerInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGAuthControllerInterface.swift; sourceTree = "<group>"; };
+		54C97A8D27F0E44A00194578 /* IGAuthController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IGAuthController.xib; sourceTree = "<group>"; };
+		54C97A8F27F0E44A00194578 /* IGAuthRouting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGAuthRouting.swift; sourceTree = "<group>"; };
+		54C97A9027F0E44A00194578 /* IGAuthRoutingInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGAuthRoutingInterface.swift; sourceTree = "<group>"; };
+		54C97A9227F0E44A00194578 /* IGAuthInteractorInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGAuthInteractorInterface.swift; sourceTree = "<group>"; };
+		54C97A9327F0E44A00194578 /* IGAuthInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGAuthInteractor.swift; sourceTree = "<group>"; };
+		54C97A9527F0E44A00194578 /* IGAuthFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGAuthFactory.swift; sourceTree = "<group>"; };
+		54C97A9827F0E44A00194578 /* IGResponseType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGResponseType.swift; sourceTree = "<group>"; };
+		54C97A9927F0E44A00194578 /* IGUserScope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGUserScope.swift; sourceTree = "<group>"; };
+		54C97A9A27F0E44A00194578 /* IGConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGConstants.swift; sourceTree = "<group>"; };
+		54C97A9B27F0E44A00194578 /* InstaGallery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstaGallery.h; sourceTree = "<group>"; };
+		54C97A9D27F0E44A00194578 /* InstaGallery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstaGallery.swift; sourceTree = "<group>"; };
+		54C97A9F27F0E44A00194578 /* IGUserDefaultsInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGUserDefaultsInterface.swift; sourceTree = "<group>"; };
+		54C97AA027F0E44A00194578 /* IGUserDefaultsImp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGUserDefaultsImp.swift; sourceTree = "<group>"; };
+		54C97AA227F0E44A00194578 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
+		54C97AA327F0E44A00194578 /* UIResponder+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIResponder+Extension.swift"; sourceTree = "<group>"; };
+		54C97AA427F0E44A00194578 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		54C97AA527F0E44A00194578 /* Error+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Error+Extension.swift"; sourceTree = "<group>"; };
+		54C97AA627F0E44A00194578 /* IGManagerUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGManagerUtils.swift; sourceTree = "<group>"; };
+		54C97AA727F0E44A00194578 /* URL+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
+		54C97AA827F0E44A00194578 /* Dictionary+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extension.swift"; sourceTree = "<group>"; };
+		54C97AAA27F0E44A00194578 /* IGBaseRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGBaseRequest.swift; sourceTree = "<group>"; };
+		54C97AAC27F0E44A00194578 /* IGAPIGraphURLProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGAPIGraphURLProvider.swift; sourceTree = "<group>"; };
+		54C97AAD27F0E44A00194578 /* IGAPIURLProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGAPIURLProvider.swift; sourceTree = "<group>"; };
+		54C97AAE27F0E44A00194578 /* IGURLBaseProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGURLBaseProvider.swift; sourceTree = "<group>"; };
+		54C97AAF27F0E44A00194578 /* IGRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGRequest.swift; sourceTree = "<group>"; };
+		54C97AB127F0E44A00194578 /* IGMediaType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGMediaType.swift; sourceTree = "<group>"; };
+		54C97AB227F0E44A00194578 /* IGImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGImage.swift; sourceTree = "<group>"; };
+		54C97AB327F0E44A00194578 /* IGUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGUser.swift; sourceTree = "<group>"; };
+		54C97AB427F0E44A00194578 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A93A26812368D4F100E2331B /* InstaGallery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = InstaGallery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A93A26842368D4F100E2331B /* InstaGallery.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InstaGallery.h; sourceTree = "<group>"; };
-		A93A26852368D4F100E2331B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A93A268A2368D4F100E2331B /* InstaGalleryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InstaGalleryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A93A268F2368D4F100E2331B /* InstaGalleryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstaGalleryTests.swift; sourceTree = "<group>"; };
 		A93A26912368D4F100E2331B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A93A269C2368D50400E2331B /* IGImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGImage.swift; sourceTree = "<group>"; };
-		A93A269E2368D50400E2331B /* IGAuthPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGAuthPresenter.swift; sourceTree = "<group>"; };
-		A93A269F2368D50400E2331B /* IGGalleryPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGGalleryPresenter.swift; sourceTree = "<group>"; };
-		A93A26A12368D50400E2331B /* IGBaseRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGBaseRequest.swift; sourceTree = "<group>"; };
-		A93A26A22368D50400E2331B /* IGRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGRequest.swift; sourceTree = "<group>"; };
-		A93A26A62368D50400E2331B /* IGGalleryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGGalleryCell.swift; sourceTree = "<group>"; };
-		A93A26A72368D50400E2331B /* IGGalleryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IGGalleryCell.xib; sourceTree = "<group>"; };
-		A93A26A82368D50400E2331B /* IGGalleryController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IGGalleryController.xib; sourceTree = "<group>"; };
-		A93A26A92368D50400E2331B /* IGGalleryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGGalleryController.swift; sourceTree = "<group>"; };
-		A93A26AB2368D50400E2331B /* IGAuthController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGAuthController.swift; sourceTree = "<group>"; };
-		A93A26AC2368D50400E2331B /* IGAuthController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IGAuthController.xib; sourceTree = "<group>"; };
-		A93A26AE2368D50500E2331B /* IGManagerUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGManagerUtils.swift; sourceTree = "<group>"; };
-		A93A26B02368D50500E2331B /* IGDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IGDataSource.swift; sourceTree = "<group>"; };
 		A93A26C22368D65000E2331B /* InstaGalleryDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaGalleryDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A93A26C42368D65000E2331B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A93A26D02368D65000E2331B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A93A26D22368D65000E2331B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A9EB85C223D590E300FF4B94 /* IGSessionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGSessionButton.swift; sourceTree = "<group>"; };
 		A9EB85C723D592E000FF4B94 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
-		A9F0E5D12406AD7700FFADF5 /* IGUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGUser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,211 +218,334 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		54A61D7827EFB3C6001EED17 /* DataSources */ = {
+		54C97A5727F0E44A00194578 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				54C979D527F0ABCD00194578 /* UserDefaults DataSource */,
-				54B79D2627EF949A0024B522 /* Bundle DataSource */,
-				A93A26AF2368D50500E2331B /* Instagram DataSource */,
+				54C97A5827F0E44A00194578 /* InstaGallery */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		54C97A5827F0E44A00194578 /* InstaGallery */ = {
+			isa = PBXGroup;
+			children = (
+				54C97A5927F0E44A00194578 /* DataSources */,
+				54C97A6A27F0E44A00194578 /* UI */,
+				54C97A9627F0E44A00194578 /* Constants */,
+				54C97A9B27F0E44A00194578 /* InstaGallery.h */,
+				54C97A9C27F0E44A00194578 /* Facade */,
+				54C97A9E27F0E44A00194578 /* User Defaults */,
+				54C97AA127F0E44A00194578 /* Extensions */,
+				54C97AA927F0E44A00194578 /* Request */,
+				54C97AB027F0E44A00194578 /* DataModel */,
+				54C97AB427F0E44A00194578 /* Info.plist */,
+			);
+			path = InstaGallery;
+			sourceTree = "<group>";
+		};
+		54C97A5927F0E44A00194578 /* DataSources */ = {
+			isa = PBXGroup;
+			children = (
+				54C97A5A27F0E44A00194578 /* UserDefaults DataSource */,
+				54C97A5D27F0E44A00194578 /* Instagram DataSource */,
+				54C97A6727F0E44A00194578 /* Bundle DataSource */,
 			);
 			path = DataSources;
 			sourceTree = "<group>";
 		};
-		54B79CA527EF8E320024B522 /* Factory */ = {
+		54C97A5A27F0E44A00194578 /* UserDefaults DataSource */ = {
 			isa = PBXGroup;
 			children = (
-				54B79CA627EF8E3F0024B522 /* IGAuthFactory.swift */,
-			);
-			path = Factory;
-			sourceTree = "<group>";
-		};
-		54B79CA827EF8EB60024B522 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				A93A26AB2368D50400E2331B /* IGAuthController.swift */,
-				A93A26AC2368D50400E2331B /* IGAuthController.xib */,
-				54B79CAE27EF8F230024B522 /* IGAuthControllerInterface.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		54B79CA927EF8EBC0024B522 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				A93A269E2368D50400E2331B /* IGAuthPresenter.swift */,
-				54B79CAC27EF8EF90024B522 /* IGAuthPresenterInterface.swift */,
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
-		54B79CAA27EF8EC10024B522 /* Interactor */ = {
-			isa = PBXGroup;
-			children = (
-				54B79CEB27EF93B40024B522 /* IGAuthInteractor.swift */,
-				54B79CED27EF93C30024B522 /* IGAuthInteractorInterface.swift */,
-			);
-			path = Interactor;
-			sourceTree = "<group>";
-		};
-		54B79CAB27EF8EC60024B522 /* Routing */ = {
-			isa = PBXGroup;
-			children = (
-				54B79CB027EF913F0024B522 /* IGAuthRouting.swift */,
-				54B79CB227EF914E0024B522 /* IGAuthRoutingInterface.swift */,
-			);
-			path = Routing;
-			sourceTree = "<group>";
-		};
-		54B79D2627EF949A0024B522 /* Bundle DataSource */ = {
-			isa = PBXGroup;
-			children = (
-				54B79D2727EF94AB0024B522 /* IGBundleDataSourceInterface.swift */,
-				54B79D3427EF98370024B522 /* IGBundleDataSourceBaseInterface.swift */,
-			);
-			path = "Bundle DataSource";
-			sourceTree = "<group>";
-		};
-		54B79D2B27EF96290024B522 /* Constants */ = {
-			isa = PBXGroup;
-			children = (
-				54B79D2F27EF96DB0024B522 /* Enums */,
-				54B79D2C27EF96360024B522 /* IGConstants.swift */,
-			);
-			path = Constants;
-			sourceTree = "<group>";
-		};
-		54B79D2F27EF96DB0024B522 /* Enums */ = {
-			isa = PBXGroup;
-			children = (
-				54B79D3027EF96E70024B522 /* IGUserScope.swift */,
-				54B79D3227EF971E0024B522 /* IGResponseType.swift */,
-			);
-			path = Enums;
-			sourceTree = "<group>";
-		};
-		54C978ED27F06DF800194578 /* DTOs */ = {
-			isa = PBXGroup;
-			children = (
-				54C978EF27F06E2000194578 /* IGUserDTO.swift */,
-				54C979C527F0A1E500194578 /* IGMediaDTO.swift */,
-				54C979C327F0A16400194578 /* IGMediaTypeDTO.swift */,
-			);
-			path = DTOs;
-			sourceTree = "<group>";
-		};
-		54C978EE27F06E0000194578 /* Mappers */ = {
-			isa = PBXGroup;
-			children = (
-				54C978F127F06E8200194578 /* IGUserMapper.swift */,
-				54C979C727F0A1F200194578 /* IGMediaMapper.swift */,
-			);
-			path = Mappers;
-			sourceTree = "<group>";
-		};
-		54C9793027F0734A00194578 /* URL Provider */ = {
-			isa = PBXGroup;
-			children = (
-				54C9792E27F0731900194578 /* IGURLBaseProvider.swift */,
-				54C978F527F0720B00194578 /* IGAPIURLProvider.swift */,
-				54C9793127F0747100194578 /* IGAPIGraphURLProvider.swift */,
-			);
-			path = "URL Provider";
-			sourceTree = "<group>";
-		};
-		54C9793327F0789B00194578 /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				A9EB85C123D5909D00FF4B94 /* Button */,
-				A93A26A32368D50400E2331B /* Controllers */,
-			);
-			path = UI;
-			sourceTree = "<group>";
-		};
-		54C9793527F078D600194578 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				A93A26A52368D50400E2331B /* IGGalleryCell */,
-				A93A26A92368D50400E2331B /* IGGalleryController.swift */,
-				A93A26A82368D50400E2331B /* IGGalleryController.xib */,
-				54C9794227F07A5300194578 /* IGGalleryControllerInterface.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		54C9793627F078DD00194578 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				A93A269F2368D50400E2331B /* IGGalleryPresenter.swift */,
-				54C9793B27F0796D00194578 /* IGGalleryPresenterInterface.swift */,
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
-		54C9793727F078E300194578 /* Interactor */ = {
-			isa = PBXGroup;
-			children = (
-				54C9797B27F07E2A00194578 /* IGGalleryInteractor.swift */,
-				54C9797D27F07E3500194578 /* IGGalleryInteractorInterface.swift */,
-			);
-			path = Interactor;
-			sourceTree = "<group>";
-		};
-		54C9793827F078E800194578 /* Routing */ = {
-			isa = PBXGroup;
-			children = (
-				54C9797F27F07EEC00194578 /* IGGalleryRouting.swift */,
-				54C9798127F07EF700194578 /* IGGalleryRoutingInterface.swift */,
-			);
-			path = Routing;
-			sourceTree = "<group>";
-		};
-		54C9793D27F0798A00194578 /* Data Source */ = {
-			isa = PBXGroup;
-			children = (
-				54C9793E27F079B600194578 /* IGGalleryDataSource.swift */,
-				54C9794027F079BF00194578 /* IGGalleryDataSourceImp.swift */,
-			);
-			path = "Data Source";
-			sourceTree = "<group>";
-		};
-		54C979BB27F08F3100194578 /* Factory */ = {
-			isa = PBXGroup;
-			children = (
-				54C979BC27F08F3100194578 /* IGGalleryFactory.swift */,
-			);
-			path = Factory;
-			sourceTree = "<group>";
-		};
-		54C979BE27F0930000194578 /* Facade */ = {
-			isa = PBXGroup;
-			children = (
-				54C979BF27F0930B00194578 /* InstaGallery.swift */,
-			);
-			path = Facade;
-			sourceTree = "<group>";
-		};
-		54C979D527F0ABCD00194578 /* UserDefaults DataSource */ = {
-			isa = PBXGroup;
-			children = (
-				54C979D827F0AC2C00194578 /* IGUserDefaultsDataSourceImp.swift */,
-				54C979D627F0AC2200194578 /* IGUserDefaultsDataSourceInterface.swift */,
+				54C97A5B27F0E44A00194578 /* IGUserDefaultsDataSourceInterface.swift */,
+				54C97A5C27F0E44A00194578 /* IGUserDefaultsDataSourceImp.swift */,
 			);
 			path = "UserDefaults DataSource";
 			sourceTree = "<group>";
 		};
-		54C979DC27F0C98900194578 /* User Defaults */ = {
+		54C97A5D27F0E44A00194578 /* Instagram DataSource */ = {
 			isa = PBXGroup;
 			children = (
-				54C979DF27F0C9A500194578 /* IGUserDefaultsImp.swift */,
-				54C979DD27F0C99C00194578 /* IGUserDefaultsInterface.swift */,
+				54C97A5E27F0E44A00194578 /* IGDataSourceInterface.swift */,
+				54C97A5F27F0E44A00194578 /* IGDataSource.swift */,
+				54C97A6027F0E44A00194578 /* DTOs */,
+				54C97A6427F0E44A00194578 /* Mappers */,
+			);
+			path = "Instagram DataSource";
+			sourceTree = "<group>";
+		};
+		54C97A6027F0E44A00194578 /* DTOs */ = {
+			isa = PBXGroup;
+			children = (
+				54C97A6127F0E44A00194578 /* IGMediaDTO.swift */,
+				54C97A6227F0E44A00194578 /* IGMediaTypeDTO.swift */,
+				54C97A6327F0E44A00194578 /* IGUserDTO.swift */,
+			);
+			path = DTOs;
+			sourceTree = "<group>";
+		};
+		54C97A6427F0E44A00194578 /* Mappers */ = {
+			isa = PBXGroup;
+			children = (
+				54C97A6527F0E44A00194578 /* IGUserMapper.swift */,
+				54C97A6627F0E44A00194578 /* IGMediaMapper.swift */,
+			);
+			path = Mappers;
+			sourceTree = "<group>";
+		};
+		54C97A6727F0E44A00194578 /* Bundle DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				54C97A6827F0E44A00194578 /* IGBundleDataSourceInterface.swift */,
+				54C97A6927F0E44A00194578 /* IGBundleDataSourceBaseInterface.swift */,
+			);
+			path = "Bundle DataSource";
+			sourceTree = "<group>";
+		};
+		54C97A6A27F0E44A00194578 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				54C97A6B27F0E44A00194578 /* Button */,
+				54C97A6F27F0E44A00194578 /* Controllers */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		54C97A6B27F0E44A00194578 /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				54C97A6C27F0E44A00194578 /* IGSessionButton.swift */,
+				54C97A6D27F0E44A00194578 /* IGSessionDelegate.swift */,
+				54C97A6E27F0E44A00194578 /* IGSessionButtonStatus.swift */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
+		54C97A6F27F0E44A00194578 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				54C97A7027F0E44A00194578 /* UserGallery */,
+				54C97A8627F0E44A00194578 /* Authorization */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		54C97A7027F0E44A00194578 /* UserGallery */ = {
+			isa = PBXGroup;
+			children = (
+				54C97A7127F0E44A00194578 /* Data Source */,
+				54C97A7427F0E44A00194578 /* Presenter */,
+				54C97A7727F0E44A00194578 /* Controller */,
+				54C97A7E27F0E44A00194578 /* Routing */,
+				54C97A8127F0E44A00194578 /* Interactor */,
+				54C97A8427F0E44A00194578 /* Factory */,
+			);
+			path = UserGallery;
+			sourceTree = "<group>";
+		};
+		54C97A7127F0E44A00194578 /* Data Source */ = {
+			isa = PBXGroup;
+			children = (
+				54C97A7227F0E44A00194578 /* IGGalleryDataSource.swift */,
+				54C97A7327F0E44A00194578 /* IGGalleryDataSourceImp.swift */,
+			);
+			path = "Data Source";
+			sourceTree = "<group>";
+		};
+		54C97A7427F0E44A00194578 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				54C97A7527F0E44A00194578 /* IGGalleryPresenterInterface.swift */,
+				54C97A7627F0E44A00194578 /* IGGalleryPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		54C97A7727F0E44A00194578 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				54C97A7827F0E44A00194578 /* IGGalleryControllerInterface.swift */,
+				54C97A7927F0E44A00194578 /* IGGalleryCell */,
+				54C97A7C27F0E44A00194578 /* IGGalleryController.xib */,
+				54C97A7D27F0E44A00194578 /* IGGalleryController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		54C97A7927F0E44A00194578 /* IGGalleryCell */ = {
+			isa = PBXGroup;
+			children = (
+				54C97A7A27F0E44A00194578 /* IGGalleryCell.swift */,
+				54C97A7B27F0E44A00194578 /* IGGalleryCell.xib */,
+			);
+			path = IGGalleryCell;
+			sourceTree = "<group>";
+		};
+		54C97A7E27F0E44A00194578 /* Routing */ = {
+			isa = PBXGroup;
+			children = (
+				54C97A7F27F0E44A00194578 /* IGGalleryRoutingInterface.swift */,
+				54C97A8027F0E44A00194578 /* IGGalleryRouting.swift */,
+			);
+			path = Routing;
+			sourceTree = "<group>";
+		};
+		54C97A8127F0E44A00194578 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				54C97A8227F0E44A00194578 /* IGGalleryInteractorInterface.swift */,
+				54C97A8327F0E44A00194578 /* IGGalleryInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		54C97A8427F0E44A00194578 /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				54C97A8527F0E44A00194578 /* IGGalleryFactory.swift */,
+			);
+			path = Factory;
+			sourceTree = "<group>";
+		};
+		54C97A8627F0E44A00194578 /* Authorization */ = {
+			isa = PBXGroup;
+			children = (
+				54C97A8727F0E44A00194578 /* Presenter */,
+				54C97A8A27F0E44A00194578 /* Controller */,
+				54C97A8E27F0E44A00194578 /* Routing */,
+				54C97A9127F0E44A00194578 /* Interactor */,
+				54C97A9427F0E44A00194578 /* Factory */,
+			);
+			path = Authorization;
+			sourceTree = "<group>";
+		};
+		54C97A8727F0E44A00194578 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				54C97A8827F0E44A00194578 /* IGAuthPresenterInterface.swift */,
+				54C97A8927F0E44A00194578 /* IGAuthPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		54C97A8A27F0E44A00194578 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				54C97A8B27F0E44A00194578 /* IGAuthController.swift */,
+				54C97A8C27F0E44A00194578 /* IGAuthControllerInterface.swift */,
+				54C97A8D27F0E44A00194578 /* IGAuthController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		54C97A8E27F0E44A00194578 /* Routing */ = {
+			isa = PBXGroup;
+			children = (
+				54C97A8F27F0E44A00194578 /* IGAuthRouting.swift */,
+				54C97A9027F0E44A00194578 /* IGAuthRoutingInterface.swift */,
+			);
+			path = Routing;
+			sourceTree = "<group>";
+		};
+		54C97A9127F0E44A00194578 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				54C97A9227F0E44A00194578 /* IGAuthInteractorInterface.swift */,
+				54C97A9327F0E44A00194578 /* IGAuthInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		54C97A9427F0E44A00194578 /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				54C97A9527F0E44A00194578 /* IGAuthFactory.swift */,
+			);
+			path = Factory;
+			sourceTree = "<group>";
+		};
+		54C97A9627F0E44A00194578 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				54C97A9727F0E44A00194578 /* Enums */,
+				54C97A9A27F0E44A00194578 /* IGConstants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		54C97A9727F0E44A00194578 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				54C97A9827F0E44A00194578 /* IGResponseType.swift */,
+				54C97A9927F0E44A00194578 /* IGUserScope.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		54C97A9C27F0E44A00194578 /* Facade */ = {
+			isa = PBXGroup;
+			children = (
+				54C97A9D27F0E44A00194578 /* InstaGallery.swift */,
+			);
+			path = Facade;
+			sourceTree = "<group>";
+		};
+		54C97A9E27F0E44A00194578 /* User Defaults */ = {
+			isa = PBXGroup;
+			children = (
+				54C97A9F27F0E44A00194578 /* IGUserDefaultsInterface.swift */,
+				54C97AA027F0E44A00194578 /* IGUserDefaultsImp.swift */,
 			);
 			path = "User Defaults";
+			sourceTree = "<group>";
+		};
+		54C97AA127F0E44A00194578 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				54C97AA227F0E44A00194578 /* UIImageView+Extension.swift */,
+				54C97AA327F0E44A00194578 /* UIResponder+Extension.swift */,
+				54C97AA427F0E44A00194578 /* String+Extensions.swift */,
+				54C97AA527F0E44A00194578 /* Error+Extension.swift */,
+				54C97AA627F0E44A00194578 /* IGManagerUtils.swift */,
+				54C97AA727F0E44A00194578 /* URL+Extension.swift */,
+				54C97AA827F0E44A00194578 /* Dictionary+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		54C97AA927F0E44A00194578 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				54C97AAA27F0E44A00194578 /* IGBaseRequest.swift */,
+				54C97AAB27F0E44A00194578 /* URL Provider */,
+				54C97AAF27F0E44A00194578 /* IGRequest.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		54C97AAB27F0E44A00194578 /* URL Provider */ = {
+			isa = PBXGroup;
+			children = (
+				54C97AAC27F0E44A00194578 /* IGAPIGraphURLProvider.swift */,
+				54C97AAD27F0E44A00194578 /* IGAPIURLProvider.swift */,
+				54C97AAE27F0E44A00194578 /* IGURLBaseProvider.swift */,
+			);
+			path = "URL Provider";
+			sourceTree = "<group>";
+		};
+		54C97AB027F0E44A00194578 /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				54C97AB127F0E44A00194578 /* IGMediaType.swift */,
+				54C97AB227F0E44A00194578 /* IGImage.swift */,
+				54C97AB327F0E44A00194578 /* IGUser.swift */,
+			);
+			path = DataModel;
 			sourceTree = "<group>";
 		};
 		A93A26772368D4F100E2331B = {
 			isa = PBXGroup;
 			children = (
-				A93A26832368D4F100E2331B /* InstaGallery */,
+				54C97A5727F0E44A00194578 /* Sources */,
 				A93A268E2368D4F100E2331B /* InstaGalleryTests */,
 				A93A26C32368D65000E2331B /* InstaGalleryDemo */,
 				A93A26822368D4F100E2331B /* Products */,
@@ -439,23 +563,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A93A26832368D4F100E2331B /* InstaGallery */ = {
-			isa = PBXGroup;
-			children = (
-				54C979BE27F0930000194578 /* Facade */,
-				54C9793327F0789B00194578 /* UI */,
-				54A61D7827EFB3C6001EED17 /* DataSources */,
-				54C979DC27F0C98900194578 /* User Defaults */,
-				54B79D2B27EF96290024B522 /* Constants */,
-				A93A269B2368D50400E2331B /* DataModel */,
-				A93A26A02368D50400E2331B /* Request */,
-				A93A26AD2368D50500E2331B /* Extensions */,
-				A93A26842368D4F100E2331B /* InstaGallery.h */,
-				A93A26852368D4F100E2331B /* Info.plist */,
-			);
-			path = InstaGallery;
-			sourceTree = "<group>";
-		};
 		A93A268E2368D4F100E2331B /* InstaGalleryTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -463,94 +570,6 @@
 				A93A26912368D4F100E2331B /* Info.plist */,
 			);
 			path = InstaGalleryTests;
-			sourceTree = "<group>";
-		};
-		A93A269B2368D50400E2331B /* DataModel */ = {
-			isa = PBXGroup;
-			children = (
-				A93A269C2368D50400E2331B /* IGImage.swift */,
-				A9F0E5D12406AD7700FFADF5 /* IGUser.swift */,
-				54C979C927F0A36700194578 /* IGMediaType.swift */,
-			);
-			path = DataModel;
-			sourceTree = "<group>";
-		};
-		A93A26A02368D50400E2331B /* Request */ = {
-			isa = PBXGroup;
-			children = (
-				54C9793027F0734A00194578 /* URL Provider */,
-				A93A26A12368D50400E2331B /* IGBaseRequest.swift */,
-				A93A26A22368D50400E2331B /* IGRequest.swift */,
-			);
-			path = Request;
-			sourceTree = "<group>";
-		};
-		A93A26A32368D50400E2331B /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				A93A26AA2368D50400E2331B /* Authorization */,
-				A93A26A42368D50400E2331B /* UserGallery */,
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		A93A26A42368D50400E2331B /* UserGallery */ = {
-			isa = PBXGroup;
-			children = (
-				54C979BB27F08F3100194578 /* Factory */,
-				54C9793527F078D600194578 /* Controller */,
-				54C9793627F078DD00194578 /* Presenter */,
-				54C9793D27F0798A00194578 /* Data Source */,
-				54C9793727F078E300194578 /* Interactor */,
-				54C9793827F078E800194578 /* Routing */,
-			);
-			path = UserGallery;
-			sourceTree = "<group>";
-		};
-		A93A26A52368D50400E2331B /* IGGalleryCell */ = {
-			isa = PBXGroup;
-			children = (
-				A93A26A62368D50400E2331B /* IGGalleryCell.swift */,
-				A93A26A72368D50400E2331B /* IGGalleryCell.xib */,
-			);
-			path = IGGalleryCell;
-			sourceTree = "<group>";
-		};
-		A93A26AA2368D50400E2331B /* Authorization */ = {
-			isa = PBXGroup;
-			children = (
-				54B79CA527EF8E320024B522 /* Factory */,
-				54B79CA827EF8EB60024B522 /* Controller */,
-				54B79CA927EF8EBC0024B522 /* Presenter */,
-				54B79CAA27EF8EC10024B522 /* Interactor */,
-				54B79CAB27EF8EC60024B522 /* Routing */,
-			);
-			path = Authorization;
-			sourceTree = "<group>";
-		};
-		A93A26AD2368D50500E2331B /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				A93A26AE2368D50500E2331B /* IGManagerUtils.swift */,
-				54C979CB27F0A54900194578 /* String+Extensions.swift */,
-				54C979CD27F0AB1300194578 /* UIImageView+Extension.swift */,
-				54C979CF27F0AB5900194578 /* URL+Extension.swift */,
-				54C979D127F0AB9800194578 /* Dictionary+Extension.swift */,
-				54C979D327F0ABAF00194578 /* Error+Extension.swift */,
-				54C97A5527F0DEA800194578 /* UIResponder+Extension.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		A93A26AF2368D50500E2331B /* Instagram DataSource */ = {
-			isa = PBXGroup;
-			children = (
-				54C978ED27F06DF800194578 /* DTOs */,
-				54C978EE27F06E0000194578 /* Mappers */,
-				A93A26B02368D50500E2331B /* IGDataSource.swift */,
-				54A61D7927EFB41E001EED17 /* IGDataSourceInterface.swift */,
-			);
-			path = "Instagram DataSource";
 			sourceTree = "<group>";
 		};
 		A93A26C32368D65000E2331B /* InstaGalleryDemo */ = {
@@ -572,16 +591,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		A9EB85C123D5909D00FF4B94 /* Button */ = {
-			isa = PBXGroup;
-			children = (
-				A9EB85C223D590E300FF4B94 /* IGSessionButton.swift */,
-				54B79C9E27EF8BE40024B522 /* IGSessionDelegate.swift */,
-				54C979E127F0D80500194578 /* IGSessionButtonStatus.swift */,
-			);
-			path = Button;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -589,7 +598,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A93A26922368D4F100E2331B /* InstaGallery.h in Headers */,
+				54C97ADE27F0E44B00194578 /* InstaGallery.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -699,9 +708,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A93A26B82368D50500E2331B /* IGGalleryController.xib in Resources */,
-				A93A26BB2368D50500E2331B /* IGAuthController.xib in Resources */,
-				A93A26B72368D50500E2331B /* IGGalleryCell.xib in Resources */,
+				54C97AF127F0E44B00194578 /* Info.plist in Resources */,
+				54C97ACA27F0E44B00194578 /* IGGalleryController.xib in Resources */,
+				54C97AC927F0E44B00194578 /* IGGalleryCell.xib in Resources */,
+				54C97AD527F0E44B00194578 /* IGAuthController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -728,62 +738,62 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				54C9794127F079BF00194578 /* IGGalleryDataSourceImp.swift in Sources */,
-				54B79CEE27EF93C30024B522 /* IGAuthInteractorInterface.swift in Sources */,
-				54B79CA727EF8E3F0024B522 /* IGAuthFactory.swift in Sources */,
-				54C979C827F0A1F200194578 /* IGMediaMapper.swift in Sources */,
-				54C979D727F0AC2200194578 /* IGUserDefaultsDataSourceInterface.swift in Sources */,
-				54B79CB327EF914E0024B522 /* IGAuthRoutingInterface.swift in Sources */,
-				54C9798027F07EEC00194578 /* IGGalleryRouting.swift in Sources */,
-				54B79D2D27EF96360024B522 /* IGConstants.swift in Sources */,
-				54B79C9F27EF8BE40024B522 /* IGSessionDelegate.swift in Sources */,
-				54C979E027F0C9A500194578 /* IGUserDefaultsImp.swift in Sources */,
-				54C979C427F0A16400194578 /* IGMediaTypeDTO.swift in Sources */,
-				54C9792F27F0731900194578 /* IGURLBaseProvider.swift in Sources */,
-				A93A26B92368D50500E2331B /* IGGalleryController.swift in Sources */,
-				54C9797C27F07E2A00194578 /* IGGalleryInteractor.swift in Sources */,
-				54C9798227F07EF700194578 /* IGGalleryRoutingInterface.swift in Sources */,
-				A9EB85C323D590E300FF4B94 /* IGSessionButton.swift in Sources */,
-				54C9794327F07A5300194578 /* IGGalleryControllerInterface.swift in Sources */,
-				54B79CEC27EF93B40024B522 /* IGAuthInteractor.swift in Sources */,
-				54B79CAD27EF8EF90024B522 /* IGAuthPresenterInterface.swift in Sources */,
-				54C9793F27F079B600194578 /* IGGalleryDataSource.swift in Sources */,
-				54C979C627F0A1E500194578 /* IGMediaDTO.swift in Sources */,
-				54C979D927F0AC2C00194578 /* IGUserDefaultsDataSourceImp.swift in Sources */,
-				54C97A5627F0DEA800194578 /* UIResponder+Extension.swift in Sources */,
-				A9F0E5D22406AD7700FFADF5 /* IGUser.swift in Sources */,
-				54C979C027F0930B00194578 /* InstaGallery.swift in Sources */,
-				54B79CAF27EF8F230024B522 /* IGAuthControllerInterface.swift in Sources */,
-				54C978F627F0720B00194578 /* IGAPIURLProvider.swift in Sources */,
-				54B79D3527EF98370024B522 /* IGBundleDataSourceBaseInterface.swift in Sources */,
-				A93A26B62368D50500E2331B /* IGGalleryCell.swift in Sources */,
-				54C979D027F0AB5900194578 /* URL+Extension.swift in Sources */,
-				A93A26B22368D50500E2331B /* IGAuthPresenter.swift in Sources */,
-				54C9797E27F07E3500194578 /* IGGalleryInteractorInterface.swift in Sources */,
-				54C979D227F0AB9800194578 /* Dictionary+Extension.swift in Sources */,
-				54C979CA27F0A36700194578 /* IGMediaType.swift in Sources */,
-				A93A26B52368D50500E2331B /* IGRequest.swift in Sources */,
-				54C979DE27F0C99C00194578 /* IGUserDefaultsInterface.swift in Sources */,
-				54B79D3127EF96E70024B522 /* IGUserScope.swift in Sources */,
-				54A61D7A27EFB41E001EED17 /* IGDataSourceInterface.swift in Sources */,
-				54C979CC27F0A54900194578 /* String+Extensions.swift in Sources */,
-				54B79D2827EF94AB0024B522 /* IGBundleDataSourceInterface.swift in Sources */,
-				54C978F027F06E2000194578 /* IGUserDTO.swift in Sources */,
-				54C979D427F0ABAF00194578 /* Error+Extension.swift in Sources */,
-				54B79CB127EF913F0024B522 /* IGAuthRouting.swift in Sources */,
-				54C979E227F0D80500194578 /* IGSessionButtonStatus.swift in Sources */,
-				A93A26BC2368D50500E2331B /* IGManagerUtils.swift in Sources */,
-				A93A26B32368D50500E2331B /* IGGalleryPresenter.swift in Sources */,
-				54B79D3327EF971E0024B522 /* IGResponseType.swift in Sources */,
-				A93A26BA2368D50500E2331B /* IGAuthController.swift in Sources */,
-				A93A26BD2368D50500E2331B /* IGDataSource.swift in Sources */,
-				54C978F227F06E8200194578 /* IGUserMapper.swift in Sources */,
-				54C979CE27F0AB1300194578 /* UIImageView+Extension.swift in Sources */,
-				54C9793227F0747100194578 /* IGAPIGraphURLProvider.swift in Sources */,
-				54C979BD27F08F3100194578 /* IGGalleryFactory.swift in Sources */,
-				A93A26B42368D50500E2331B /* IGBaseRequest.swift in Sources */,
-				54C9793C27F0796D00194578 /* IGGalleryPresenterInterface.swift in Sources */,
-				A93A26B12368D50500E2331B /* IGImage.swift in Sources */,
+				54C97AE027F0E44B00194578 /* IGUserDefaultsInterface.swift in Sources */,
+				54C97AD827F0E44B00194578 /* IGAuthInteractorInterface.swift in Sources */,
+				54C97AD327F0E44B00194578 /* IGAuthController.swift in Sources */,
+				54C97AC127F0E44B00194578 /* IGSessionDelegate.swift in Sources */,
+				54C97AE927F0E44B00194578 /* IGBaseRequest.swift in Sources */,
+				54C97AE527F0E44B00194578 /* Error+Extension.swift in Sources */,
+				54C97AF027F0E44B00194578 /* IGUser.swift in Sources */,
+				54C97AEE27F0E44B00194578 /* IGMediaType.swift in Sources */,
+				54C97AEA27F0E44B00194578 /* IGAPIGraphURLProvider.swift in Sources */,
+				54C97AC627F0E44B00194578 /* IGGalleryPresenter.swift in Sources */,
+				54C97AB827F0E44A00194578 /* IGDataSource.swift in Sources */,
+				54C97AE727F0E44B00194578 /* URL+Extension.swift in Sources */,
+				54C97AC527F0E44B00194578 /* IGGalleryPresenterInterface.swift in Sources */,
+				54C97ACD27F0E44B00194578 /* IGGalleryRouting.swift in Sources */,
+				54C97ABC27F0E44B00194578 /* IGUserMapper.swift in Sources */,
+				54C97ABE27F0E44B00194578 /* IGBundleDataSourceInterface.swift in Sources */,
+				54C97ADD27F0E44B00194578 /* IGConstants.swift in Sources */,
+				54C97AC227F0E44B00194578 /* IGSessionButtonStatus.swift in Sources */,
+				54C97AE427F0E44B00194578 /* String+Extensions.swift in Sources */,
+				54C97ABF27F0E44B00194578 /* IGBundleDataSourceBaseInterface.swift in Sources */,
+				54C97AB727F0E44A00194578 /* IGDataSourceInterface.swift in Sources */,
+				54C97ACC27F0E44B00194578 /* IGGalleryRoutingInterface.swift in Sources */,
+				54C97ADC27F0E44B00194578 /* IGUserScope.swift in Sources */,
+				54C97ABD27F0E44B00194578 /* IGMediaMapper.swift in Sources */,
+				54C97AC427F0E44B00194578 /* IGGalleryDataSourceImp.swift in Sources */,
+				54C97AD627F0E44B00194578 /* IGAuthRouting.swift in Sources */,
+				54C97ABA27F0E44A00194578 /* IGMediaTypeDTO.swift in Sources */,
+				54C97AD227F0E44B00194578 /* IGAuthPresenter.swift in Sources */,
+				54C97AC327F0E44B00194578 /* IGGalleryDataSource.swift in Sources */,
+				54C97AE327F0E44B00194578 /* UIResponder+Extension.swift in Sources */,
+				54C97AE127F0E44B00194578 /* IGUserDefaultsImp.swift in Sources */,
+				54C97AD727F0E44B00194578 /* IGAuthRoutingInterface.swift in Sources */,
+				54C97AD027F0E44B00194578 /* IGGalleryFactory.swift in Sources */,
+				54C97AB627F0E44A00194578 /* IGUserDefaultsDataSourceImp.swift in Sources */,
+				54C97ACB27F0E44B00194578 /* IGGalleryController.swift in Sources */,
+				54C97AC727F0E44B00194578 /* IGGalleryControllerInterface.swift in Sources */,
+				54C97AC027F0E44B00194578 /* IGSessionButton.swift in Sources */,
+				54C97ADF27F0E44B00194578 /* InstaGallery.swift in Sources */,
+				54C97AE227F0E44B00194578 /* UIImageView+Extension.swift in Sources */,
+				54C97AE827F0E44B00194578 /* Dictionary+Extension.swift in Sources */,
+				54C97ACF27F0E44B00194578 /* IGGalleryInteractor.swift in Sources */,
+				54C97AD927F0E44B00194578 /* IGAuthInteractor.swift in Sources */,
+				54C97AEB27F0E44B00194578 /* IGAPIURLProvider.swift in Sources */,
+				54C97ABB27F0E44B00194578 /* IGUserDTO.swift in Sources */,
+				54C97AEF27F0E44B00194578 /* IGImage.swift in Sources */,
+				54C97AB927F0E44A00194578 /* IGMediaDTO.swift in Sources */,
+				54C97AD427F0E44B00194578 /* IGAuthControllerInterface.swift in Sources */,
+				54C97ADA27F0E44B00194578 /* IGAuthFactory.swift in Sources */,
+				54C97ACE27F0E44B00194578 /* IGGalleryInteractorInterface.swift in Sources */,
+				54C97ADB27F0E44B00194578 /* IGResponseType.swift in Sources */,
+				54C97AEC27F0E44B00194578 /* IGURLBaseProvider.swift in Sources */,
+				54C97AD127F0E44B00194578 /* IGAuthPresenterInterface.swift in Sources */,
+				54C97AC827F0E44B00194578 /* IGGalleryCell.swift in Sources */,
+				54C97AB527F0E44A00194578 /* IGUserDefaultsDataSourceInterface.swift in Sources */,
+				54C97AED27F0E44B00194578 /* IGRequest.swift in Sources */,
+				54C97AE627F0E44B00194578 /* IGManagerUtils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1058,6 +1068,7 @@
 		A93A26D42368D65000E2331B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SD98EDDB4C;
@@ -1077,6 +1088,7 @@
 		A93A26D52368D65000E2331B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SD98EDDB4C;
