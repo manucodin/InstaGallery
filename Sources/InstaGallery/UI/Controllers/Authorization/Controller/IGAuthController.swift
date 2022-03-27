@@ -23,7 +23,7 @@ class IGAuthController: UIViewController {
     }
 
     init() {
-        super.init(nibName: String(describing: IGAuthController.self), bundle: Bundle(for: IGAuthController.self))
+        super.init(nibName: String(describing: IGAuthController.self), bundle: Bundle.module)
     }
     
     required init?(coder: NSCoder) { return nil }
