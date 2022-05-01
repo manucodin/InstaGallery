@@ -9,7 +9,6 @@
 import Foundation
 
 internal class IGUserMapper {
-    
     internal static func transform(dto: IGUserDTO) -> IGUser {
         return IGUser(
             identifier: dto.id ?? "",

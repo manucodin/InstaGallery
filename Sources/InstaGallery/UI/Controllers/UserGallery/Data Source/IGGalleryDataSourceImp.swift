@@ -10,28 +10,27 @@ import Foundation
 import UIKit
 
 internal class IGGalleryDataSourceImp {
-    internal var nextPage: String?
-    private var medias = [IGMedia]()
+    private var gallery = IGGallery()
 }
 
 extension IGGalleryDataSourceImp: IGGalleryDataSource {
     var hasNextPage: Bool {
-        return nextPage == nil
+        return gallery.paging?.cursors?.after == nil
+    }
+    
+    var nextPage: String? {
+        return gallery.paging?.cursors?.after
     }
     
     var numberOfMedias: Int {
-        return medias.count
+        return gallery.medias.count
     }
     
-    func updateNextPage(newNextPage: String?) {
-        self.nextPage = newNextPage
-    }
-    
-    func addMedias(newMedias: [IGMedia]) {
-        medias.append(contentsOf: newMedias)
+    func updateGallery(gallery: IGGallery) {
+        self.gallery = gallery
     }
     
     func media(atIndexPath indexPath: IndexPath) -> IGMedia {
-        return medias[indexPath.row]
+        return gallery.medias[indexPath.row]
     }
 }

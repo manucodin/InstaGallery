@@ -28,22 +28,14 @@ final class UserDefaultsDataSourceTests: XCTestCase {
     }
     
     func testSaveUser() {
-        do {
-            try sut?.saveUser(user: userMock)
-        } catch {
-            fail()
-        }
+        try? sut?.saveUser(user: userMock)
         
         let expectedUser = sut?.getUser()
         expect(expectedUser).notTo(beNil())
     }
     
     func testUserID() {
-        do {
-            try sut?.saveUser(user: userMock)
-        } catch {
-            fail()
-        }
+        try? sut?.saveUser(user: userMock)
         
         let expectedID = sut?.userID
         expect(expectedID).notTo(beNil())
@@ -51,11 +43,7 @@ final class UserDefaultsDataSourceTests: XCTestCase {
     }
     
     func testUserName() {
-        do {
-            try sut?.saveUser(user: userMock)
-        } catch {
-            fail()
-        }
+        try? sut?.saveUser(user: userMock)
         
         let expectedName = sut?.userName
         expect(expectedName).notTo(beNil())
@@ -63,11 +51,7 @@ final class UserDefaultsDataSourceTests: XCTestCase {
     }
     
     func testUserToken() {
-        do {
-            try sut?.saveUser(user: userMock)
-        } catch {
-            fail()
-        }
+        try? sut?.saveUser(user: userMock)
         
         let expectedToken = sut?.userToken
         expect(expectedToken).notTo(beNil())
@@ -75,11 +59,7 @@ final class UserDefaultsDataSourceTests: XCTestCase {
     }
     
     func testIsUserLogged() {
-        do {
-            try sut?.saveUser(user: userMock)
-        } catch {
-            fail()
-        }
+        try? sut?.saveUser(user: userMock)
         
         let expectedUserLogged = sut?.isUserLogged
         expect(expectedUserLogged).to(beTrue())

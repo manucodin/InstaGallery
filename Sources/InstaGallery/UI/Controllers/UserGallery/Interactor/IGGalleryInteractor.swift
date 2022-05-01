@@ -49,21 +49,30 @@ extension IGGalleryInteractor: IGGalleryInteractorInput {
     }
     
     func loadUserGallery() {
-        instagramDataSource.getUserGallery(withLastItem: galleryDataSource.nextPage, withCompletionBlock: { [weak self] newMediasDTO, nextPage in
-            let newMedias = newMediasDTO.map({ IGMediaMapper.transform(dto: $0) })
-            self?.galleryDataSource.updateNextPage(newNextPage: nextPage)
-            self?.galleryDataSource.addMedias(newMedias: newMedias)
-            self?.output?.didLoadUserGallery()
-        }, errorBlock: { _ in })
+        instagramDataSource.getUserGallery(withLastItem: galleryDataSource.nextPage) { [weak self] result in
+            switch result {
+            case .success(let galleryDTO):
+                let gallery = IGGalleryMapper().transform(galleryDTO: galleryDTO)
+                self?.galleryDataSource.updateGallery(gallery: gallery)
+                self?.output?.didLoadUserGallery()
+            case .failure(let error):
+                debugPrint(error)
+            }
+        }
     }
     
     func getImage(withImageCover imageCover: IGMedia) {
-        instagramDataSource.getImage(withIdentifier: imageCover.identifier, withCompletionBlock: { [weak self] mediaDTO in
-            if let mediaDTO = mediaDTO {
-                let media = IGMediaMapper.transform(dto: mediaDTO)
-                self?.output?.didSelect(media: media)
+        instagramDataSource.getImage(withIdentifier: imageCover.identifier) { [weak self] result in
+            switch result {
+            case .success(let mediaDTO):
+                if let mediaDTO = mediaDTO {
+                    let media = IGMediaMapper().transform(dto: mediaDTO)
+                    self?.output?.didSelect(media: media)
+                }
+            case .failure(let error):
+                debugPrint(error)
             }
-        }, functionError: { _ in })
+        }
     }
     
     func imageCover(atIndexPath indexPath: IndexPath) -> IGMedia {

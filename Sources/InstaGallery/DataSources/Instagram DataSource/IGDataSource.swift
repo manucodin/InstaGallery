@@ -33,7 +33,7 @@ internal class IGDataSource{
 }
 
 extension IGDataSource: IGDataSourceInterface {
-    internal func authenticate(withUserCode userCode: String, withCompletionBlock functionOK: @escaping ((IGUserDTO) -> Void), functionError: @escaping ((Error) -> Void)) {
+    internal func authenticate(withUserCode userCode: String, completionHandler: @escaping ((Result<IGUserDTO, IGError>) -> Void)) {
         let parameters: [String : String] = [
             "app_id": appID,
             "app_secret": clientSecret,
@@ -41,60 +41,66 @@ extension IGDataSource: IGDataSourceInterface {
             "redirect_uri": redirectURI,
             "code": userCode
         ]
-        
-        request.getAuthToken(withParams: parameters, withCompletionBlock: { [weak self] token in
-            self?.getLongLiveToken(withToken: token, withCompletionBlock: functionOK, functionError: functionError)
-        }, functionError: functionError)
+
+        request.getAuthToken(withParams: parameters) { [weak self] result in
+            switch result {
+            case .success(let token):
+                self?.getLongLiveToken(completionHandler: completionHandler)
+            case .failure(let error):
+                completionHandler(.failure(error))
+            }
+        }
     }
     
-    internal func getUserGallery(withLastItem lastItem: String?, withCompletionBlock functionOK:@escaping(([IGMediaDTO], String?) -> Void), errorBlock functionError:@escaping((Error) -> Void)){
-        guard let token = userDefaultsDataSource.getUser()?.token else { return }
-
+    internal func getUserGallery(withLastItem lastItem: String?, completionHandler: @escaping ((Result<IGGalleryDTO, IGError>) -> Void)) {
         let params: [String : String] = [
             "fields": "id,media_url,media_type",
-            "access_token": token,
             "after": lastItem ?? ""
         ]
-        
-        request.getUserGallery(withParams: params, withCompletionBlock: functionOK, functionError: functionError)
+        request.getUserGallery(withParams: params, completionHandler: completionHandler)
     }
-    
-    internal func getImage(withIdentifier identifier :String, withCompletionBlock functionOK :@escaping((IGMediaDTO?) -> Void), functionError :@escaping((Error) -> Void)){
-        guard let token = userDefaultsDataSource.getUser()?.token else { return }
+
+    internal func getImage(withIdentifier identifier: String, completionHandler: @escaping ((Result<IGMediaDTO?, IGError>) -> Void)) {
         
         let parameters: [String : String] = [
             "fields": "id,media_url,timestamp",
-            "access_token": token
         ]
-        request.getUserImage(withIdentifier: identifier, withParams: parameters, withCompletionBlock: functionOK, errorBlock: functionError)
+        request.getUserImage(withIdentifier: identifier, withParams: parameters, completionHandler: completionHandler)
     }
     
-    private func getLongLiveToken(withToken token: String, withCompletionBlock functionOK: @escaping ((IGUserDTO) -> Void), functionError: @escaping ((Error) -> Void)) {
+    private func getLongLiveToken(completionHandler: @escaping ((Result<IGUserDTO, IGError>) -> Void)) {
         let parameters :[String : String] = [
             "grant_type": "ig_exchange_token",
             "client_secret": clientSecret,
-            "access_token": token
         ]
         
-        request.getLongLiveToken(withParams: parameters, functionOK: { token in
-            self.getUserInfo(withToken: token, withCompletionBlock: functionOK, functionError: functionError)
-        }, functionError: functionError)
+        request.getLongLiveToken(withParams: parameters) { result in
+            switch result {
+            case .success(let token):
+                self.getUserInfo(completionHandler: completionHandler)
+            case.failure(let error):
+                completionHandler(.failure(error))
+            }
+        }
     }
     
-    private func getUserInfo(withToken token: String, withCompletionBlock functionOK: @escaping ((IGUserDTO) -> Void), functionError: @escaping ((IGError) -> Void)) {
+    private func getUserInfo(completionHandler: @escaping ((Result<IGUserDTO, IGError>) -> Void)) {
         let parameters :[String : String] = [
             "fields": "id,username",
-            "access_token": token
         ]
         
-        request.getUserInfo(withParams: parameters, withCompletionBlock: { [weak self] userInfoDTO in
-            do {
-                let userDTO = userInfoDTO.updating(token: token)
-                try self?.userDefaultsDataSource.saveUser(user: userDTO)
-                functionOK(userDTO)
-            } catch {
-                functionError(.invalidUser)
+        request.getUserInfo(withParams: parameters) { [weak self] result in
+            switch result {
+            case .success(let userDTO):
+                do {
+                    try self?.userDefaultsDataSource.saveUser(user: userDTO)
+                    completionHandler(.success(userDTO))
+                } catch {
+                    completionHandler(.failure(.invalidUser))
+                }
+            case .failure(let error):
+                completionHandler(.failure(error))
             }
-        }, functionError: functionError)
+        }
     }
 }
