@@ -9,7 +9,7 @@
 import Foundation
 
 internal class IGUserMapper {
-    internal static func transform(dto: IGUserDTO) -> IGUser {
+    internal func transform(dto: IGUserDTO) -> IGUser {
         return IGUser(
             identifier: dto.id ?? "",
             account: dto.username ?? "",
@@ -18,7 +18,7 @@ internal class IGUserMapper {
         )
     }
     
-    internal static func transform(model: IGUser) -> IGUserDTO {
+    internal func transform(model: IGUser) -> IGUserDTO {
         return IGUserDTO(
             id: model.identifier,
             username: model.account,

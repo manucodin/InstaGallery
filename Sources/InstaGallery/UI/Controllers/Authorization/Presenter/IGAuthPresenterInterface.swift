@@ -11,5 +11,6 @@ import WebKit
 
 internal protocol IGAuthPresenterInterface: WKNavigationDelegate {
     func viewLoaded()
+    func load()
     func dismiss()
 }

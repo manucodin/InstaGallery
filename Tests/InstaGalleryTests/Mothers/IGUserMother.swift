@@ -8,8 +8,8 @@
 import Foundation
 @testable import InstaGallery
 
-internal struct IGUserDTOMother {
-    internal static func user() -> IGUserDTO {
-        return IGUserDTO(id: "1234", username: "testUser", urlAccount: "testAccount", token: "testToken")
+internal struct IGUserMother {
+    internal static func user() -> IGUser {
+        return IGUser(identifier: "testIdentifier", account: "testAccount", urlAccount: "testAccount", token: "testToken")
     }
 }

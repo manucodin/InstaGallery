@@ -35,6 +35,7 @@ class IGAuthController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.viewLoaded()
+        presenter?.load()
     }
     
     private func configureNavigationBar(){

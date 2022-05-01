@@ -11,7 +11,7 @@ import Nimble
 
 final class UserDefaultsDataSourceTests: XCTestCase {
     
-    var sut: IGUserDataSourceInterface?
+    var sut: IGUserDataSourceInterface!
     
     private let userMock = IGUserDTOMother.user()
     
@@ -28,50 +28,50 @@ final class UserDefaultsDataSourceTests: XCTestCase {
     }
     
     func testSaveUser() {
-        try? sut?.saveUser(user: userMock)
+        try? sut.saveUser(user: userMock)
         
-        let expectedUser = sut?.getUser()
+        let expectedUser = sut.getUser()
         expect(expectedUser).notTo(beNil())
     }
     
     func testUserID() {
-        try? sut?.saveUser(user: userMock)
+        try? sut.saveUser(user: userMock)
         
-        let expectedID = sut?.userID
+        let expectedID = sut.userID
         expect(expectedID).notTo(beNil())
         expect(expectedID).to(equal(userMock.id))
     }
     
     func testUserName() {
-        try? sut?.saveUser(user: userMock)
+        try? sut.saveUser(user: userMock)
         
-        let expectedName = sut?.userName
+        let expectedName = sut.userName
         expect(expectedName).notTo(beNil())
         expect(expectedName).to(equal(userMock.username))
     }
     
     func testUserToken() {
-        try? sut?.saveUser(user: userMock)
+        try? sut.saveUser(user: userMock)
         
-        let expectedToken = sut?.userToken
+        let expectedToken = sut.userToken
         expect(expectedToken).notTo(beNil())
         expect(expectedToken).to(equal(userMock.token))
     }
     
     func testIsUserLogged() {
-        try? sut?.saveUser(user: userMock)
+        try? sut.saveUser(user: userMock)
         
-        let expectedUserLogged = sut?.isUserLogged
+        let expectedUserLogged = sut.isUserLogged
         expect(expectedUserLogged).to(beTrue())
     }
     
     func testClearAll() {
         sut?.clearAll()
         
-        let expectedID = sut?.userID
-        let expectedUserName = sut?.userName
-        let expectedToken = sut?.userToken
-        let expectedUser = sut?.getUser()
+        let expectedID = sut.userID
+        let expectedUserName = sut.userName
+        let expectedToken = sut.userToken
+        let expectedUser = sut.getUser()
         
         expect(expectedID).to(beNil())
         expect(expectedUserName).to(beNil())

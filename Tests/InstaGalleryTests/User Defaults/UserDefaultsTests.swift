@@ -4,7 +4,7 @@ import Nimble
 
 final class UserDefaultsTests: XCTestCase {
     
-    var sut: IGUserDefaultsInterface?
+    var sut: IGUserDefaultsInterface!
     
     override func setUp() {
         super.setUp()
@@ -23,9 +23,9 @@ final class UserDefaultsTests: XCTestCase {
         let testValue = "testValue"
         let testValueKey = "testValueKey"
         
-        sut?.save(value: testValue, withKey: testValueKey)
+        sut.save(value: testValue, withKey: testValueKey)
         
-        let expectedValue = sut?.getValue(withKey: testValueKey)
+        let expectedValue = sut.getValue(withKey: testValueKey)
         
         expect(expectedValue).notTo(beNil())
         expect(expectedValue).to(be(testValue))
@@ -35,9 +35,9 @@ final class UserDefaultsTests: XCTestCase {
         let testDataObject = Data()
         let testDataObjectKey = "testValueKey"
         
-        sut?.save(value: testDataObject, withKey: testDataObjectKey)
+        sut.save(value: testDataObject, withKey: testDataObjectKey)
         
-        let expectedValue = sut?.getData(withKey: testDataObjectKey)
+        let expectedValue = sut.getData(withKey: testDataObjectKey)
         expect(expectedValue).notTo(beNil())
     }
     
@@ -45,10 +45,10 @@ final class UserDefaultsTests: XCTestCase {
         let testValue = "testValue"
         let testValueKey = "testValueKey"
         
-        sut?.save(value: testValue, withKey: testValueKey)
-        sut?.removeValue(withKey: testValueKey)
+        sut.save(value: testValue, withKey: testValueKey)
+        sut.removeValue(withKey: testValueKey)
         
-        let expectedValue = sut?.getValue(withKey: testValueKey)
+        let expectedValue = sut.getValue(withKey: testValueKey)
         expect(expectedValue).to(beNil())
         
     }

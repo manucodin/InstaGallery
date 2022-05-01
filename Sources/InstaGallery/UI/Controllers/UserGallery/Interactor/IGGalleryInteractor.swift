@@ -49,9 +49,11 @@ extension IGGalleryInteractor: IGGalleryInteractorInput {
     }
     
     func loadUserGallery() {
+        debugPrint("Pasa")
         instagramDataSource.getUserGallery(withLastItem: galleryDataSource.nextPage) { [weak self] result in
             switch result {
             case .success(let galleryDTO):
+                debugPrint("Pasa 2")
                 let gallery = IGGalleryMapper().transform(galleryDTO: galleryDTO)
                 self?.galleryDataSource.updateGallery(gallery: gallery)
                 self?.output?.didLoadUserGallery()

@@ -10,20 +10,18 @@ import Foundation
 import WebKit
 
 class IGAuthPresenter: NSObject {
-    
     weak var view: IGAuthControllerInterface?
     var routing: IGAuthRoutingInterface?
     var interactor: IGAuthInteractorInput?
-    
-    private func load() {
-        interactor?.generateAuthRequest()
-    }
 }
 
 extension IGAuthPresenter: IGAuthPresenterInterface {
     func viewLoaded() {
         view?.setupView()
-        load()
+    }
+    
+    func load() {
+        interactor?.generateAuthRequest()
     }
     
     func dismiss() {
