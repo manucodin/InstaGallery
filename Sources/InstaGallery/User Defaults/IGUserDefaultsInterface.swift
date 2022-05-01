@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 internal protocol IGUserDefaultsInterface {
     func save(value: Any?, withKey key: String)
     func getData(withKey key: String) -> Data?

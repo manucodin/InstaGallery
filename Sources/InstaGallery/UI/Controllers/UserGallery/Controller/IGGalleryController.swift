@@ -53,6 +53,7 @@ import UIKit
     
     private func configureCollectionView(){
         let cellIdentifier = String(describing: IGGalleryCell.self)
+        
         var bundle: Bundle
         #if SWIFT_PACKAGE
         bundle = Bundle.module

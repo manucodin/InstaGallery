@@ -14,6 +14,10 @@ internal class IGGalleryRouting {
 }
 
 extension IGGalleryRouting: IGGalleryRoutingInterface {
+    func dismiss() {
+        viewController?.dismiss(animated: true, completion: nil)
+    }
+    
     func presentLoginUser(completionCallback: @escaping (() -> Void)) {
         let authController = IGAuthFactory.auth(completionCallback: completionCallback)
         let navigationController = UINavigationController(rootViewController: authController)

@@ -25,28 +25,19 @@ class IGBaseRequest :NSObject{
         "Accept": "application/json"
     ]
     
+    private let userDataSource = IGUserDefaultsDataSourceImp()
+    
     func makeRequest(url: URL, withMethod method :RequestMethod, withParams params :[String : Any]? = nil, withCompletionBlock functionOK:@escaping((Any, Any) -> Void), withErroBlock functionError:@escaping((Error) -> Void)){
         return request(url: url, withMethod: method, withParams: params, withCompletionBlock: functionOK, withErroBlock: functionError)
     }
     
     private func request(url :URL, withMethod method :RequestMethod, withParams params :[String : Any]? = nil, withCompletionBlock functionOK:@escaping((Any?, Any?) -> Void), withErroBlock functionError:@escaping((Error) -> Void)){
         
-        session = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: OperationQueue.main)
-
-        var requestData :Data?
-        var request :URLRequest!
-        if let requestParams = params, method == .get, let urlFormated = URL(string: String(format: "%@?%@", url.absoluteString, requestParams.paramsString())){
-            request = URLRequest(url: urlFormated)
-        }else{
-            request = URLRequest(url: url)
-            if let requestParams = params{
-                let jsonString = requestParams.paramsString()
-                requestData = jsonString.data(using: .utf8)
-            }
-            request.httpBody = requestData
-        }
+        guard let generatedRequest = generateURLRequest(withMethod: method, url: url, withParams: params) else { return }
         
-        request.httpMethod = method.rawValue
+        session = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: OperationQueue.main)
+        
+        var request = generatedRequest
         request.allHTTPHeaderFields = headers
     
         let task = session.dataTask(with: request, completionHandler: {data, response, error in
@@ -80,8 +71,18 @@ class IGBaseRequest :NSObject{
                             if(error.code == 190){
                                 if(self.tryCounter < 3){
                                     self.tryCounter += 1
-                                    self.refreshToken(withCompletion: {
-                                        self.request(url: url, withMethod: method, withParams: params, withCompletionBlock: functionOK, withErroBlock: functionError)
+                                    self.refreshToken(withCompletion: { [weak self] newToken in
+                                        guard let welf = self else { return }
+                                        guard let currentUser = welf.userDataSource.getUser() else { return }
+                                        let updatedUser = currentUser.updating(token: newToken)
+                                        welf.userDataSource.saveUser(user: updatedUser)
+                                        
+                                        var newParams = params
+                                        if newParams?["access_token"] != nil {
+                                            newParams?["access_token"] = newToken
+                                        }
+                                        
+                                        welf.request(url: url, withMethod: method, withParams: newParams, withCompletionBlock: functionOK, withErroBlock: functionError)
                                     }, errorBlock: functionError)
                                 }else{
                                     self.tryCounter = 0
@@ -102,17 +103,33 @@ class IGBaseRequest :NSObject{
         task.resume()
     }
     
-    private func refreshToken(withCompletion completion: @escaping (() -> Void), errorBlock: @escaping ((Error) -> Void)) {
-        guard let token = IGUserDefaultsDataSourceImp().userName else {
-            return
-        }
+    private func refreshToken(withCompletion completion: @escaping ((String) -> Void), errorBlock: @escaping ((Error) -> Void)) {
+        guard let token = userDataSource.userToken else { return }
         let params :[String : String] = [
             "grant_type": "ig_refresh_token",
             "access_token": token
         ]
-        IGRequest().refreshToken(withParams: params, functionOK: {
-            completion()
+        IGRequest().refreshToken(withParams: params, functionOK: { newToken in
+            completion(newToken)
         }, functionError: errorBlock)
+    }
+    
+    private func generateURLRequest(withMethod method: RequestMethod, url: URL, withParams params: [String : Any]?) -> URLRequest? {
+        if method == .get, let requestParams = params {
+            guard let url = URL(string: String(format: "%@?%@", url.absoluteString, requestParams.paramsString())) else { return nil }
+            var request = URLRequest(url: url)
+            request.httpMethod = method.rawValue
+            return request
+        } else {
+            var request = URLRequest(url: url)
+            if let requestParams = params {
+                let jsonString = requestParams.paramsString()
+                let requestData = jsonString.data(using: .utf8)
+                request.httpBody = requestData
+            }
+            request.httpMethod = method.rawValue
+            return request
+        }
     }
     
     private func errorURL() -> Error{

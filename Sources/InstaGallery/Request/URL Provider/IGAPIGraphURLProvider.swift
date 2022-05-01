@@ -9,23 +9,19 @@
 import Foundation
 
 internal struct IGAPIGraphURLProvider: IGURLBaseProvider {
-    func tokenURL() -> URL {
+    var tokenURL: URL {
         return API_GRAPH_INSTRAGRAM.appendingPathComponent("access_token")
     }
     
-    func refreshToken() -> URL {
+    var refreshToken: URL {
         return API_GRAPH_INSTRAGRAM.appendingPathComponent("refresh_access_token")
     }
     
-    func userURL() -> URL {
+    var userURL: URL {
         return API_GRAPH_INSTRAGRAM.appendingPathComponent("me")
     }
     
-    func mediaURL() -> URL {
+    var mediaURL: URL {
         return API_GRAPH_INSTRAGRAM.appendingPathComponent("me/media")
-    }
-    
-    func mediaURL(withIdentifier identifier: String) -> URL {
-        return API_GRAPH_INSTRAGRAM.appendingPathComponent(identifier)
     }
 }

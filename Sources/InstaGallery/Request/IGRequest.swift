@@ -15,7 +15,7 @@ class IGRequest :IGBaseRequest{
     private let apiGraphURLProvider = IGAPIGraphURLProvider()
             
     func getUserGallery(withParams params: [String : String], withCompletionBlock functionOK:@escaping(([IGMediaDTO], String?) -> Void), functionError :@escaping((Error) -> Void)){
-        makeRequest(url: apiGraphURLProvider.mediaURL(), withMethod: .get, withParams: params, withCompletionBlock: {response, _ in
+        makeRequest(url: apiGraphURLProvider.mediaURL, withMethod: .get, withParams: params, withCompletionBlock: {response, _ in
             do{
                 let responseDict = response as? [String : Any] ?? [:]
                 var dataDict = responseDict["data"] as? [[String : Any]] ?? [[:]]
@@ -45,7 +45,8 @@ class IGRequest :IGBaseRequest{
     }
     
     func getUserImage(withIdentifier identifier :String, withParams params: [String : String], withCompletionBlock functionOK:@escaping((IGMediaDTO) -> Void), errorBlock functionError :@escaping((Error) -> Void)){
-        makeRequest(url: apiGraphURLProvider.mediaURL(withIdentifier: identifier), withMethod: .get, withParams: params, withCompletionBlock: {response, _ in
+        let url = apiGraphURLProvider.mediaURL.appendingPathComponent("/\(identifier)")
+        makeRequest(url: url, withMethod: .get, withParams: params, withCompletionBlock: {response, _ in
             do{
                 let responseDict = response as? [String : Any] ?? [:]
                 let jsonData = try JSONSerialization.data(withJSONObject: responseDict, options: .prettyPrinted)
@@ -60,7 +61,7 @@ class IGRequest :IGBaseRequest{
     }
     
     func getAuthToken(withParams params: [String : String], withCompletionBlock functionOK:@escaping((String) -> Void), functionError :@escaping((Error) -> Void)){
-        makeRequest(url: apiURLProvider.authURL(), withMethod: .post, withParams: params, withCompletionBlock: { response, _ in
+        makeRequest(url: apiURLProvider.authURL, withMethod: .post, withParams: params, withCompletionBlock: { response, _ in
             guard let dataDict = response as? [String : Any] else { return }
             guard let token = dataDict[IGConstants.ParamsKeys.accessTokenKey] as? String else { return }
             functionOK(token)
@@ -70,22 +71,23 @@ class IGRequest :IGBaseRequest{
     }
     
     func getLongLiveToken(withParams params: [String : String], functionOK :@escaping((String) -> Void), functionError :@escaping ((Error) -> Void)){
-        makeRequest(url: apiGraphURLProvider.tokenURL(), withMethod: .get, withParams: params, withCompletionBlock: {response, _ in
+        makeRequest(url: apiGraphURLProvider.tokenURL, withMethod: .get, withParams: params, withCompletionBlock: {response, _ in
             guard let responseDict = response as? [String : Any] else { return }
             guard let token = responseDict[IGConstants.ParamsKeys.accessTokenKey] as? String else { return }
             functionOK(token)
         }, withErroBlock: functionError)
     }
     
-    func refreshToken(withParams params: [String : String], functionOK :@escaping(() -> Void), functionError :@escaping((Error) -> Void)){
-        makeRequest(url: apiGraphURLProvider.refreshToken(), withMethod: .get, withParams: params, withCompletionBlock: {response, _ in
-            let responseDict = response as? [String : Any] ?? [:]
-            functionOK()
+    func refreshToken(withParams params: [String : String], functionOK :@escaping((String) -> Void), functionError :@escaping((Error) -> Void)){
+        makeRequest(url: apiGraphURLProvider.refreshToken, withMethod: .get, withParams: params, withCompletionBlock: {response, _ in
+            guard let responseDict = response as? [String : Any] else { return }
+            guard let token = responseDict[IGConstants.ParamsKeys.accessTokenKey] as? String else { return }
+            functionOK(token)
         }, withErroBlock: functionError)
     }
     
     func getUserInfo(withParams params: [String : String], withCompletionBlock functionOK:@escaping((IGUserDTO) -> Void), functionError :@escaping((Error) -> Void)){
-        makeRequest(url: apiGraphURLProvider.userURL(), withMethod: .get, withParams: params, withCompletionBlock: {response, _ in
+        makeRequest(url: apiGraphURLProvider.userURL, withMethod: .get, withParams: params, withCompletionBlock: {response, _ in
             let responseDict = response as? [String : Any] ?? [:]
             do{
                 let jsonData = try JSONSerialization.data(withJSONObject: responseDict, options: .prettyPrinted)

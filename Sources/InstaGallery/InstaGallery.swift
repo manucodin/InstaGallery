@@ -1,11 +1,10 @@
 import UIKit
 
 @objc public class InstaGallery: NSObject {
-    @objc public static func openGallery(inViewController viewController: UIViewController, withDelegate delegate: IGGalleryDelegate? = nil) {
+    @objc public static func gallery(withDelegate delegate: IGGalleryDelegate? = nil) -> IGGalleryController {
         let galleryController = IGGalleryFactory.gallery()
         galleryController.delegate = delegate
         
-        let navigationController = UINavigationController(rootViewController: galleryController)
-        viewController.present(navigationController, animated: true, completion: nil)
+        return galleryController
     }
 }

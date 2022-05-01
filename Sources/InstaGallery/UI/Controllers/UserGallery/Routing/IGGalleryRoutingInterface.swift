@@ -9,5 +9,6 @@
 import Foundation
 
 internal protocol IGGalleryRoutingInterface {
+    func dismiss()
     func presentLoginUser(completionCallback: @escaping (() -> Void))
 }
