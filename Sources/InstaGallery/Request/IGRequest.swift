@@ -14,53 +14,45 @@ class IGRequest :IGBaseRequest{
     private let apiURLProvider = IGAPIURLProvider()
     private let apiGraphURLProvider = IGAPIGraphURLProvider()
             
-    func getUserGallery(withParams params: [String : String], withCompletionBlock functionOK:@escaping(([IGMediaDTO], String?) -> Void), functionError :@escaping((Error) -> Void)){
+    func getUserGallery(withParams params: [String : String], withCompletionBlock functionOK:@escaping(([IGMediaDTO], String?) -> Void), functionError :@escaping((IGError) -> Void)){
         makeRequest(url: apiGraphURLProvider.mediaURL, withMethod: .get, withParams: params, withCompletionBlock: {response, _ in
-            do{
-                let responseDict = response as? [String : Any] ?? [:]
-                var dataDict = responseDict["data"] as? [[String : Any]] ?? [[:]]
-                
-                dataDict.removeAll(where: {
-                    $0["media_type"] as? String ?? "" != "IMAGE"
-                })
-                
-                let jsonData = try JSONSerialization.data(withJSONObject: dataDict, options: .prettyPrinted)
-                let albums = try JSONDecoder().decode([IGMediaDTO].self, from: jsonData)
-                
-                let paggingDict = responseDict["paging"] as? [String : Any] ?? [:]
-                let cursorsDict = paggingDict["cursors"] as? [String : Any] ?? [:]
-                
-                var nextItem = cursorsDict["after"] as? String? ?? nil
-                
-                if(paggingDict["next"] == nil){
-                    nextItem = nil
-                }
-                functionOK(albums, nextItem)
-            }catch let error{
-                functionError(error)
+            let responseDict = response as? [String : Any] ?? [:]
+            var dataDict = responseDict["data"] as? [[String : Any]] ?? [[:]]
+            
+            dataDict.removeAll(where: {
+                $0["media_type"] as? String ?? "" != "IMAGE"
+            })
+            
+            let jsonData = try? JSONSerialization.data(withJSONObject: dataDict, options: .prettyPrinted)
+            let albums = try? JSONDecoder().decode([IGMediaDTO].self, from: jsonData ?? Data())
+            
+            let paggingDict = responseDict["paging"] as? [String : Any] ?? [:]
+            let cursorsDict = paggingDict["cursors"] as? [String : Any] ?? [:]
+            
+            var nextItem = cursorsDict["after"] as? String? ?? nil
+            
+            if(paggingDict["next"] == nil){
+                nextItem = nil
             }
+            functionOK(albums ?? [], nextItem)
         }, withErroBlock: {error in
             functionError(error)
         })
     }
     
-    func getUserImage(withIdentifier identifier :String, withParams params: [String : String], withCompletionBlock functionOK:@escaping((IGMediaDTO) -> Void), errorBlock functionError :@escaping((Error) -> Void)){
-        let url = apiGraphURLProvider.mediaURL.appendingPathComponent("/\(identifier)")
+    func getUserImage(withIdentifier identifier :String, withParams params: [String : String], withCompletionBlock functionOK:@escaping((IGMediaDTO?) -> Void), errorBlock functionError :@escaping((IGError) -> Void)){
+        let url = apiGraphURLProvider.API_GRAPH_INSTRAGRAM.appendingPathComponent(identifier)
         makeRequest(url: url, withMethod: .get, withParams: params, withCompletionBlock: {response, _ in
-            do{
-                let responseDict = response as? [String : Any] ?? [:]
-                let jsonData = try JSONSerialization.data(withJSONObject: responseDict, options: .prettyPrinted)
-                let igImage = try JSONDecoder().decode(IGMediaDTO.self, from: jsonData)
-                functionOK(igImage)
-            }catch let error{
-                functionError(error)
-            }
+            let responseDict = response as? [String : Any] ?? [:]
+            let jsonData = try? JSONSerialization.data(withJSONObject: responseDict, options: .prettyPrinted)
+            let igImage = try? JSONDecoder().decode(IGMediaDTO.self, from: jsonData ?? Data())
+            functionOK(igImage)
         }, withErroBlock: {error in
             functionError(error)
         })
     }
     
-    func getAuthToken(withParams params: [String : String], withCompletionBlock functionOK:@escaping((String) -> Void), functionError :@escaping((Error) -> Void)){
+    func getAuthToken(withParams params: [String : String], withCompletionBlock functionOK:@escaping((String) -> Void), functionError :@escaping((IGError) -> Void)){
         makeRequest(url: apiURLProvider.authURL, withMethod: .post, withParams: params, withCompletionBlock: { response, _ in
             guard let dataDict = response as? [String : Any] else { return }
             guard let token = dataDict[IGConstants.ParamsKeys.accessTokenKey] as? String else { return }
@@ -70,7 +62,7 @@ class IGRequest :IGBaseRequest{
         })
     }
     
-    func getLongLiveToken(withParams params: [String : String], functionOK :@escaping((String) -> Void), functionError :@escaping ((Error) -> Void)){
+    func getLongLiveToken(withParams params: [String : String], functionOK :@escaping((String) -> Void), functionError :@escaping ((IGError) -> Void)){
         makeRequest(url: apiGraphURLProvider.tokenURL, withMethod: .get, withParams: params, withCompletionBlock: {response, _ in
             guard let responseDict = response as? [String : Any] else { return }
             guard let token = responseDict[IGConstants.ParamsKeys.accessTokenKey] as? String else { return }
@@ -78,7 +70,7 @@ class IGRequest :IGBaseRequest{
         }, withErroBlock: functionError)
     }
     
-    func refreshToken(withParams params: [String : String], functionOK :@escaping((String) -> Void), functionError :@escaping((Error) -> Void)){
+    func refreshToken(withParams params: [String : String], functionOK :@escaping((String) -> Void), functionError :@escaping((IGError) -> Void)){
         makeRequest(url: apiGraphURLProvider.refreshToken, withMethod: .get, withParams: params, withCompletionBlock: {response, _ in
             guard let responseDict = response as? [String : Any] else { return }
             guard let token = responseDict[IGConstants.ParamsKeys.accessTokenKey] as? String else { return }
@@ -86,15 +78,15 @@ class IGRequest :IGBaseRequest{
         }, withErroBlock: functionError)
     }
     
-    func getUserInfo(withParams params: [String : String], withCompletionBlock functionOK:@escaping((IGUserDTO) -> Void), functionError :@escaping((Error) -> Void)){
+    func getUserInfo(withParams params: [String : String], withCompletionBlock functionOK:@escaping((IGUserDTO) -> Void), functionError :@escaping((IGError) -> Void)){
         makeRequest(url: apiGraphURLProvider.userURL, withMethod: .get, withParams: params, withCompletionBlock: {response, _ in
             let responseDict = response as? [String : Any] ?? [:]
             do{
                 let jsonData = try JSONSerialization.data(withJSONObject: responseDict, options: .prettyPrinted)
                 let igUser = try JSONDecoder().decode(IGUserDTO.self, from: jsonData)
                 functionOK(igUser)
-            }catch let error{
-                functionError(error)
+            }catch {
+                functionError(.invalidUser)
             }
         }, withErroBlock: {error in
             functionError(error)

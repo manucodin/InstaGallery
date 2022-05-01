@@ -9,11 +9,12 @@
 import Foundation
 
 internal protocol IGUserDefaultsDataSourceInterface: IGUserDefaultsInterface {
+    var userID: String? { get }
     var userName: String? { get }
     var userToken: String? { get }
     var isUserLogged: Bool { get }
     
-    func saveUser(user: IGUserDTO)
+    func saveUser(user: IGUserDTO) throws
     func getUser() -> IGUserDTO?
     func clearAll()
 }

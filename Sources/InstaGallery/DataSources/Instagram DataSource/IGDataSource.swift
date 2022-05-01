@@ -59,7 +59,7 @@ extension IGDataSource: IGDataSourceInterface {
         request.getUserGallery(withParams: params, withCompletionBlock: functionOK, functionError: functionError)
     }
     
-    internal func getImage(withIdentifier identifier :String, withCompletionBlock functionOK :@escaping((IGMediaDTO) -> Void), functionError :@escaping((Error) -> Void)){
+    internal func getImage(withIdentifier identifier :String, withCompletionBlock functionOK :@escaping((IGMediaDTO?) -> Void), functionError :@escaping((Error) -> Void)){
         guard let token = userDefaultsDataSource.getUser()?.token else { return }
         
         let parameters: [String : String] = [
@@ -81,16 +81,20 @@ extension IGDataSource: IGDataSourceInterface {
         }, functionError: functionError)
     }
     
-    private func getUserInfo(withToken token: String, withCompletionBlock functionOK: @escaping ((IGUserDTO) -> Void), functionError: @escaping ((Error) -> Void)) {
+    private func getUserInfo(withToken token: String, withCompletionBlock functionOK: @escaping ((IGUserDTO) -> Void), functionError: @escaping ((IGError) -> Void)) {
         let parameters :[String : String] = [
             "fields": "id,username",
             "access_token": token
         ]
         
         request.getUserInfo(withParams: parameters, withCompletionBlock: { [weak self] userInfoDTO in
-            let userDTO = userInfoDTO.updating(token: token)
-            self?.userDefaultsDataSource.saveUser(user: userDTO)
-            functionOK(userDTO)
+            do {
+                let userDTO = userInfoDTO.updating(token: token)
+                try self?.userDefaultsDataSource.saveUser(user: userDTO)
+                functionOK(userDTO)
+            } catch {
+                functionError(.invalidUser)
+            }
         }, functionError: functionError)
     }
 }

@@ -59,8 +59,10 @@ extension IGGalleryInteractor: IGGalleryInteractorInput {
     
     func getImage(withImageCover imageCover: IGMedia) {
         instagramDataSource.getImage(withIdentifier: imageCover.identifier, withCompletionBlock: { [weak self] mediaDTO in
-            let media = IGMediaMapper.transform(dto: mediaDTO)
-            self?.output?.didSelect(media: media)
+            if let mediaDTO = mediaDTO {
+                let media = IGMediaMapper.transform(dto: mediaDTO)
+                self?.output?.didSelect(media: media)
+            }
         }, functionError: { _ in })
     }
     

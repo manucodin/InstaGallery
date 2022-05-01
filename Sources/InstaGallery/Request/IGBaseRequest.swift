@@ -27,27 +27,22 @@ class IGBaseRequest :NSObject{
     
     private let userDataSource = IGUserDefaultsDataSourceImp()
     
-    func makeRequest(url: URL, withMethod method :RequestMethod, withParams params :[String : Any]? = nil, withCompletionBlock functionOK:@escaping((Any, Any) -> Void), withErroBlock functionError:@escaping((Error) -> Void)){
+    func makeRequest(url: URL, withMethod method :RequestMethod, withParams params :[String : Any]? = nil, withCompletionBlock functionOK:@escaping((Any, Any) -> Void), withErroBlock functionError:@escaping((IGError) -> Void)){
         return request(url: url, withMethod: method, withParams: params, withCompletionBlock: functionOK, withErroBlock: functionError)
     }
     
-    private func request(url :URL, withMethod method :RequestMethod, withParams params :[String : Any]? = nil, withCompletionBlock functionOK:@escaping((Any?, Any?) -> Void), withErroBlock functionError:@escaping((Error) -> Void)){
+    private func request(url :URL, withMethod method :RequestMethod, withParams params :[String : Any]? = nil, withCompletionBlock functionOK:@escaping((Any?, Any?) -> Void), withErroBlock functionError:@escaping((IGError) -> Void)){
         
         guard let generatedRequest = generateURLRequest(withMethod: method, url: url, withParams: params) else { return }
-        
-        session = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: OperationQueue.main)
-        
+                
         var request = generatedRequest
         request.allHTTPHeaderFields = headers
-    
-        let task = session.dataTask(with: request, completionHandler: {data, response, error in
+        
+        session = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: OperationQueue.main)
+
+        let task = session.dataTask(with: request, completionHandler: { data, response, error in
             guard let dataRequest = data, error == nil else{
-                functionError(self.errorURL())
-                return
-            }
-            
-            if let requestError = error{
-                functionError(requestError)
+                functionError(.invalidRequest)
                 return
             }
             
@@ -75,35 +70,42 @@ class IGBaseRequest :NSObject{
                                         guard let welf = self else { return }
                                         guard let currentUser = welf.userDataSource.getUser() else { return }
                                         let updatedUser = currentUser.updating(token: newToken)
-                                        welf.userDataSource.saveUser(user: updatedUser)
                                         
-                                        var newParams = params
-                                        if newParams?["access_token"] != nil {
-                                            newParams?["access_token"] = newToken
+                                        do {
+                                            try welf.userDataSource.saveUser(user: updatedUser)
+                                            
+                                            var newParams = params
+                                            if newParams?["access_token"] != nil {
+                                                newParams?["access_token"] = newToken
+                                            }
+                                            
+                                            welf.request(url: url, withMethod: method, withParams: newParams, withCompletionBlock: functionOK, withErroBlock: functionError)
+                                        } catch {
+                                            functionError(.invalidUser)
                                         }
                                         
-                                        welf.request(url: url, withMethod: method, withParams: newParams, withCompletionBlock: functionOK, withErroBlock: functionError)
                                     }, errorBlock: functionError)
                                 }else{
                                     self.tryCounter = 0
-                                    functionError(error)
+                                    functionError(.invalidUser)
                                 }
                             }else{
-                                functionError(error)
+                                functionError(.unexpected(code: error.code))
                             }
                         }else{
-                            functionError(self.errorURL())
+                            functionError(.invalidResponse)
                         }
                     }
                 }
-            }catch let error{
-                functionError(error)
+            }catch {
+                functionError(.invalidRequest)
             }
         })
+        
         task.resume()
     }
     
-    private func refreshToken(withCompletion completion: @escaping ((String) -> Void), errorBlock: @escaping ((Error) -> Void)) {
+    private func refreshToken(withCompletion completion: @escaping ((String) -> Void), errorBlock: @escaping ((IGError) -> Void)) {
         guard let token = userDataSource.userToken else { return }
         let params :[String : String] = [
             "grant_type": "ig_refresh_token",
@@ -130,11 +132,6 @@ class IGBaseRequest :NSObject{
             request.httpMethod = method.rawValue
             return request
         }
-    }
-    
-    private func errorURL() -> Error{
-        let error = NSError(domain: "com.igRequest", code: 0, userInfo: nil)
-        return error
     }
 }
 

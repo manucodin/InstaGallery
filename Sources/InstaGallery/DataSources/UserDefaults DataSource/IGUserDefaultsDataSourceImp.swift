@@ -9,13 +9,17 @@
 import Foundation
 
 internal class IGUserDefaultsDataSourceImp: IGUserDefaultsImp, IGUserDefaultsDataSourceInterface {
+    var userID: String? {
+        if let userData = getUser() {
+            return userData.id
+        }
+        
+        return nil
+    }
+    
     var userName: String? {
         if let userData = getUser() {
             return userData.username
-        }
-        
-        if let userName = getValue(withKey: IGConstants.UserDefaultsKeys.IG_USER_NAME) as? String {
-            return userName
         }
         
         return nil
@@ -26,10 +30,6 @@ internal class IGUserDefaultsDataSourceImp: IGUserDefaultsImp, IGUserDefaultsDat
             return userData.token
         }
         
-        if let userName = getValue(withKey: IGConstants.UserDefaultsKeys.IG_TOKEN_KEY) as? String {
-            return userName
-        }
-        
         return nil
     }
     
@@ -37,30 +37,22 @@ internal class IGUserDefaultsDataSourceImp: IGUserDefaultsImp, IGUserDefaultsDat
         return getUser()?.token != nil
     }
     
-    func saveUser(user: IGUserDTO) {
+    func saveUser(user: IGUserDTO) throws {
         do {
             let userData = try JSONEncoder().encode(user)
             save(value: userData, withKey: IGConstants.UserDefaultsKeys.userKey)
-        } catch let error {
-            debugPrint(error)
         }
     }
     
     func getUser() -> IGUserDTO? {
         guard let userData = getData(withKey: IGConstants.UserDefaultsKeys.userKey) else { return nil }
         do {
-            let user = try JSONDecoder().decode(IGUserDTO.self, from: userData)
+            let user = try? JSONDecoder().decode(IGUserDTO.self, from: userData)
             return user
-        } catch let error {
-            debugPrint(error)
         }
-        return nil
     }
     
     func clearAll() {
-        removeValue(withKey: IGConstants.UserDefaultsKeys.IG_TOKEN_KEY)
-        removeValue(withKey: IGConstants.UserDefaultsKeys.IG_USERID_KEY)
-        removeValue(withKey: IGConstants.UserDefaultsKeys.IG_USER_NAME)
         removeValue(withKey: IGConstants.UserDefaultsKeys.userKey)
     }
 }
