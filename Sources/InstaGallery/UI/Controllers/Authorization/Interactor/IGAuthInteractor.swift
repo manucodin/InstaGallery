@@ -22,7 +22,7 @@ internal class IGAuthInteractor {
 
 extension IGAuthInteractor: IGAuthInteractorInput {
     func generateAuthRequest() {
-        guard var urlComponent = URLComponents(string: IGAPIURLProvider().authorizeURL().absoluteString) else { return }
+        guard var urlComponent = URLComponents(string: IGAPIURLProvider().authorizeURL.absoluteString) else { return }
 
         let queryItems: [URLQueryItem] = [
             IGConstants.ParamsKeys.clientIDKey: bundleDataSource.appID,

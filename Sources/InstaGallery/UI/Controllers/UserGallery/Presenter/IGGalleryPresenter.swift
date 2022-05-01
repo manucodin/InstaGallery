@@ -79,6 +79,7 @@ extension IGGalleryPresenter: IGGalleryInteractorOutput {
     
     func didSelect(media: IGMedia) {
         view?.didSelect(media: media)
+        routing?.dismiss()
     }
 }
 
