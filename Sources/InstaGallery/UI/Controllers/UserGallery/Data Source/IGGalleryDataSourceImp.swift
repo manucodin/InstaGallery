@@ -15,7 +15,11 @@ internal class IGGalleryDataSourceImp {
 
 extension IGGalleryDataSourceImp: IGGalleryDataSource {
     var hasNextPage: Bool {
-        return gallery.paging?.cursors?.after == nil
+        guard gallery.paging?.next != nil else {
+            return false
+        }
+        
+        return gallery.paging?.cursors?.after != nil
     }
     
     var nextPage: String? {
@@ -27,7 +31,7 @@ extension IGGalleryDataSourceImp: IGGalleryDataSource {
     }
     
     func updateGallery(gallery: IGGallery) {
-        self.gallery = gallery
+        self.gallery = self.gallery.updating(newMedias: gallery.medias).updating(paging: gallery.paging)
     }
     
     func media(atIndexPath indexPath: IndexPath) -> IGMedia {

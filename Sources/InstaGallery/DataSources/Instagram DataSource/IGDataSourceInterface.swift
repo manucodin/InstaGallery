@@ -9,7 +9,7 @@
 import Foundation
 
 internal protocol IGDataSourceInterface {    
-    func authenticate(withUserCode userCode: String, completionHandler: @escaping ((Result<IGUserDTO, IGError>) -> Void))
     func getUserGallery(withLastItem lastItem: String?, completionHandler: @escaping ((Result<IGGalleryDTO, IGError>) -> Void))
     func getImage(withIdentifier identifier: String, completionHandler: @escaping ((Result<IGMediaDTO?, IGError>) -> Void))
+    func authenticate(withUserCode userCode: String, completionHandler: @escaping ((Result<IGUserDTO, IGError>) -> Void))
 }

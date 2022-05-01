@@ -8,7 +8,7 @@
 
 import Foundation
 
-internal protocol IGUserDefaultsDataSourceInterface: IGUserDefaultsInterface {
+internal protocol IGUserDataSourceInterface: IGUserDefaultsInterface {
     var userID: String? { get }
     var userName: String? { get }
     var userToken: String? { get }

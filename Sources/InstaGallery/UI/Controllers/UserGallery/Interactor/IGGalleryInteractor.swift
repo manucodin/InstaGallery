@@ -15,11 +15,11 @@ internal class IGGalleryInteractor {
     
     private let galleryDataSource: IGGalleryDataSource
     private let instagramDataSource: IGDataSourceInterface
-    private let userDefaultsDataSource: IGUserDefaultsDataSourceInterface
+    private let userDefaultsDataSource: IGUserDataSourceInterface
     
     init(galleryDataSource: IGGalleryDataSource = IGGalleryDataSourceImp(),
          instagramDataSource: IGDataSourceInterface = IGDataSource(),
-         userDefaultsDataSource: IGUserDefaultsDataSourceInterface = IGUserDefaultsDataSourceImp())
+         userDefaultsDataSource: IGUserDataSourceInterface = IGUserDataSourceImp())
     {
         self.galleryDataSource = galleryDataSource
         self.instagramDataSource = instagramDataSource

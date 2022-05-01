@@ -10,7 +10,7 @@ import Foundation
 
 class IGBaseRequest :NSObject{
     private var tryCounter = 0        
-    private let userDataSource = IGUserDefaultsDataSourceImp()
+    private let userDataSource = IGUserDataSourceImp()
     
     func makeRequest<T: Encodable, V: Codable>(url: URL, withMethod method :RequestMethods, withParameters parameters :T, completionHandler: @escaping (Result<V, IGError>) -> Void){
         return request(url: url, method: method, withParameters: parameters, completionHandler: completionHandler)
@@ -50,6 +50,66 @@ class IGBaseRequest :NSObject{
         task.resume()
     }
     
+    private func generateRequest<T: Encodable>(url: URL, method: RequestMethods, withParamemters parameters: T) -> URLRequest? {
+        guard let data = try? JSONEncoder().encode(parameters) else {
+            return nil
+        }
+        
+        guard let dictionary = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String : String] else {
+            return nil
+        }
+        
+        var authenticatedParams = dictionary
+        if let userToken = userDataSource.userToken {
+            authenticatedParams["access_token"] = userToken
+        }
+        
+        switch method {
+        case .get: return generateGetRequest(url: url, withParameters: authenticatedParams)
+        case .post: return generatePostRequest(url: url, withParameters: authenticatedParams)
+        }
+    }
+    
+    private func generatePostRequest<T: Encodable>(url: URL, withParameters parameters: T) -> URLRequest? {
+        guard let data = try? JSONEncoder().encode(parameters) else {
+            return nil
+        }
+        
+        guard let dictionary = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String : String] else {
+            return nil
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = RequestMethods.post.rawValue
+        request.allHTTPHeaderFields = RequestHeaders.defaultHeaders
+        request.httpBody = dictionary.paramsString().data(using: .utf8)
+
+        return request
+    }
+    
+    private func generateGetRequest<T: Encodable>(url: URL, withParameters parameters: T) -> URLRequest? {
+        guard let data = try? JSONEncoder().encode(parameters) else {
+            return nil
+        }
+        
+        guard let dictionary = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String : String] else {
+            return nil
+        }
+        
+        var components = URLComponents(string: url.absoluteString)
+        components?.queryItems = dictionary.map{ URLQueryItem (name: $0.key, value: $0.value) }
+        
+        guard let urlFormated = components?.url else {
+            return nil
+        }
+        
+        var request = URLRequest(url: urlFormated)
+        request.httpMethod = RequestMethods.get.rawValue
+        request.allHTTPHeaderFields = RequestHeaders.defaultHeaders
+        
+        return request
+    }
+    
     private func manageError<T: Encodable, V: Codable>(url: URL, withMethod method :RequestMethods, withParameters parameters :T, response: HTTPURLResponse, data: Data, completionHandler: @escaping (Result<V, IGError>) -> Void) {
         switch response.statusCode {
         case 400:
@@ -80,7 +140,7 @@ class IGBaseRequest :NSObject{
             return
         }
         
-        guard let token = userDataSource.userToken else {
+        if userDataSource.userToken == nil {
             completionHandler(.failure(.invalidUser))
             return
         }
@@ -89,9 +149,15 @@ class IGBaseRequest :NSObject{
         let params :[String : String] = [
             "grant_type": "ig_refresh_token",
         ]
-        IGRequest().getAuthToken(withParams: params) { [weak self] result in
+        
+        IGRequest().refreshToken(withParams: params) { [weak self] result in
             switch result {
-            case .success(let newToken):
+            case .success(let authenticationDTO):
+                guard let newToken = authenticationDTO.accessToken else {
+                    completionHandler(.failure(.invalidUser))
+                    return
+                }
+                
                 guard let updatedUser = self?.userDataSource.getUser()?.updating(token: newToken) else {
                     completionHandler(.failure(.invalidUser))
                     return
@@ -110,62 +176,6 @@ class IGBaseRequest :NSObject{
                 completionHandler(.failure(error))
             }
         }
-    }
-    
-    private func generateRequest<T: Encodable>(url: URL, method: RequestMethods, withParamemters parameters: T) -> URLRequest? {
-        guard let userToken = userDataSource.userToken else { return nil }
-        
-        guard let data = try? JSONEncoder().encode(parameters) else {
-            return nil
-        }
-        
-        guard let dictionary = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String : String] else {
-            return nil
-        }
-        
-        var authenticatedParams = dictionary
-        authenticatedParams["access_token"] = userToken
-        
-        switch method {
-        case .get: return generateGetRequest(url: url, withParameters: authenticatedParams)
-        case .post: return generatePostRequest(url: url, withParameters: authenticatedParams)
-        }
-    }
-    
-    private func generatePostRequest<T: Encodable>(url: URL, withParameters parameters: T) -> URLRequest? {
-        guard let data = try? JSONEncoder().encode(parameters) else {
-            return nil
-        }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = RequestMethods.post.rawValue
-        request.httpBody = data
-        request.allHTTPHeaderFields = RequestHeaders.defaultHeaders
-        
-        return request
-    }
-    
-    private func generateGetRequest<T: Encodable>(url: URL, withParameters parameters: T) -> URLRequest? {
-        guard let data = try? JSONEncoder().encode(parameters) else {
-            return nil
-        }
-        
-        guard let dictionary = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String : String] else {
-            return nil
-        }
-        
-        var components = URLComponents(string: url.absoluteString)
-        components?.queryItems = dictionary.map{ URLQueryItem (name: $0.key, value: $0.value) }
-        
-        guard let urlFormated = components?.url else {
-            return nil
-        }
-        
-        var request = URLRequest(url: urlFormated)
-        request.httpMethod = RequestMethods.get.rawValue
-        request.allHTTPHeaderFields = RequestHeaders.defaultHeaders
-        
-        return request
     }
 }
 

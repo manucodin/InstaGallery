@@ -11,47 +11,16 @@ import UIKit
 
 internal class IGDataSource{
     private let request = IGRequest()
-    private let userDefaultsDataSource: IGUserDefaultsDataSourceInterface
+    private let userDefaultsDataSource: IGUserDataSourceInterface
     private let bundleDataSource: IGBundleDataSourceInterface
     
-    internal var appID: String {
-        return bundleDataSource.appID
-    }
-    
-    internal var clientSecret: String {
-        return bundleDataSource.clientSecret
-    }
-    
-    internal var redirectURI: String {
-        return bundleDataSource.redirectURI
-    }
-    
-    init(userDefaultsDataSource: IGUserDefaultsDataSourceInterface = IGUserDefaultsDataSourceImp(), bundleDataSource: IGBundleDataSourceInterface = IGBundleDataSourceInterfaceImp()) {
+    init(userDefaultsDataSource: IGUserDataSourceInterface = IGUserDataSourceImp(), bundleDataSource: IGBundleDataSourceInterface = IGBundleDataSourceInterfaceImp()) {
         self.userDefaultsDataSource = userDefaultsDataSource
         self.bundleDataSource = bundleDataSource
     }
 }
 
-extension IGDataSource: IGDataSourceInterface {
-    internal func authenticate(withUserCode userCode: String, completionHandler: @escaping ((Result<IGUserDTO, IGError>) -> Void)) {
-        let parameters: [String : String] = [
-            "app_id": appID,
-            "app_secret": clientSecret,
-            "grant_type": "authorization_code",
-            "redirect_uri": redirectURI,
-            "code": userCode
-        ]
-
-        request.getAuthToken(withParams: parameters) { [weak self] result in
-            switch result {
-            case .success(let token):
-                self?.getLongLiveToken(completionHandler: completionHandler)
-            case .failure(let error):
-                completionHandler(.failure(error))
-            }
-        }
-    }
-    
+extension IGDataSource: IGDataSourceInterface {    
     internal func getUserGallery(withLastItem lastItem: String?, completionHandler: @escaping ((Result<IGGalleryDTO, IGError>) -> Void)) {
         let params: [String : String] = [
             "fields": "id,media_url,media_type",
@@ -68,18 +37,59 @@ extension IGDataSource: IGDataSourceInterface {
         request.getUserImage(withIdentifier: identifier, withParams: parameters, completionHandler: completionHandler)
     }
     
-    private func getLongLiveToken(completionHandler: @escaping ((Result<IGUserDTO, IGError>) -> Void)) {
+    internal func authenticate(withUserCode userCode: String, completionHandler: @escaping ((Result<IGUserDTO, IGError>) -> Void)) {
+        let parameters: [String : String] = [
+            "client_id": bundleDataSource.appID,
+            "client_secret": bundleDataSource.clientSecret,
+            "grant_type": "authorization_code",
+            "redirect_uri": bundleDataSource.redirectURI,
+            "code": userCode
+        ]
+
+        request.getAuthToken(withParams: parameters) { [weak self] result in
+            switch result {
+            case .success(let authenticationDTO):
+                if let shortLiveToken = authenticationDTO.accessToken {
+                    do {
+                        let newUserDTO = IGUserDTO(token: shortLiveToken)
+                        try self?.userDefaultsDataSource.saveUser(user: newUserDTO)
+                        self?.getLongLiveToken(shortLiveToken: shortLiveToken, completionHandler: completionHandler)
+                    } catch {
+                        completionHandler(.failure(.invalidUser))
+                    }
+                } else {
+                    completionHandler(.failure(.invalidUser))
+                }
+            case .failure(let error):
+                completionHandler(.failure(error))
+            }
+        }
+    }
+    
+    private func getLongLiveToken(shortLiveToken: String, completionHandler: @escaping ((Result<IGUserDTO, IGError>) -> Void)) {
         let parameters :[String : String] = [
             "grant_type": "ig_exchange_token",
-            "client_secret": clientSecret,
+            "client_secret": bundleDataSource.clientSecret,
+            "access_token": shortLiveToken
         ]
         
-        request.getLongLiveToken(withParams: parameters) { result in
+        request.getLongLiveToken(withParams: parameters) { [weak self] result in
             switch result {
-            case .success(let token):
-                self.getUserInfo(completionHandler: completionHandler)
-            case.failure(let error):
-                completionHandler(.failure(error))
+            case .success(let authenticationDTO):
+                
+                if let longLiveToken = authenticationDTO.accessToken {
+                    do {
+                        let newUserDTO = IGUserDTO().updating(token: longLiveToken)
+                        try self?.userDefaultsDataSource.saveUser(user: newUserDTO)
+                        self?.getUserInfo(completionHandler: completionHandler)
+                    } catch {
+                        self?.getUserInfo(completionHandler: completionHandler)
+                    }
+                } else {
+                    self?.getUserInfo(completionHandler: completionHandler)
+                }
+            case.failure(_):
+                self?.getUserInfo(completionHandler: completionHandler)
             }
         }
     }
@@ -93,8 +103,9 @@ extension IGDataSource: IGDataSourceInterface {
             switch result {
             case .success(let userDTO):
                 do {
-                    try self?.userDefaultsDataSource.saveUser(user: userDTO)
-                    completionHandler(.success(userDTO))
+                    let newUserDTO = userDTO.updating(token: self?.userDefaultsDataSource.userToken)
+                    try self?.userDefaultsDataSource.saveUser(user: newUserDTO)
+                    completionHandler(.success(newUserDTO))
                 } catch {
                     completionHandler(.failure(.invalidUser))
                 }

@@ -8,43 +8,38 @@
 
 import Foundation
 
-internal class IGUserDefaultsDataSourceImp: IGUserDefaultsImp, IGUserDefaultsDataSourceInterface {
-    var userID: String? {
-        if let userData = getUser() {
-            return userData.id
-        }
-        
-        return nil
+internal class IGUserDataSourceImp: IGUserDefaultsImp, IGUserDataSourceInterface {
+    
+    private let bundleDataSource: IGBundleDataSourceInterface
+    
+    internal var userID: String? {
+        return getUser()?.id
     }
     
-    var userName: String? {
-        if let userData = getUser() {
-            return userData.username
-        }
-        
-        return nil
+    internal var userName: String? {
+        return getUser()?.username
     }
     
-    var userToken: String? {
-        if let userData = getUser() {
-            return userData.token
-        }
-        
-        return nil
+    internal var userToken: String? {
+        return getUser()?.token
     }
     
-    var isUserLogged: Bool {
+    internal var isUserLogged: Bool {
         return getUser()?.token != nil
     }
     
-    func saveUser(user: IGUserDTO) throws {
+    init(bundleDataSource: IGBundleDataSourceInterface = IGBundleDataSourceInterfaceImp()) {
+        self.bundleDataSource = bundleDataSource
+    }
+    
+    internal func saveUser(user: IGUserDTO) throws {
         do {
             let userData = try JSONEncoder().encode(user)
             save(value: userData, withKey: IGConstants.UserDefaultsKeys.userKey)
         }
     }
     
-    func getUser() -> IGUserDTO? {
+    internal func getUser() -> IGUserDTO? {
         guard let userData = getData(withKey: IGConstants.UserDefaultsKeys.userKey) else { return nil }
         do {
             let user = try? JSONDecoder().decode(IGUserDTO.self, from: userData)
@@ -52,7 +47,7 @@ internal class IGUserDefaultsDataSourceImp: IGUserDefaultsImp, IGUserDefaultsDat
         }
     }
     
-    func clearAll() {
+    internal func clearAll() {
         removeValue(withKey: IGConstants.UserDefaultsKeys.userKey)
     }
 }

@@ -12,10 +12,12 @@ internal class IGAuthInteractor {
     weak var output: IGAuthInteractorOutput?
     
     private let bundleDataSource: IGBundleDataSourceInterface
+    private let userDataSource: IGUserDataSourceInterface
     private let instagramDataSource: IGDataSourceInterface
     
-    internal init(bundleDataSource: IGBundleDataSourceInterface = IGBundleDataSourceInterfaceImp(), instagramDataSource: IGDataSourceInterface = IGDataSource()) {
+    internal init(bundleDataSource: IGBundleDataSourceInterface = IGBundleDataSourceInterfaceImp(), userDataSource: IGUserDataSourceInterface = IGUserDataSourceImp(), instagramDataSource: IGDataSourceInterface = IGDataSource()) {
         self.bundleDataSource = bundleDataSource
+        self.userDataSource = userDataSource
         self.instagramDataSource = instagramDataSource
     }
 }

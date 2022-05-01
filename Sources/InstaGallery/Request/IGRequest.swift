@@ -23,15 +23,15 @@ class IGRequest :IGBaseRequest{
         makeRequest(url: url, withMethod: .get, withParameters: params, completionHandler: completionHandler)
     }
     
-    func getAuthToken(withParams params: [String : String], completionHandler: @escaping ((Result<String, IGError>) -> Void)){
+    func getAuthToken(withParams params: [String : String], completionHandler: @escaping ((Result<IGAuthenticationDTO, IGError>) -> Void)){
         makeRequest(url: apiURLProvider.authURL, withMethod: .post, withParameters: params, completionHandler: completionHandler)
     }
     
-    func getLongLiveToken(withParams params: [String : String], completionHandler: @escaping ((Result<String, IGError>) -> Void)){
+    func getLongLiveToken(withParams params: [String : String], completionHandler: @escaping ((Result<IGAuthenticationDTO, IGError>) -> Void)){
         makeRequest(url: apiGraphURLProvider.tokenURL, withMethod: .get, withParameters: params, completionHandler: completionHandler)
     }
     
-    func refreshToken(withParams params: [String : String], completionHandler: @escaping ((Result<String, IGError>) -> Void)){
+    func refreshToken(withParams params: [String : String], completionHandler: @escaping ((Result<IGAuthenticationDTO, IGError>) -> Void)){
         makeRequest(url: apiGraphURLProvider.refreshToken, withMethod: .get, withParameters: params, completionHandler: completionHandler)
     }
     
