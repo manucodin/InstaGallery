@@ -21,7 +21,9 @@ extension IGAuthPresenter: IGAuthPresenterInterface {
     }
     
     func load() {
-        interactor?.generateAuthRequest()
+        guard let authRequest = interactor?.authRequest else { return }
+        
+        view?.loadRequest(request: authRequest)
     }
     
     func dismiss() {
@@ -30,10 +32,6 @@ extension IGAuthPresenter: IGAuthPresenterInterface {
 }
 
 extension IGAuthPresenter: IGAuthInteractorOutput {
-    func didGenerateAuthRequest(request: URLRequest) {
-        view?.loadRequest(request: request)
-    }
-    
     func didAuthenticateUser(user: IGUser) {
         view?.didLoadUser(user: user)
         routing?.dismiss()

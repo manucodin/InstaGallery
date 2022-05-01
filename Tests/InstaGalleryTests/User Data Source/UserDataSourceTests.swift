@@ -9,7 +9,7 @@ import XCTest
 import Nimble
 @testable import InstaGallery
 
-final class UserDefaultsDataSourceTests: XCTestCase {
+final class UserDataSourceTests: XCTestCase {
     
     var sut: IGUserDataSourceInterface!
     

@@ -16,12 +16,11 @@ internal protocol IGAuthInteractorInterface {
 }
 
 internal protocol IGAuthInteractorInput {
-    func generateAuthRequest()
+    var authRequest: URLRequest? { get }
     func authenticate(userCode: String)
 }
 
 internal protocol IGAuthInteractorOutput: AnyObject {
-    func didGenerateAuthRequest(request: URLRequest)
     func didAuthenticateUser(user: IGUser)
     func didGetError(error: Error)
 }
