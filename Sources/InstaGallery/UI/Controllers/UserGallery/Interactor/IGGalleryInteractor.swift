@@ -15,11 +15,11 @@ internal class IGGalleryInteractor {
     
     private let galleryDataSource: IGGalleryDataSource
     private let instagramDataSource: IGDataSourceInterface
-    private let userDefaultsDataSource: IGUserDefaultsDataSourceInterface
+    private let userDefaultsDataSource: IGUserDataSourceInterface
     
     init(galleryDataSource: IGGalleryDataSource = IGGalleryDataSourceImp(),
          instagramDataSource: IGDataSourceInterface = IGDataSource(),
-         userDefaultsDataSource: IGUserDefaultsDataSourceInterface = IGUserDefaultsDataSourceImp())
+         userDefaultsDataSource: IGUserDataSourceInterface = IGUserDataSourceImp())
     {
         self.galleryDataSource = galleryDataSource
         self.instagramDataSource = instagramDataSource
@@ -49,19 +49,30 @@ extension IGGalleryInteractor: IGGalleryInteractorInput {
     }
     
     func loadUserGallery() {
-        instagramDataSource.getUserGallery(withLastItem: galleryDataSource.nextPage, withCompletionBlock: { [weak self] newMediasDTO, nextPage in
-            let newMedias = newMediasDTO.map({ IGMediaMapper.transform(dto: $0) })
-            self?.galleryDataSource.updateNextPage(newNextPage: nextPage)
-            self?.galleryDataSource.addMedias(newMedias: newMedias)
-            self?.output?.didLoadUserGallery()
-        }, errorBlock: { _ in })
+        instagramDataSource.getUserGallery(withLastItem: galleryDataSource.nextPage) { [weak self] result in
+            switch result {
+            case .success(let galleryDTO):
+                let gallery = IGGalleryMapper().transform(galleryDTO: galleryDTO)
+                self?.galleryDataSource.updateGallery(gallery: gallery)
+                self?.output?.didLoadUserGallery()
+            case .failure(let error):
+                debugPrint(error)
+            }
+        }
     }
     
     func getImage(withImageCover imageCover: IGMedia) {
-        instagramDataSource.getImage(withIdentifier: imageCover.identifier, withCompletionBlock: { [weak self] mediaDTO in
-            let media = IGMediaMapper.transform(dto: mediaDTO)
-            self?.output?.didSelect(media: media)
-        }, functionError: { _ in })
+        instagramDataSource.getImage(withIdentifier: imageCover.identifier) { [weak self] result in
+            switch result {
+            case .success(let mediaDTO):
+                if let mediaDTO = mediaDTO {
+                    let media = IGMediaMapper().transform(dto: mediaDTO)
+                    self?.output?.didSelect(media: media)
+                }
+            case .failure(let error):
+                debugPrint(error)
+            }
+        }
     }
     
     func imageCover(atIndexPath indexPath: IndexPath) -> IGMedia {

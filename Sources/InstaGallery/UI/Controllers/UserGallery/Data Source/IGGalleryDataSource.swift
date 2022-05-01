@@ -14,7 +14,6 @@ internal protocol IGGalleryDataSource {
     var nextPage: String? { get }
     var numberOfMedias: Int { get }
     
-    func updateNextPage(newNextPage: String?)
-    func addMedias(newMedias: [IGMedia])
+    func updateGallery(gallery: IGGallery)
     func media(atIndexPath indexPath: IndexPath) -> IGMedia
 }

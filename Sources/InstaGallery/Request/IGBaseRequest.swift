@@ -8,137 +8,178 @@
 
 import Foundation
 
-enum RequestMethod :String{
-    case get    = "GET"
-    case post   = "POST"
-}
-
 class IGBaseRequest :NSObject{
+    private var tryCounter = 0        
+    private let userDataSource = IGUserDataSourceImp()
     
-    private var tryCounter = 0
-    
-    private var session : URLSession!
-    
-    private var BASE_URL = ""
-    private let headers = [
-        "Content-Type": "application/x-www-form-urlencoded",
-        "Accept": "application/json"
-    ]
-    
-    private let userDataSource = IGUserDefaultsDataSourceImp()
-    
-    func makeRequest(url: URL, withMethod method :RequestMethod, withParams params :[String : Any]? = nil, withCompletionBlock functionOK:@escaping((Any, Any) -> Void), withErroBlock functionError:@escaping((Error) -> Void)){
-        return request(url: url, withMethod: method, withParams: params, withCompletionBlock: functionOK, withErroBlock: functionError)
+    func makeRequest<T: Encodable, V: Codable>(url: URL, withMethod method :RequestMethods, withParameters parameters :T, completionHandler: @escaping (Result<V, IGError>) -> Void){
+        return request(url: url, method: method, withParameters: parameters, completionHandler: completionHandler)
     }
     
-    private func request(url :URL, withMethod method :RequestMethod, withParams params :[String : Any]? = nil, withCompletionBlock functionOK:@escaping((Any?, Any?) -> Void), withErroBlock functionError:@escaping((Error) -> Void)){
+    private func request<T: Encodable, V: Codable>(url: URL, method: RequestMethods, withParameters parameters: T, completionHandler: @escaping (Result<V, IGError>) -> Void) {
         
-        guard let generatedRequest = generateURLRequest(withMethod: method, url: url, withParams: params) else { return }
+        guard let request = generateRequest(url: url, method: method, withParamemters: parameters) else {
+            completionHandler(.failure(.invalidRequest))
+            return
+        }
         
-        session = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: OperationQueue.main)
-        
-        var request = generatedRequest
-        request.allHTTPHeaderFields = headers
-    
-        let task = session.dataTask(with: request, completionHandler: {data, response, error in
-            guard let dataRequest = data, error == nil else{
-                functionError(self.errorURL())
+        let session = URLSession(configuration: .default, delegate: self, delegateQueue: .main)
+        let task = session.dataTask(with: request) { data, response, error in
+            guard let httpResponse = response as? HTTPURLResponse, error == nil else {
+                completionHandler(.failure(.invalidRequest))
                 return
             }
             
-            if let requestError = error{
-                functionError(requestError)
+            guard let data = data else {
+                completionHandler(.failure(.invalidResponse))
                 return
             }
             
-            do{
-                let jsonResponse = try JSONSerialization.jsonObject(with: dataRequest, options: JSONSerialization.ReadingOptions())
-                if let responseRequest = response as? HTTPURLResponse{
-                    let responseCode = responseRequest.statusCode
-                    switch responseCode{
-                    case 200...299:
-                        functionOK(jsonResponse, nil)
-                    default:
-                        if let errorRespose = jsonResponse as? [String : Any], let errorDict = errorRespose["error"] as? [String : Any]{
-                            let errorCode = errorDict["code"] as? Int ?? responseCode
-                            let errorMessage = errorDict["message"] as? String ?? "error"
-                            
-                            let errorInfo :[String : Any] = [
-                                NSLocalizedDescriptionKey : errorMessage
-                            ]
-                            
-                            let error = NSError(domain: "com.igRequest", code: errorCode, userInfo: errorInfo)
-                            if(error.code == 190){
-                                if(self.tryCounter < 3){
-                                    self.tryCounter += 1
-                                    self.refreshToken(withCompletion: { [weak self] newToken in
-                                        guard let welf = self else { return }
-                                        guard let currentUser = welf.userDataSource.getUser() else { return }
-                                        let updatedUser = currentUser.updating(token: newToken)
-                                        welf.userDataSource.saveUser(user: updatedUser)
-                                        
-                                        var newParams = params
-                                        if newParams?["access_token"] != nil {
-                                            newParams?["access_token"] = newToken
-                                        }
-                                        
-                                        welf.request(url: url, withMethod: method, withParams: newParams, withCompletionBlock: functionOK, withErroBlock: functionError)
-                                    }, errorBlock: functionError)
-                                }else{
-                                    self.tryCounter = 0
-                                    functionError(error)
-                                }
-                            }else{
-                                functionError(error)
-                            }
-                        }else{
-                            functionError(self.errorURL())
-                        }
-                    }
+            switch httpResponse.statusCode {
+            case 200...299:
+                do {
+                    let codable = try data.decoded() as V
+                    completionHandler(.success(codable))
+                } catch {
+                    completionHandler(.failure(.invalidResponse))
                 }
-            }catch let error{
-                functionError(error)
+            default:
+                self.manageError(url: url, withMethod: method, withParameters: parameters, response: httpResponse, data: data, completionHandler: completionHandler)
             }
-        })
+        }
         task.resume()
     }
     
-    private func refreshToken(withCompletion completion: @escaping ((String) -> Void), errorBlock: @escaping ((Error) -> Void)) {
-        guard let token = userDataSource.userToken else { return }
-        let params :[String : String] = [
-            "grant_type": "ig_refresh_token",
-            "access_token": token
-        ]
-        IGRequest().refreshToken(withParams: params, functionOK: { newToken in
-            completion(newToken)
-        }, functionError: errorBlock)
-    }
-    
-    private func generateURLRequest(withMethod method: RequestMethod, url: URL, withParams params: [String : Any]?) -> URLRequest? {
-        if method == .get, let requestParams = params {
-            guard let url = URL(string: String(format: "%@?%@", url.absoluteString, requestParams.paramsString())) else { return nil }
-            var request = URLRequest(url: url)
-            request.httpMethod = method.rawValue
-            return request
-        } else {
-            var request = URLRequest(url: url)
-            if let requestParams = params {
-                let jsonString = requestParams.paramsString()
-                let requestData = jsonString.data(using: .utf8)
-                request.httpBody = requestData
-            }
-            request.httpMethod = method.rawValue
-            return request
+    private func generateRequest<T: Encodable>(url: URL, method: RequestMethods, withParamemters parameters: T) -> URLRequest? {
+        guard let data = try? JSONEncoder().encode(parameters) else {
+            return nil
+        }
+        
+        guard let dictionary = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String : String] else {
+            return nil
+        }
+        
+        var authenticatedParams = dictionary
+        if let userToken = userDataSource.userToken {
+            authenticatedParams["access_token"] = userToken
+        }
+        
+        switch method {
+        case .get: return generateGetRequest(url: url, withParameters: authenticatedParams)
+        case .post: return generatePostRequest(url: url, withParameters: authenticatedParams)
         }
     }
     
-    private func errorURL() -> Error{
-        let error = NSError(domain: "com.igRequest", code: 0, userInfo: nil)
-        return error
+    private func generatePostRequest<T: Encodable>(url: URL, withParameters parameters: T) -> URLRequest? {
+        guard let data = try? JSONEncoder().encode(parameters) else {
+            return nil
+        }
+        
+        guard let dictionary = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String : String] else {
+            return nil
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = RequestMethods.post.rawValue
+        request.allHTTPHeaderFields = RequestHeaders.defaultHeaders
+        request.httpBody = dictionary.paramsString().data(using: .utf8)
+
+        return request
+    }
+    
+    private func generateGetRequest<T: Encodable>(url: URL, withParameters parameters: T) -> URLRequest? {
+        guard let data = try? JSONEncoder().encode(parameters) else {
+            return nil
+        }
+        
+        guard let dictionary = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String : String] else {
+            return nil
+        }
+        
+        var components = URLComponents(string: url.absoluteString)
+        components?.queryItems = dictionary.map{ URLQueryItem (name: $0.key, value: $0.value) }
+        
+        guard let urlFormated = components?.url else {
+            return nil
+        }
+        
+        var request = URLRequest(url: urlFormated)
+        request.httpMethod = RequestMethods.get.rawValue
+        request.allHTTPHeaderFields = RequestHeaders.defaultHeaders
+        
+        return request
+    }
+    
+    private func manageError<T: Encodable, V: Codable>(url: URL, withMethod method :RequestMethods, withParameters parameters :T, response: HTTPURLResponse, data: Data, completionHandler: @escaping (Result<V, IGError>) -> Void) {
+        switch response.statusCode {
+        case 400:
+            guard let jsonResponse = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) as? [String : Any] else {
+                completionHandler(.failure(.invalidRequest))
+                return
+            }
+            
+            guard let code = jsonResponse["code"] as? Int else {
+                completionHandler(.failure(.invalidRequest))
+                return
+            }
+            
+            switch code {
+            case 190:
+                self.expiredToken(url: url, method: method, withParameters: parameters, completionHandler: completionHandler)
+            default:
+                completionHandler(.failure(.unexpected(code: code)))
+            }
+        default:
+            completionHandler(.failure(.unexpected(code: response.statusCode)))
+        }
+    }
+    
+    private func expiredToken<T: Encodable, V: Codable>(url: URL, method: RequestMethods, withParameters parameters: T, completionHandler: @escaping (Result<V, IGError>) -> Void) {
+        guard tryCounter < 3 else {
+            completionHandler(.failure(.invalidRequest))
+            return
+        }
+        
+        if userDataSource.userToken == nil {
+            completionHandler(.failure(.invalidUser))
+            return
+        }
+        
+        tryCounter += 1
+        let params :[String : String] = [
+            "grant_type": "ig_refresh_token",
+        ]
+        
+        IGRequest().refreshToken(withParams: params) { [weak self] result in
+            switch result {
+            case .success(let authenticationDTO):
+                guard let newToken = authenticationDTO.accessToken else {
+                    completionHandler(.failure(.invalidUser))
+                    return
+                }
+                
+                guard let updatedUser = self?.userDataSource.getUser()?.updating(token: newToken) else {
+                    completionHandler(.failure(.invalidUser))
+                    return
+                }
+                
+                do {
+                    try self?.userDataSource.saveUser(user: updatedUser)
+                    self?.tryCounter = 0
+                    self?.request(url: url, method: method, withParameters: parameters, completionHandler: completionHandler)
+                } catch {
+                    completionHandler(.failure(.invalidUser))
+                    return
+                }
+            case .failure(let error):
+                self?.tryCounter = 0
+                completionHandler(.failure(error))
+            }
+        }
     }
 }
 
-extension IGBaseRequest :URLSessionTaskDelegate{
+extension IGBaseRequest: URLSessionTaskDelegate{
     func urlSession(_ session: URLSession, task: URLSessionTask, willPerformHTTPRedirection response: HTTPURLResponse, newRequest request: URLRequest, completionHandler: @escaping (URLRequest?) -> Void) {
         completionHandler(request)
     }

@@ -33,7 +33,7 @@ public class IGSessionButton: UIButton {
         }
     }
     
-    private let userDataSource = IGUserDefaultsDataSourceImp()
+    private let userDataSource = IGUserDataSourceImp()
     
     override public func awakeFromNib() {
         super.awakeFromNib()

@@ -9,8 +9,7 @@
 import Foundation
 
 internal class IGMediaMapper {
-    
-    internal static func transform(dto: IGMediaDTO) -> IGMedia {
+    internal func transform(dto: IGMediaDTO) -> IGMedia {
         return IGMedia(
             caption: dto.caption,
             identifier: dto.id ?? "",

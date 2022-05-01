@@ -10,6 +10,8 @@ import Foundation
 
 internal class IGUserDefaultsImp: IGUserDefaultsInterface {
     func save(value: Any?, withKey key: String) {
+        guard let value = value else { return }
+        
         UserDefaults.standard.set(value, forKey: key)
     }
     

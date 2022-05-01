@@ -15,10 +15,17 @@ internal struct IGUserDTO: Codable {
     internal let token: String?
     
     private enum CodingKeys :String, CodingKey{
-        case id = "user_id"
+        case id
         case username
         case urlAccount
         case token = "access_token"
+    }
+    
+    init(id: String? = nil, username: String? = nil, urlAccount: String? = nil, token: String? = nil) {
+        self.id = id
+        self.username = username
+        self.urlAccount = urlAccount
+        self.token = token
     }
     
     internal func updating(token: String?) -> IGUserDTO {

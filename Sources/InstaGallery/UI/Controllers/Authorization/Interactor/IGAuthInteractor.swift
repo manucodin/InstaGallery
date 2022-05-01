@@ -12,10 +12,12 @@ internal class IGAuthInteractor {
     weak var output: IGAuthInteractorOutput?
     
     private let bundleDataSource: IGBundleDataSourceInterface
+    private let userDataSource: IGUserDataSourceInterface
     private let instagramDataSource: IGDataSourceInterface
     
-    internal init(bundleDataSource: IGBundleDataSourceInterface = IGBundleDataSourceInterfaceImp(), instagramDataSource: IGDataSourceInterface = IGDataSource()) {
+    internal init(bundleDataSource: IGBundleDataSourceInterface = IGBundleDataSourceInterfaceImp(), userDataSource: IGUserDataSourceInterface = IGUserDataSourceImp(), instagramDataSource: IGDataSourceInterface = IGDataSource()) {
         self.bundleDataSource = bundleDataSource
+        self.userDataSource = userDataSource
         self.instagramDataSource = instagramDataSource
     }
 }
@@ -40,9 +42,14 @@ extension IGAuthInteractor: IGAuthInteractorInput {
     }
     
     func authenticate(userCode: String) {
-        instagramDataSource.authenticate(withUserCode: userCode, withCompletionBlock: { [weak self] userDTO in
-            let user = IGUserMapper.transform(dto: userDTO)
-            self?.output?.didAuthenticateUser(user: user)
-        }, functionError: { _ in })
+        instagramDataSource.authenticate(withUserCode: userCode) { [weak self] result in
+            switch result {
+            case .success(let userDTO):
+                let user = IGUserMapper.transform(dto: userDTO)
+                self?.output?.didAuthenticateUser(user: user)
+            case .failure(let error):
+                debugPrint(error)
+            }
+        }
     }
 }
