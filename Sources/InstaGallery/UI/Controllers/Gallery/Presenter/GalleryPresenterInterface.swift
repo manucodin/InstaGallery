@@ -15,4 +15,5 @@ internal protocol GalleryPresenterInterface {
     
     func viewLoaded()
     func selectImage(atIndexPath indexPath: IndexPath)
+    func dismiss()
 }

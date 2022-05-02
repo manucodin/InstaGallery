@@ -49,5 +49,6 @@ internal class UserDataSourceImp: UserDefaultsImp, UserDataSourceInterface {
     
     internal func clearAll() {
         removeValue(withKey: Constants.UserDefaultsKeys.userKey)
+        ManagerUtils.logoutUser()
     }
 }

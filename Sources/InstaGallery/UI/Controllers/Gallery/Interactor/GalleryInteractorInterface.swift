@@ -19,7 +19,6 @@ protocol GalleryInteractorInput {
 }
 
 protocol GalleryInteractorOutput: AnyObject {
-    func showUserLogin()
     func didLoadUserGallery(gallery: Gallery)
     func didSelect(media: Media)
 }

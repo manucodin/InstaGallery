@@ -23,8 +23,8 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: IGGalleryDelegate {
-    func didSelect(media: IGMedia) {
+extension ViewController: GalleryDelegate {
+    func didSelect(media: Media) {
         debugPrint(media)
     }
 }
