@@ -10,8 +10,8 @@ import Foundation
 
 class BaseRequest :NSObject{
     
-    private var tryCounter = 0        
     private let userDataSource = UserDataSourceImp()
+    private let notificationCenter = NotificationCenter.default
     
     func makeRequest<T: Encodable, V: Codable>(url: URL, withMethod method :RequestMethods, withParameters parameters :T, completionHandler: @escaping (Result<V, InstaGalleryError>) -> Void){
         return request(url: url, method: method, withParameters: parameters, completionHandler: completionHandler)
@@ -119,14 +119,19 @@ class BaseRequest :NSObject{
                 return
             }
             
-            guard let code = jsonResponse["code"] as? Int else {
+            guard let errorDict = jsonResponse["error"] as? [String : Any] else {
+                completionHandler(.failure(.invalidRequest))
+                return
+            }
+            
+            guard let code = errorDict["code"] as? Int else {
                 completionHandler(.failure(.invalidRequest))
                 return
             }
             
             switch code {
             case 190:
-                self.expiredToken(url: url, method: method, withParameters: parameters, completionHandler: completionHandler)
+                expiredToken(url: url, method: method, withParameters: parameters, completionHandler: completionHandler)
             default:
                 completionHandler(.failure(.unexpected(code: code)))
             }
@@ -136,45 +141,33 @@ class BaseRequest :NSObject{
     }
     
     private func expiredToken<T: Encodable, V: Codable>(url: URL, method: RequestMethods, withParameters parameters: T, completionHandler: @escaping (Result<V, InstaGalleryError>) -> Void) {
-        guard tryCounter < 3 else {
-            completionHandler(.failure(.invalidRequest))
+        guard let userToken = userDataSource.userToken else {
+            notificationCenter.post(name: .invalidRefreshToken, object: nil)
             return
         }
-        
-        if userDataSource.userToken == nil {
-            completionHandler(.failure(.invalidUser))
-            return
-        }
-        
-        tryCounter += 1
+    
         let params :[String : String] = [
             "grant_type": "ig_refresh_token",
+            "access_token": userToken
         ]
         
         Request().refreshToken(withParams: params) { [weak self] result in
             switch result {
             case .success(let authenticationDTO):
-                guard let newToken = authenticationDTO.accessToken else {
-                    completionHandler(.failure(.invalidUser))
+                guard let newToken = authenticationDTO.accessToken, let updatedUser = self?.userDataSource.getUser()?.updating(token: newToken) else {
+                    self?.notificationCenter.post(name: .invalidRefreshToken, object: nil)
                     return
                 }
-                
-                guard let updatedUser = self?.userDataSource.getUser()?.updating(token: newToken) else {
-                    completionHandler(.failure(.invalidUser))
-                    return
-                }
-                
+        
                 do {
                     try self?.userDataSource.saveUser(user: updatedUser)
-                    self?.tryCounter = 0
                     self?.request(url: url, method: method, withParameters: parameters, completionHandler: completionHandler)
                 } catch {
-                    completionHandler(.failure(.invalidUser))
+                    self?.notificationCenter.post(name: .invalidRefreshToken, object: nil)
                     return
                 }
-            case .failure(let error):
-                self?.tryCounter = 0
-                completionHandler(.failure(error))
+            case .failure:
+                self?.notificationCenter.post(name: .invalidRefreshToken, object: nil)
             }
         }
     }

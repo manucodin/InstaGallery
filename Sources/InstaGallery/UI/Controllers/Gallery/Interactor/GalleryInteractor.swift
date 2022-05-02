@@ -35,15 +35,9 @@ extension GalleryInteractor: GalleryInteractorInput {
     
     func logoutUser() {
         userDefaultsDataSource.clearAll()
-        ManagerUtils.logoutUser()
     }
     
     func loadUserGallery(nexPage: String?) {
-        guard isLoggedUser else {
-            showUserLogin()
-            return
-        }
-        
         instagramDataSource.getUserGallery(withLastItem: nexPage) { [weak self] result in
             switch result {
             case .success(let galleryDTO):
@@ -67,10 +61,5 @@ extension GalleryInteractor: GalleryInteractorInput {
                 debugPrint(error)
             }
         }
-    }
-    
-    private func showUserLogin() {
-        logoutUser()
-        output?.showUserLogin()
     }
 }

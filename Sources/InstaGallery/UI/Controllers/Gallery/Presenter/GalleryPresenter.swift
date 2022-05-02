@@ -16,6 +16,7 @@ class GalleryPresenter {
     internal var interactor: GalleryInteractorInput?
     internal var routing: GalleryRoutingInterface?
     internal var galleryDataSource: GalleryDataSource?
+    internal let notificationCenter = NotificationCenter.default
     
     var userName: String? {
         return interactor?.userName
@@ -28,6 +29,7 @@ class GalleryPresenter {
 
 extension GalleryPresenter: GalleryPresenterInterface {
     func viewLoaded() {
+        notificationCenter.addObserver(self, selector: .userLoggedOut, name: .invalidRefreshToken, object: nil)
         view?.setupView()
         loadUserGallery()
     }
@@ -36,15 +38,17 @@ extension GalleryPresenter: GalleryPresenterInterface {
         guard let imageCover = galleryDataSource?.media(atIndexPath: indexPath) else { return }
         interactor?.getImage(withImageCover: imageCover)
     }
-
-    private func loginUser(){
-        interactor?.logoutUser()
-        routing?.presentLoginUser {
-            self.loadUserGallery()
-        }
-    }
     
+    func dismiss() {
+        notificationCenter.removeObserver(self)
+        routing?.dismiss()
+    }
+
     private func loadUserGallery() {
+        guard isUserLogged else {
+            showUserLogin()
+            return
+        }
         let nextPage = galleryDataSource?.nextPage
         interactor?.loadUserGallery(nexPage: nextPage)
     }
@@ -52,6 +56,7 @@ extension GalleryPresenter: GalleryPresenterInterface {
 
 extension GalleryPresenter: GalleryInteractorOutput {
     func showUserLogin() {
+        interactor?.logoutUser()
         routing?.presentLoginUser {
             self.loadUserGallery()
         }
@@ -64,7 +69,7 @@ extension GalleryPresenter: GalleryInteractorOutput {
     
     func didSelect(media: Media) {
         view?.didSelect(media: media)
-        routing?.dismiss()
+        dismiss()
     }
 }
 
@@ -72,4 +77,14 @@ extension GalleryPresenter: GalleryDataSourceOutput {
     func loadNextPage() {
         self.loadUserGallery()
     }
+}
+
+extension GalleryPresenter {
+    @objc func userLoggedOut(_ sender: AnyObject) {
+        self.showUserLogin()
+    }
+}
+
+fileprivate extension Selector {
+    static let userLoggedOut = #selector(GalleryPresenter.userLoggedOut(_:))
 }

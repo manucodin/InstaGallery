@@ -69,7 +69,7 @@ import UIKit
     }
     
     @objc private func dismissController(){
-        self.dismiss(animated: true, completion: nil)
+        presenter?.dismiss()
     }
 }
 
