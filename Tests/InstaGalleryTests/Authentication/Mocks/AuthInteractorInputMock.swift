@@ -8,7 +8,7 @@
 import Foundation
 @testable import InstaGallery
 
-final class AuthInteractorInputMock: IGAuthInteractorInput {
+final class AuthInteractorInputMock: AuthInteractorInput {
     
     var invokedAuthRequestGetter = false
     var invokedAuthRequestGetterCount = 0

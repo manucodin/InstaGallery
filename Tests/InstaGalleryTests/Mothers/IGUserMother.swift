@@ -9,7 +9,7 @@ import Foundation
 @testable import InstaGallery
 
 internal struct IGUserMother {
-    internal static func user() -> IGUser {
-        return IGUser(identifier: "testIdentifier", account: "testAccount", urlAccount: "testAccount", token: "testToken")
+    internal static func user() -> User {
+        return User(identifier: "testIdentifier", account: "testAccount", urlAccount: "testAccount", token: "testToken")
     }
 }

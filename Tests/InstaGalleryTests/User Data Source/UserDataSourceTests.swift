@@ -11,14 +11,14 @@ import Nimble
 
 final class UserDataSourceTests: XCTestCase {
     
-    var sut: IGUserDataSourceInterface!
+    var sut: UserDataSourceInterface!
     
     private let userMock = IGUserDTOMother.user()
     
     override func setUp() {
         super.setUp()
         
-        sut = IGUserDataSourceImp()
+        sut = UserDataSourceImp()
     }
     
     override func tearDown() {

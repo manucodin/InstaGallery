@@ -8,14 +8,14 @@
 import Foundation
 @testable import InstaGallery
 
-final class AuthInteractorOutputMock: IGAuthInteractorOutput {
+final class AuthInteractorOutputMock: AuthInteractorOutput {
 
     var invokedDidAuthenticateUser = false
     var invokedDidAuthenticateUserCount = 0
-    var invokedDidAuthenticateUserParameters: (user: IGUser, Void)?
-    var invokedDidAuthenticateUserParametersList = [(user: IGUser, Void)]()
+    var invokedDidAuthenticateUserParameters: (user: User, Void)?
+    var invokedDidAuthenticateUserParametersList = [(user: User, Void)]()
 
-    func didAuthenticateUser(user: IGUser) {
+    func didAuthenticateUser(user: User) {
         invokedDidAuthenticateUser = true
         invokedDidAuthenticateUserCount += 1
         invokedDidAuthenticateUserParameters = (user, ())

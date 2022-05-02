@@ -8,7 +8,7 @@
 import Foundation
 @testable import InstaGallery
 
-final class UserDataSourceMock: IGUserDataSourceInterface {
+final class UserDataSourceMock: UserDataSourceInterface {
     
     var invokedUserIDGetter = false
     var invokedUserIDGetterCount = 0
@@ -52,11 +52,11 @@ final class UserDataSourceMock: IGUserDataSourceInterface {
 
     var invokedSaveUser = false
     var invokedSaveUserCount = 0
-    var invokedSaveUserParameters: (user: IGUserDTO, Void)?
-    var invokedSaveUserParametersList = [(user: IGUserDTO, Void)]()
+    var invokedSaveUserParameters: (user: UserDTO, Void)?
+    var invokedSaveUserParametersList = [(user: UserDTO, Void)]()
     var stubbedSaveUserError: Error?
 
-    func saveUser(user: IGUserDTO) throws {
+    func saveUser(user: UserDTO) throws {
         invokedSaveUser = true
         invokedSaveUserCount += 1
         invokedSaveUserParameters = (user, ())
@@ -68,9 +68,9 @@ final class UserDataSourceMock: IGUserDataSourceInterface {
 
     var invokedGetUser = false
     var invokedGetUserCount = 0
-    var stubbedGetUserResult: IGUserDTO!
+    var stubbedGetUserResult: UserDTO!
 
-    func getUser() -> IGUserDTO? {
+    func getUser() -> UserDTO? {
         invokedGetUser = true
         invokedGetUserCount += 1
         return stubbedGetUserResult

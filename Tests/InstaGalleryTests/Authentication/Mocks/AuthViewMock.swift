@@ -8,7 +8,7 @@
 import Foundation
 @testable import InstaGallery
 
-final class AuthViewMock: IGAuthControllerInterface {
+final class AuthViewMock: AuthControllerInterface {
 
     var invokedSetupView = false
     var invokedSetupViewCount = 0
@@ -40,10 +40,10 @@ final class AuthViewMock: IGAuthControllerInterface {
 
     var invokedDidLoadUser = false
     var invokedDidLoadUserCount = 0
-    var invokedDidLoadUserParameters: (user: IGUser, Void)?
-    var invokedDidLoadUserParametersList = [(user: IGUser, Void)]()
+    var invokedDidLoadUserParameters: (user: User, Void)?
+    var invokedDidLoadUserParametersList = [(user: User, Void)]()
 
-    func didLoadUser(user: IGUser) {
+    func didLoadUser(user: User) {
         invokedDidLoadUser = true
         invokedDidLoadUserCount += 1
         invokedDidLoadUserParameters = (user, ())

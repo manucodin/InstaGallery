@@ -10,7 +10,7 @@ import Nimble
 @testable import InstaGallery
 
 final class AuthenticationInteractorTest: XCTestCase {
-    var sut: IGAuthInteractor!
+    var sut: AuthInteractor!
     
     private let bundleDataSourceMock = BundleDataSourceMock()
     private let userDataSourceMock = UserDataSourceMock()
@@ -20,7 +20,7 @@ final class AuthenticationInteractorTest: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        sut = IGAuthInteractor(
+        sut = AuthInteractor(
             bundleDataSource: bundleDataSourceMock,
             userDataSource: userDataSourceMock,
             instagramDataSource: instagramDataSourceMock
@@ -39,8 +39,8 @@ final class AuthenticationInteractorTest: XCTestCase {
         bundleDataSourceMock.stubbedAppID = "appId"
         bundleDataSourceMock.stubbedRedirectURI = "redirectURI"
         
-        let clientIDKey = IGConstants.ParamsKeys.clientIDKey
-        let redirectURIKey = IGConstants.ParamsKeys.redirectURIKey
+        let clientIDKey = Constants.ParamsKeys.clientIDKey
+        let redirectURIKey = Constants.ParamsKeys.redirectURIKey
         let expectedURLRequest = sut.authRequest
         
         expect(expectedURLRequest).notTo(beNil())
@@ -53,7 +53,7 @@ final class AuthenticationInteractorTest: XCTestCase {
     func testAuthenticateCode() {
         let testCode = "testCode"
         let userDTO = IGUserDTOMother.user()
-        let authResult = (Result<IGUserDTO, IGError>.success(IGUserDTOMother.user()), ())
+        let authResult = (Result<UserDTO, InstaGalleryError>.success(userDTO), ())
         
         instagramDataSourceMock.stubbedAuthenticateCompletionHandlerResult = authResult
         sut.authenticate(userCode: testCode)
@@ -63,7 +63,7 @@ final class AuthenticationInteractorTest: XCTestCase {
     
     func testAuthenticateError() {
         let testCode = "testCode"
-        let authError = (Result<IGUserDTO, IGError>.failure(.invalidUser), ())
+        let authError = (Result<UserDTO, InstaGalleryError>.failure(.invalidUser), ())
         
         instagramDataSourceMock.stubbedAuthenticateCompletionHandlerResult = authError
         sut.authenticate(userCode: testCode)

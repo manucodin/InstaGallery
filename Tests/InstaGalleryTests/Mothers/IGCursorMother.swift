@@ -9,7 +9,7 @@ import Foundation
 @testable import InstaGallery
 
 internal struct IGCursorMother {
-    internal static func cursor() -> IGCursorDTO {
-        return IGCursorDTO(after: "cursorAfter", before: "cursorBefore")
+    internal static func cursor() -> CursorDTO {
+        return CursorDTO(after: "cursorAfter", before: "cursorBefore")
     }
 }

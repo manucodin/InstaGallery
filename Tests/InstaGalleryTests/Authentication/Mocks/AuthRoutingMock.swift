@@ -8,7 +8,7 @@
 import Foundation
 @testable import InstaGallery
 
-final class AuthRoutingMock: IGAuthRoutingInterface {
+final class AuthRoutingMock: AuthRoutingInterface {
 
     var invokedDismiss = false
     var invokedDismissCount = 0

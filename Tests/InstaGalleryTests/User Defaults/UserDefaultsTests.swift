@@ -4,12 +4,12 @@ import Nimble
 
 final class UserDefaultsTests: XCTestCase {
     
-    var sut: IGUserDefaultsInterface!
+    var sut: UserDefaultsInterface!
     
     override func setUp() {
         super.setUp()
         
-        sut = IGUserDefaultsImp()
+        sut = UserDefaultsImp()
     }
     
     

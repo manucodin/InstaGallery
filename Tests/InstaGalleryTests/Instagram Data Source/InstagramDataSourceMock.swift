@@ -8,15 +8,15 @@
 import Foundation
 @testable import InstaGallery
 
-final class InstagramDataSourceMock: IGDataSourceInterface {
+final class InstagramDataSourceMock: InstagramDataSourceInterface {
 
     var invokedGetUserGallery = false
     var invokedGetUserGalleryCount = 0
     var invokedGetUserGalleryParameters: (lastItem: String?, Void)?
     var invokedGetUserGalleryParametersList = [(lastItem: String?, Void)]()
-    var stubbedGetUserGalleryCompletionHandlerResult: (Result<IGGalleryDTO, IGError>, Void)?
+    var stubbedGetUserGalleryCompletionHandlerResult: (Result<GalleryDTO, InstaGalleryError>, Void)?
 
-    func getUserGallery(withLastItem lastItem: String?, completionHandler: @escaping ((Result<IGGalleryDTO, IGError>) -> Void)) {
+    func getUserGallery(withLastItem lastItem: String?, completionHandler: @escaping ((Result<GalleryDTO, InstaGalleryError>) -> Void)) {
         invokedGetUserGallery = true
         invokedGetUserGalleryCount += 1
         invokedGetUserGalleryParameters = (lastItem, ())
@@ -30,9 +30,9 @@ final class InstagramDataSourceMock: IGDataSourceInterface {
     var invokedGetImageCount = 0
     var invokedGetImageParameters: (identifier: String, Void)?
     var invokedGetImageParametersList = [(identifier: String, Void)]()
-    var stubbedGetImageCompletionHandlerResult: (Result<IGMediaDTO?, IGError>, Void)?
+    var stubbedGetImageCompletionHandlerResult: (Result<MediaDTO?, InstaGalleryError>, Void)?
 
-    func getImage(withIdentifier identifier: String, completionHandler: @escaping ((Result<IGMediaDTO?, IGError>) -> Void)) {
+    func getImage(withIdentifier identifier: String, completionHandler: @escaping ((Result<MediaDTO?, InstaGalleryError>) -> Void)) {
         invokedGetImage = true
         invokedGetImageCount += 1
         invokedGetImageParameters = (identifier, ())
@@ -46,9 +46,9 @@ final class InstagramDataSourceMock: IGDataSourceInterface {
     var invokedAuthenticateCount = 0
     var invokedAuthenticateParameters: (userCode: String, Void)?
     var invokedAuthenticateParametersList = [(userCode: String, Void)]()
-    var stubbedAuthenticateCompletionHandlerResult: (Result<IGUserDTO, IGError>, Void)?
+    var stubbedAuthenticateCompletionHandlerResult: (Result<UserDTO, InstaGalleryError>, Void)?
 
-    func authenticate(withUserCode userCode: String, completionHandler: @escaping ((Result<IGUserDTO, IGError>) -> Void)) {
+    func authenticate(withUserCode userCode: String, completionHandler: @escaping ((Result<UserDTO, InstaGalleryError>) -> Void)) {
         invokedAuthenticate = true
         invokedAuthenticateCount += 1
         invokedAuthenticateParameters = (userCode, ())

@@ -11,12 +11,12 @@ import Nimble
 
 final class UserMapperTests: XCTestCase {
     
-    var sut: IGUserMapper!
+    var sut: UserMapper!
 
     override func setUp() {
         super.setUp()
         
-        sut = IGUserMapper()
+        sut = UserMapper()
     }
     
     override func tearDown() {

@@ -11,12 +11,12 @@ import Nimble
 
 final class PagingMapperTests: XCTestCase {
     
-    var sut: IGPagingMapper!
+    var sut: PagingMapper!
     
     override func setUp() {
         super.setUp()
         
-        sut = IGPagingMapper()
+        sut = PagingMapper()
     }
     
     override func tearDown() {

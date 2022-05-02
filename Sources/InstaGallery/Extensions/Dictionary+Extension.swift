@@ -8,7 +8,7 @@
 
 import Foundation
 
-extension Dictionary{
+extension Dictionary {
     func paramsString() -> String {
         var paramsString = [String]()
         for (key, value) in self {

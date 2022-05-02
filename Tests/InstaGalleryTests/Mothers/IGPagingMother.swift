@@ -9,7 +9,7 @@ import Foundation
 @testable import InstaGallery
 
 internal struct IGPagingMother {
-    internal static func paging() -> IGPagingDTO {
-        return IGPagingDTO(cursors: IGCursorMother.cursor(), next: "nextPage")
+    internal static func paging() -> PagingDTO {
+        return PagingDTO(cursors: IGCursorMother.cursor(), next: "nextPage")
     }
 }

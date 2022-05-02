@@ -8,7 +8,7 @@
 import Foundation
 @testable import InstaGallery
 
-final class BundleDataSourceMock: IGBundleDataSourceInterface {
+final class BundleDataSourceMock: BundleDataSourceInterface {
 
     var invokedAppIDGetter = false
     var invokedAppIDGetterCount = 0

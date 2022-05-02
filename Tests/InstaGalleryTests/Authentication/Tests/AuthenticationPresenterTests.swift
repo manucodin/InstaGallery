@@ -11,7 +11,7 @@ import Nimble
 
 final class AuthenticationPresenterTests: XCTestCase {
     
-    var sut: IGAuthPresenter!
+    var sut: AuthPresenter!
     
     private let viewMock = AuthViewMock()
     private let interactorMock = AuthInteractorInputMock()
@@ -20,7 +20,7 @@ final class AuthenticationPresenterTests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        sut = IGAuthPresenter()
+        sut = AuthPresenter()
         sut.view = viewMock
         sut.interactor = interactorMock
         sut.routing = routingMock
