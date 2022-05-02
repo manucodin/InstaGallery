@@ -26,7 +26,7 @@ class AuthController: UIViewController {
         #if SWIFT_PACKAGE
         super.init(nibName: String(describing: AuthController.self), bundle: Bundle.module)
         #else
-        super.init(nibName: String(describing: IGAuthController.self), bundle: Bundle(for: IGAuthController.self))
+        super.init(nibName: String(describing: AuthController.self), bundle: Bundle(for: AuthController.self))
         #endif
     }
     

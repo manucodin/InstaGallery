@@ -25,7 +25,7 @@ import UIKit
         #if SWIFT_PACKAGE
         super.init(nibName: String(describing: GalleryController.self), bundle: Bundle.module)
         #else
-        super.init(nibName: String(describing: IGGalleryController.self), bundle: Bundle(for: IGGalleryController.self))
+        super.init(nibName: String(describing: GalleryController.self), bundle: Bundle(for: GalleryController.self))
         #endif
         
         self.presenter = presenter
@@ -58,7 +58,7 @@ import UIKit
         #if SWIFT_PACKAGE
         bundle = Bundle.module
         #else
-        bundle = Bundle(for: InstaGalleryCell.self)
+        bundle = Bundle(for: GalleryCell.self)
         #endif
         
         

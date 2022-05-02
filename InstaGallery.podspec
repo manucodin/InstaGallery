@@ -24,7 +24,7 @@ Pod::Spec.new do |spec|
   #   * Try to keep it short, snappy and to the point.
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
-  spec.description  = "An easy way to access your Instagram account and get medias"
+  spec.description  = "An easy way for login with Instagram and get your multimedias in your app"
 
   spec.homepage     = "https://github.com/MRodSebastian/InstaGallery"
   # spec.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
