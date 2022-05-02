@@ -12,9 +12,9 @@ InstaGallery is an easy way to access your Instagram account and get your galler
 6. Set one more key with name `InstagramClientSecret` with the Instagram App Secret.
 7. Init `GalleryController` with method `InstaGallery.gallery`. If you need retrieve the media selected, do you need set `GalleryDelegate` delegate with the optinal parameters `delegate`. For example
 ```swift
-        let galleryController = InstaGallery.gallery(withDelegate: self)
-        let navigationController = UINavigationController(rootViewController: galleryController)
-        present(navigationController, animated: true, completion: nil)
+let galleryController = InstaGallery.gallery(withDelegate: self)
+let navigationController = UINavigationController(rootViewController: galleryController)
+present(navigationController, animated: true, completion: nil)
 ```
 8. Enjoy! 🎉
 
@@ -24,8 +24,8 @@ it, simply add the following line to your Podfile:
 
 ```ruby
 pod 'InstaGallery'
-pod install
 ```
+Then, run ```pod install```
 
 ## Swift Package Manager
 
