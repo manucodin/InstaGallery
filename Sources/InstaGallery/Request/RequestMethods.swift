@@ -1,9 +1,11 @@
 //
-//  File.swift
-//  
+//  RequestMethods.swift
+//  InstaGallery
 //
-//  Created by Manuel Rodriguez on 1/5/22.
+//  Created by Manuel Rodriguez on 26/3/22.
+//  Copyright © 2022 MRodriguez. All rights reserved.
 //
+
 
 import Foundation
 

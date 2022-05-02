@@ -10,8 +10,7 @@ import Foundation
 import UIKit
 
 extension UIImageView {
-    
-    public func imageFromURL(url: URL) {
+    func imageFromURL(url: URL) {
         self.image = nil
         URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) -> Void in
 

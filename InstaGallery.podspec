@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "InstaGallery"
-  spec.version      = "0.3.6"
+  spec.version      = "0.4.0"
   spec.summary      = "An easy way to access your Instagram account and get medias"
 
   # This description is used to generate tags and improve search results.
@@ -24,7 +24,7 @@ Pod::Spec.new do |spec|
   #   * Try to keep it short, snappy and to the point.
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
-  spec.description  = "An easy way to access your Instagram account and get medias"
+  spec.description  = "An easy way for login with Instagram and get your multimedias in your app"
 
   spec.homepage     = "https://github.com/MRodSebastian/InstaGallery"
   # spec.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
@@ -63,7 +63,7 @@ Pod::Spec.new do |spec|
   #
 
   # spec.platform     = :ios
-  spec.platform     = :ios, "12.0"
+  spec.platform     = :ios, "13.0"
   spec.swift_versions = "5.0"
 
   #  When using multiple platforms
